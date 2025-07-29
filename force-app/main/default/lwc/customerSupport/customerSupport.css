@@ -1,0 +1,617 @@
+.support-container {
+    background: #FFF;
+    padding: 1.5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+}
+
+.support-container h2 {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .subheading {
+  color: #585858;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .scroll-container {
+    max-height: 26rem;
+    overflow: auto;
+}
+
+.support-container .scroll-container .table-container {
+    overflow-x: auto;
+}
+
+.support-container .scroll-container .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.support-container .scroll-container .table-container table thead {
+    background-color: #19253D;
+    color: white;
+}
+
+.support-container .scroll-container .table-container table th {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    text-align: left;
+    font-weight: 500;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .scroll-container .table-container table td {
+    font-size: 0.875rem;
+    color: #232323;
+    padding: 1rem 0.875rem;
+    font-weight: 500;
+    border-bottom: 1px solid #EBEAEA;
+    vertical-align: middle;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .scroll-container .table-container table td .badge {
+    color: #FFFFFF;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    padding: 0.375rem 1rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .scroll-container .table-container table td .badge.completed {
+    background-color: #21B354;
+}
+
+.support-container .scroll-container .table-container table td .badge.pending {
+    background-color: #FF9500;
+}
+
+.support-container .scroll-container .table-container table td .rate-btn {
+    background: transparent;
+    color: #19253D;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    padding: 0.1875rem 1rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 0.0625rem solid #19253D;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.support-container .footer-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.support-container .footer-button .create-request-btn {
+    background-color: #ff9000;
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: none;
+    -moz-border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    border-radius: 2rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.raise-service-request.modal {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.raise-service-request.modal .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 40rem;
+    padding: 2.375rem 2.625rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.raise-service-request.modal .modal-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.raise-service-request.modal .modal-content .modal-title {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.raise-service-request.modal .modal-content .subtext {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0.5rem 0 1.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.raise-service-request.modal .modal-content .form-group {
+    margin: 0 0 1.5rem 0;
+    position: relative;
+}
+
+.raise-service-request.modal .modal-content .form-group label {
+    color: #232323;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: block;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.raise-service-request.modal .modal-content .form-group label.m-0 {
+    margin-bottom: 0;
+}
+
+.raise-service-request.modal .modal-content .form-group .custom-select {
+    width: 100%;
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #C7C4C4;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.raise-service-request.modal .modal-content .form-group .chevron-bottom {
+    width: 1.25rem;
+    position: absolute;
+    right: 1rem;
+    top: 2.875rem;
+}
+
+.raise-service-request.modal .modal-content .form-group .custom-select::-ms-expand {
+    display: none;
+}
+
+.raise-service-request.modal .modal-content .form-group .form-control {
+    width: 100%;
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #C7C4C4;
+}
+
+.raise-service-request.modal .modal-content .form-group .form-control .slds-form-element__control .slds-input {
+    border: none;
+    padding: 0;
+}
+
+.raise-service-request.modal .modal-content .footer {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.raise-service-request.modal .modal-content .footer .submit-btn {
+    background: #19253D;
+    color: #FFF;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    -moz-border-radius: 5.625rem;
+    -webkit-border-radius: 5.625rem;
+    border-radius: 5.625rem;
+    border: none;
+    font-family: 'SF Pro Display', sans-serif;
+}
+.raise-service-request.modal .modal-content .footer .submit-btn:disabled {
+    background: #D8D8D8;
+}
+
+.request-raised-successfully.modal {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.request-raised-successfully.modal .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 33rem;
+    padding: 5.25rem 5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.request-raised-successfully.modal .modal-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.request-raised-successfully.modal .modal-content .thumb {
+    width: 6.8125rem;
+}   
+
+.request-raised-successfully.modal .modal-content .main-heading {
+    color: #232323;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.125rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.request-raised-successfully.modal .modal-content .subheading {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.feedback.modal {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.feedback.modal .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 30.625rem;
+    padding: 2.25rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.feedback.modal .modal-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.feedback.modal .modal-content .heading {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.feedback.modal .modal-content .subtext {
+    color: #232323;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.feedback.modal .modal-content .button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 10.75rem 0 0 0;
+}
+
+.feedback.modal .modal-content .button-group .raise-btn, .feedback.modal .modal-content .button-group .continue-btn {
+    background: transparent;
+    color: #19253D;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.6875rem 2.25rem;
+    -moz-border-radius: 5.625rem;
+    -webkit-border-radius: 5.625rem;
+    border-radius: 5.625rem;
+    border: 0.0625rem solid #19253D;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.feedback.modal .modal-content .button-group .continue-btn {
+    background: #19253D;
+    color: #fff;
+}
+
+.rate-us.modal {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.rate-us.modal .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 40rem;
+    padding: 2.25rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.rate-us.modal .modal-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.rate-us.modal .modal-content .title {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.rate-us.modal .modal-content .subtitle {
+    color: #232323;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.rate-us.modal .modal-content .submit-btn-wrap .submit-btn {
+    background: #19253D;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.6875rem 2.25rem;
+    -moz-border-radius: 5.625rem;
+    -webkit-border-radius: 5.625rem;
+    border-radius: 5.625rem;
+    border: 0.0625rem solid #19253D;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.rate-us.modal .modal-content .stars {    
+    margin: 4.625rem 0;
+}
+
+.rate-us.modal .modal-content .star {    
+    font-size: 3rem;
+    color: #ccc;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.rate-us.modal .modal-content .star.filled {
+    color: #FFDD21;
+}
+
+.rate-us.modal .modal-content .feedback-section {
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.rate-us.modal .modal-content .feedback-section label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.rate-us.modal .modal-content textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    resize: none;
+    font-size: 14px;
+}
+
+.rate-us.modal .modal-content .submit-btn-wrap {
+    margin-top: 1.5rem;
+}
+
+.thankyou.modal {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.thankyou.modal .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 40rem;
+    padding: 2.25rem 9.375rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.thankyou.modal .modal-content .close {
+    background: transparent;
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.thankyou.modal .modal-content .thankyou-image {
+    width: 6.5rem;
+}
+
+.thankyou.modal .modal-content h2 {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.125rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.thankyou.modal .modal-content p {
+    color: #232323;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.thankyou.modal .modal-content .close-btn {
+    background: #19253D;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 3rem 0 0 0;
+    padding: 0.6875rem 2.25rem;
+    -moz-border-radius: 5.625rem;
+    -webkit-border-radius: 5.625rem;
+    border-radius: 5.625rem;
+    border: 0.0625rem solid #19253D;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.spinner-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}
+
+.star {
+    font-size: 20px;
+    color: #ccc; /* Unfilled stars (light gray) */
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+.star.filled {
+    color: gold; /* Filled stars (gold) */
+}

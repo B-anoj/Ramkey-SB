@@ -1,0 +1,100 @@
+<template>
+    <div class="blog-wrap">
+        <template if:true={selectedBlog}>
+            <!-- 👇 Expanded blog view (inside main .card) -->
+            <div class="blog-header">
+                <span class="breadcrumb-link" onclick={handleBack}>Blogs</span> &nbsp;&nbsp;/&nbsp;&nbsp;
+                <span class="breadcrumb-current">{selectedBlog.Subject__c}</span>
+            </div>
+
+            <div class="expanded-blog">
+                <div class="expanded-image-wrapper">
+                    <img src={selectedBlog.ImageUrl__c} alt="Full Blog Image" class="expanded-image" />
+                    <!-- <p class="full-date">{selectedBlog.formattedDate}</p> -->
+                </div>
+                <span class="blog-heading">{selectedBlog.Subject__c}</span>
+                <div>
+                    <img src={ramkeyimg} alt="Icon" class="subject-icon" />
+                </div>
+
+                <div class="desc">
+                    <div class="description full-description" lwc:dom="manual"></div>
+                </div>
+
+
+
+            </div>
+        </template>
+
+        <template if:false={selectedBlog}>
+            <!-- 👇 Default blog list view -->
+            <div class="blog-header">
+                <h1 class="blog-main-heading">Blogs</h1>
+                <p class="blog-subheading">
+                    Discover insightful articles and updates on Ramky Estates's blog. Gain valuable insights into
+                    property trends, market updates, and expert tips.
+                </p>
+            </div>
+
+            <!-- <div class="blog-container">
+                <template if:true={blogs}>
+                    <template for:each={blogs} for:item="blog">
+                        <div class="blog-card" key={blog.Id}>
+                            <div class="image-wrapper">
+                                <img src={blog.ImageUrl__c} alt="Blog Image" class="blog-image" />
+                            </div>
+                            <div class="blog-body">
+                                <h2 class="subject">{blog.Subject__c}</h2>
+                                <div class="blog-meta">
+                                    <p class="date">{blog.formattedDate}</p>
+                                    <a href="javascript:void(0);" onclick={handleReadMore} data-id={blog.Id}
+                                        class="read-more">
+                                        Read More
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={blogs}>
+                    <div class="no-record-wrapper">
+                        <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                        <p class="no-record-text">No records found!!</p>
+                    </div>
+                </template>
+            </div> -->
+
+            <div class="blog-container">
+    <template if:true={blogs}>
+        <template if:true={blogs.length}>
+            <template for:each={blogs} for:item="blog">
+                <div class="blog-card" key={blog.Id}>
+                    <div class="image-wrapper">
+                        <img src={blog.ImageUrl__c} alt="Blog Image" class="blog-image" />
+                    </div>
+                    <div class="blog-body">
+                        <h2 class="subject">{blog.Subject__c}</h2>
+                        <div class="blog-meta">
+                            <p class="date">{blog.formattedDate}</p>
+                            <a href="javascript:void(0);" onclick={handleReadMore} data-id={blog.Id} class="read-more">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <template if:false={blogs.length}>
+            <div class="no-record-wrapper">
+                <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                <p class="no-record-text">No records found!!</p>
+            </div>
+        </template>
+    </template>
+</div>
+
+        </template>
+    </div>
+</template>

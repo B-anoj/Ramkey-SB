@@ -1,0 +1,381 @@
+<apex:page standardController="Product2" renderAs="PDF"> <!-- extensions="ProductControllerforPDF" -->
+   <!-- <apex:form id="form">
+        <apex:repeat value="{!ProductList}" var="Pro">
+                        <table style ="width:100%; border: 1px solid black;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;background-color:#C0C0C0;color:black;"><b>Sl.No.</b></td>
+                                <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;background-color:#C0C0C0;color:black;"><b>Flat Specifications</b></td>
+                                <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;background-color:#C0C0C0;color:black;"><b>Details</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">1.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Active</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.IsActive}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">2.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Advance Maintenance</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Advance_Maintenance__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">3.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Alt_Unit_Measurement__c}</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Samples collection - Input / Output</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">4.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Amenities Charges</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Amenities_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">5.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Area in Sqft</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Area_in_Sqft__c}</td>
+                                
+                             </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">6.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Balcony</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Balcony__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">7.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Base Value</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Base_Value__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">8.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Boundary East</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Boundary_East__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">9.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Boundary North</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Boundary_North__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">10.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Boundary South</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Boundary_South__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">11.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Boundary West</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;"><b>{!Pro.Boundary_West__c}</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">12.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Car Parking Charges</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Car_Parking_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">13.</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">Carpet Area</td>
+                                <td colspan="2" style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Carpet_Area__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">14.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Corpus Fund</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Corpus_Fund__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">15.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Direction Facing</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Direction_Facing__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">16.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">DisplayUrl</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.DisplayUrl}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">17.</td>
+                                <td colspan="2"  style="text-align: Center; border: 1px solid black;padding:1px;">Dist Channel</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Dist_Channel__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border:1px solid black;padding:1px;">18.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Electrical Water Charges</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Electrical_Water_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">19.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">EV Charges</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.EV_Charges__c}</td>
+                            </tr>     
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">20.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">ExternalDataSourceId</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.ExternalDataSourceId}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">21.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">ExternalId</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.ExternalId}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">22.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">External wall area</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.External_wall_area__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">23.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Facing</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Facing__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">24.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Floor</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Floor__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">25.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Floor Number</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Floor_Number__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">26.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Floor Rise</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Floor_Rise__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">27.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Infra Charges</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Infra_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">28.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Legal Charges</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Legal_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">29.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Plant</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Plant__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">30.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Material</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Material__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">31.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Material Description</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Material_Description__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">32.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Material No</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Material_No__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">33.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Other Charges</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Other_Charges__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">34.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Parking Area</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Parking_Area__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">35.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Parking No</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Parking_No__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">36.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Plant Description</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Plant_Description__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">37.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">38.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC1</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC1__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">39.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description PLC1</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description_PLC1__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">40.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC2</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC2__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">41.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description PLC2</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description_PLC2__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">42.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC3</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC3__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">43.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description PLC3</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description_PLC3__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">44.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC4</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC4__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">45.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description PLC4</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description_PLC4__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">46.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">PLC5</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.PLC5__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">47.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description PLC5</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description_PLC5__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">48.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Pricing Condition</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Pricing_Condition__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">49.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Pricing Sequence</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Pricing_Sequence__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">50.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">ProductCode</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.ProductCode}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">51.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">52.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Family</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Family}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">53.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Name</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Name}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">54.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">StockKeepingUnit</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.StockKeepingUnit}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">55.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">QuantityUnitOfMeasure</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.QuantityUnitOfMeasure}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">56.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Sale Unit Carpet Area in SFT</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Sale_Unit_Carpet_Area_in_SFT__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">57.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Sale Unit Terrace Area in SFT</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Sale_Unit_Terrace_Area_in_SFT__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">58.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Sales Office</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Sales_Office__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">59.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Sales Org</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Sales_Org__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">60.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Sales Organization</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Sales_Organization__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">61.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">SFT</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.SFT__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">62.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Square Yards</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Square_Yards__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">63.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Square Yards Price</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Square_Yards_Price__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">64.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Status</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Status__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">65.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Description</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Description__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">66.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Terrace Area</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Terrace_Area__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">67.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Total Cost</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Total_Cost__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">68.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Towers</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Towers__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">69.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">UDS</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.UDS__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">70.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Undivided share of Flat</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Undivided_share_of_Flat__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">71.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Unit Original Status</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Unit_Original_Status__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">72.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Utility</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Utility__c}</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">72.</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">Valid from</td>
+                                <td colspan="2"  style="text-align: Left; border: 1px solid black;padding:1px;">{!Pro.Valid_from__c}</td>
+                            </tr>
+                            
+                        </table>
+        </apex:repeat>
+    </apex:form>-->
+</apex:page>

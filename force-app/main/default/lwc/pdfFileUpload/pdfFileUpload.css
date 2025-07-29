@@ -1,0 +1,17 @@
+.removeImage {
+    cursor: pointer;
+    color: red;
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.done-button {
+    display: flex;
+    justify-content: flex-end;  /* Align the buttons to the right */
+    gap: 10px;
+}
+
+.note-text {
+    color: red;
+    font-weight: bold;
+}

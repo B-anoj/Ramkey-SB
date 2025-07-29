@@ -1,0 +1,152 @@
+.blog-wrap {
+    background-color: #fff;
+    padding: 1.5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    height: 100%;
+}
+
+.blog-wrap .blog-main-heading {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .blog-subheading {
+	color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin: 0.25rem 0 2rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .blog-container {
+    display: flex;
+    gap: 1.125rem;
+}
+
+.blog-wrap .blog-container .blog-card {
+    width: calc(33.33% - 1.125rem);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-wrap .blog-container .blog-card .image-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.blog-wrap .blog-container .blog-card .image-wrapper .blog-image {
+    width: 100%;
+    height: 11rem;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.blog-wrap .blog-container .blog-card .blog-body {    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.blog-wrap .blog-container .blog-card .blog-body .subject {
+    color: #2C2C2C;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    padding: 0.75rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .blog-container .blog-card .blog-body .blog-meta {
+    justify-content: space-between;
+    display: flex;
+}
+
+.blog-wrap .blog-container .blog-card .blog-body .date {
+    color: #333333;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;   
+}
+
+.blog-wrap .blog-container .blog-card .blog-body .read-more {
+    color: #0077BD;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;   
+}
+
+.blog-wrap .blog-header .breadcrumb-link {
+    color: #C7C4C4;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .blog-header .breadcrumb-current {
+    color: #2C2C2C;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .expanded-image {
+    width: 100%;
+	-moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+	margin: 2rem 0 1rem 0;
+}
+
+.blog-wrap .expanded-blog .blog-heading {
+    color: #2C2C2C;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .expanded-blog .description {
+    color: #2C2C2C;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.blog-wrap .subject-icon {
+    width: 6.875rem;
+    margin: 0.75rem 0 1rem 0;
+}
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}

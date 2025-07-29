@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:hasRecordId,lightning:actionOverride,lightning:isUrlAddressable,force:hasSObjectName,lightning:hasPageReference,lightning:utilityItem,force:appHostable,force:lightningQuickAction,forceCommunity:layout,forceCommunity:profileMenuInterface,forceCommunity:searchInterface,forceCommunity:themeLayout,lightningcommunity:allowInRelaxedCSP,lightningsnapin:minimizedUI,lightningsnapin:prechatUI" access="global" controller="BookingFormController">
+    <!-- <c:bookingFormScreenComponent recordId="{!v.recordId}" onclose="{!c.closeQA}" /> -->
+    
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"></aura:handler>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+     <c:bookingForm recordId="{!v.recordId}" onclose="{!c.closeQA}" /> 
+</aura:component>

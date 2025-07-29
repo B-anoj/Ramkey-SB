@@ -1,0 +1,339 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.login-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    max-width: 400px;
+    width: 90%;
+    color: #ffffffee;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+.input-box {
+    margin-bottom: 20px;
+    --lwc-colorTextDefault: #000;
+    --slds-c-input-color-background: #fff;
+    --slds-c-input-color-border: #ccc;
+}
+
+.get-otp-button {
+    width: 100%;
+    margin-bottom: 20px;
+    --slds-c-button-text-color: #000;
+    --slds-c-button-color-background: #fff;
+    --slds-c-button-color-border: transparent;
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+.custom-input:focus {
+    border-color: #1b5297;
+    box-shadow: 0 0 5px rgba(27, 82, 151, 0.5);
+}
+
+
+.support-link {
+    color: #f0f0f0;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.black-text {
+         color: black;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* ← Your requirement */
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+    height: 35px;
+     color: #000;
+}
+.red-text {
+    color: red;
+}
+
+.custom-button {
+    background-color: #FFFFFF;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 35px;
+    width: 318px;
+}
+
+.custom-button:hover {
+    background-color: #005fb2;
+}
+
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.otp-boxes {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000 !important;
+    caret-color: #000;
+}
+
+.back-button {
+    --slds-c-button-color-background: #fff;
+    --slds-c-button-text-color: #000;
+    border-radius: 25px;
+}
+.custom-button1 {
+    background-color: #e5e5e5;
+    color: #000; /* Black text */
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 32px;
+    width: 95px;
+}
+
+.custom-button1:hover {
+    background-color: #d0d0d0;
+}
+
+.verify-button {
+    background-color: #19253D;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 32px;
+}
+
+.verify-button:hover {
+    background-color: #005fb2;
+}
+
+
+.verify-button {
+    border-radius: 25px;
+}
+.error-text {
+    margin-top: 15px;
+    color: #d9534f;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+}
+
+.success-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    animation: fadeIn 0.6s ease-in-out;
+    text-align: center;
+    color: #ffffff;
+}
+
+.success-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+}
+
+.success-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.success-subtext {
+    font-size: 16px;
+    font-weight: 400;
+    color: #dddddd;
+}
+
+/* Optional subtle entrance animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.form-wrapper {
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #dcdcdc;
+    margin-bottom: 25px;
+}
+
+.input {
+    width: 100%;
+    max-width: 320px;
+    height: 42px;
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 0 16px;
+    margin-bottom: 18px;
+    background-color: transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.textarea-label {
+    align-self: flex-start;
+    color: #dcdcdc;
+    font-size: 13px;
+    margin: 12px 0 6px 0;
+}
+
+.textarea {
+    width: 100%;
+    max-width: 320px;
+    height: 100px;
+    border-radius: 20px;
+    padding: 12px;
+    border: none;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    color: #000;
+    resize: none;
+    margin-bottom: 25px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #fff;
+    color: #000;
+}
+
+.submit-btn {
+    background-color: #141b34;
+    color: #fff;
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 10px;
+}
+.custom-white-button {
+    --slds-c-button-text-color: white;
+}
+
+.error-message {
+    color: red;
+    margin-top: 8px;
+    font-size: 0.9rem;
+}

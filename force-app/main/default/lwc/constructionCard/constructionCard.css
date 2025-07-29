@@ -1,0 +1,103 @@
+body {
+    font-family: 'SF Pro Display', sans-serif !important;
+}
+
+.blue-card {
+    background-color: #E1EFFA;
+    width: 100.33%;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blue-card .project-image {
+    width: 100%;
+    height: 11.25rem;
+    object-fit: cover;
+    -moz-border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.blue-card .title {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.blue-card .description {
+    color: #232323;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.blue-card .view-button {
+    background-color: #FFF;
+    width: 100%;
+    color: #19253D;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.625rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+    -moz-border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    border-radius: 5rem;
+    transition: all 0.3s ease;
+}
+
+.blue-card .view-button:hover {
+    background-color: #000066;
+    color: #FFF;
+}
+
+:host {
+    display: block;
+    width: 32%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+    :host {
+        width: 48%;
+    }
+}
+
+/* Responsive: 1 card on mobile */
+@media only screen and (max-width: 480px) {
+    :host {
+        width: 100%;
+    }
+}
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}

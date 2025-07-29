@@ -1,0 +1,93 @@
+<!-- Your_VF_Page.page   -->
+<apex:page controller="FlatRecordPageController" renderAs="pdf">
+  <apex:stylesheet value="{!$Resource.flatrecorddetailsvfpage}" />
+        <div  style="text-align:right;">
+            <apex:image url="{!$Resource.Ramky_Logo}" alt="Image Alt Text" width="100" height="70%"  />
+        </div>
+        
+           <center><b>FLAT DETAILS</b></center><br/>
+           <table  cellspacing="0" cellpadding="4" width="100%" >
+           <apex:repeat var="flat" value="{!comm}">
+           
+           <tr >
+               <td style="text-align:right;" ><b>1.</b></td>
+               <td ><b style="margin-left:35px">Flat No.</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Name}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>2.</b></td>
+               <td><b style="margin-left:35px">Location</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Location__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>3.</b></td>
+               <td ><b style="margin-left:35px">Sub-Location</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Sublocation__c}"/></td>
+               
+           </tr>
+           <tr >
+               <td style="text-align:right;" ><b>4.</b></td>
+               <td ><b style="margin-left:35px">Project Name</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Project__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>5.</b></td>
+               <td><b style="margin-left:35px">Tower</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Towers__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>6.</b></td>
+               <td><b style="margin-left:35px">Base Value</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Base_Value__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>7.</b></td>
+               <td><b style="margin-left:35px">Status</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Status__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" width='5%'><b>8.</b></td>
+               <td><b style="margin-left:35px" width='65%'>Floor</b></td>
+               <td style="text-align:right;" width='5%'><b>:</b></td>
+               <td style="text-align:center;" width='25%'><apex:outputText value="{!flat.Floor__c}"/></td>
+               
+           </tr>
+           
+           <tr >
+               <td style="text-align:right;" ><b>9.</b></td>
+               <td><b style="margin-left:35px">Facing</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Facing__c}"/></td>
+               
+           </tr>
+                <tr >
+               <td style="text-align:right;" ><b>10.</b></td>
+               <td><b style="margin-left:35px">Type</b></td>
+               <td style="text-align:right;" ><b>:</b></td>
+               <td style="text-align:center;"><apex:outputText value="{!flat.Type__c}"/></td>
+               
+           </tr>
+           </apex:repeat>
+        </table>
+           
+   
+</apex:page>

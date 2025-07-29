@@ -1,0 +1,1199 @@
+<template>
+    <lightning-card class="slds-p-around_medium">
+        <div class="custom-colored-div">
+            <div class="center-wrapper" if:false={isNext}>
+                <template lwc:if={isSpinnerRunning}>
+                    <lightning-spinner alternative-text="Loading" size="x-small"></lightning-spinner>
+                </template>
+                <template lwc:else>
+                    <h1 class="headings"><b>Select Unit</b></h1>
+                    <div class="slds-p-around_medium block-field">
+                        <c-lookup-field icon-name="standard:user" s-object-api-name="Opportunity" label="Opportunity"
+                            onlookupupdate={lookupRecord} default-record-id={opportuniId} placeholder="type here...">
+                        </c-lookup-field>
+                    </div>
+
+                    <div class="slds-p-around_medium" style="display: flex; align-items: center;">
+                        <lightning-combobox label="Project Name" placeholder="Select Project" name="ProjectName"
+                            options={projectNameOptions} value={BookingFormDetails.ProjectName}
+                            onchange={BFonchangeHandler} required disabled="true"></lightning-combobox>
+                        <lightning-button variant="brand" label="Show Drafts" onclick={handleDraftClick}
+                            class="slds-m-top_medium" style="margin-left: 10px;">
+                        </lightning-button>
+                    </div>
+                    <div class="slds-p-around_medium block-field">
+                        <lightning-input label="Block" name="Block" value={BookingFormDetails.Block}
+                            onchange={BFonchangeHandler} required disabled="true">
+                        </lightning-input>
+                    </div>
+
+                    <div class="slds-p-around_medium" style="display: flex; align-items: center;">
+                        <lightning-input type="text" name="Unit" label="Unit" value={BookingFormDetails.Unit}
+                            onchange={BFonchangeHandler} required disabled="true">
+                        </lightning-input>
+                        <lightning-button variant="brand" label="Next" onclick={handleNextClick}
+                            class="slds-m-top_medium" style="margin-left: 10px;">
+                        </lightning-button>
+                    </div>
+
+                </template>
+            </div>
+
+            <template if:true={isNext}>
+                <h1 style="text-align:center"> {ProjectName}</h1>
+
+                <lightning-accordion class="example-accordion" onsectiontoggle={handleToggleSection}
+                    active-section-name="A" allow-multiple-sections-open>
+
+                    <lightning-accordion-section name="A" label="Unit Details">
+                        <!-- Fields for Unit Details -->
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Tower" name="Tower" value={BookingFormDetails.Tower}
+                                    disabled="true"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Facing" name="facing" value={BookingFormDetails.facing}
+                                    onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="SFT Area" value={BookingFormDetails.sftArea} name="sftArea"
+                                    onchange={BFonchangeHandler} disabled="true">
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Unit Type" name="unitType" value={BookingFormDetails.unitType}
+                                    onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                            </div>
+                        </div>
+
+                    </lightning-accordion-section>
+                    <!-- Area Details Accordion -->
+                    <lightning-accordion-section name="B" label="Area Details (In Square Feet)">
+                        <div>
+                            <!-- Table for Area Details -->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Carpet Area</th>
+                                        <th>Balcony</th>
+                                        <th>Utility</th>
+                                        <th>External Wall Area</th>
+                                        <th>UDS</th>
+                                        <th>SBUA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{BookingFormDetails.CarpetArea}</td>
+                                        <td>{BookingFormDetails.Balcony}</td>
+                                        <td>{BookingFormDetails.Utility}</td>
+                                        <td>{BookingFormDetails.ExternalWallArea}</td>
+                                        <td>{BookingFormDetails.UDS}</td>
+                                        <td>{BookingFormDetails.SBUA}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </lightning-accordion-section>
+
+                    <!-- Price Details Accordion -->
+                    <lightning-accordion-section name="C" label="Price Details">
+
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox label="Sale Type" options={saletypeOptions} name="Saletype"
+                                    value={BookingFormDetails.Saletype} onchange={BFonchangeHandler} required>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Basic Rate (per Sq.Ft)" name="BasicRate"
+                                    value={BookingFormDetails.BasicRate} onchange={BFonchangeHandler} disabled="true">
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Lump Sum Amount" value={BookingFormDetails.LumpSumAmount}
+                                    name="LumpSumAmount" onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Car Parking" value={BookingFormDetails.CarParking}
+                                    name="CarParking" onchange={BFonchangeHandler} disabled="true">
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-4">
+                                <lightning-input type="number" label="Extra Car Parking(No) "
+                                    value={BookingFormDetails.ExtraCarParkingNo} name="ExtraCarParkingNo"
+                                    onchange={BFonchangeHandler} minlength="0" maxlength="1"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4">
+                                <lightning-input type="number" label="Extra Car Parking Charges"
+                                    value={BookingFormDetails.ExtraCarParking} name="ExtraCarParking"
+                                    onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="EV Charges" value={BookingFormDetails.EvCharges}
+                                    name="EvCharges" onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input type="number" label="Other Charges"
+                                    value={BookingFormDetails.OtherCharges} name="OtherCharges"
+                                    onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input label="Grand Total" value={BookingFormDetails.GrandTotal}
+                                    name="GrandTotal" onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                            </div>
+                        </div>
+                    </lightning-accordion-section>
+
+                    <lightning-accordion-section name="D" label="First Applicant">
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="Customer Type" options={customerTypeOptions}
+                                    value={BookingFormDetails.selectedCustomerType} required name="selectedCustomerType"
+                                    onchange={BFonchangeHandler}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="Salutation" options={salutationOptions}
+                                    value={BookingFormDetails.selectedSalutation} required name="selectedSalutation"
+                                    onchange={BFonchangeHandler}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" required label="First Name"
+                                    value={BookingFormDetails.FirstName} name="FirstName" onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" required label="Last Name"
+                                    value={BookingFormDetails.LastName} name="LastName" onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="Gender" options={genderOptions} required
+                                    value={BookingFormDetails.Gender} name="Gender" onchange={BFonchangeHandler}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Organization" name="Organization"
+                                    value={BookingFormDetails.Organization} onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                        </div>
+
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Designation" name="Designation"
+                                    value={BookingFormDetails.Designation} onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Passport No" name="PassportNo"
+                                    value={BookingFormDetails.PassportNo} required={isPassportRequired}
+                                    onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Date" label="Valid till" name="Validtill"
+                                    value={BookingFormDetails.Validtill} onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                        </div>
+
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="Profession" name="selectedProfession"
+                                    options={professionOptions} value={BookingFormDetails.selectedProfession}
+                                    onchange={BFonchangeHandler}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="S/o,W/o,D/o" name="selectedSalutationr"
+                                    options={salutationrOptions} value={BookingFormDetails.selectedSalutationr}
+                                    onchange={BFonchangeHandler} required></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="First Name" name="FirstNamer"
+                                    value={BookingFormDetails.FirstNamer} required onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                        </div>
+
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Last name" name="LastNamer"
+                                    value={BookingFormDetails.LastNamer} required onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Date" label="Date of Birth" name="DateOfBirth"
+                                    value={BookingFormDetails.DateOfBirth} required onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Number" label="Age" name="age" value={BookingFormDetails.age}
+                                    disabled="true" onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="phone" label="Mobile" name="Mobile"
+                                    value={BookingFormDetails.Mobile} required minlength="10"
+                                    maxlength={NriMobileNumber} onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="phone" label="Alternative Mobile" name="AlternativeMobile"
+                                    value={BookingFormDetails.AlternativeMobile} onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Tel.Res" value={BookingFormDetails.TelRes}
+                                    name="TelRes" onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="text" label="Tel.Office" name="TelOffice"
+                                    value={BookingFormDetails.TelOffice} onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Email" label="Email ID" name="Email"
+                                    value={BookingFormDetails.Email} required onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Email" label="Alternative Email ID" name="AlternativeEmail"
+                                    value={BookingFormDetails.AlternativeEmail} onchange={BFonchangeHandler}>
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox label="Marital Status" name="selectedMaritalStatus" required
+                                    options={maritalStatusOptions} value={BookingFormDetails.selectedMaritalStatus}
+                                    onchange={BFonchangeHandler}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input type="Date" label="Anniversary Date"
+                                    value={BookingFormDetails.AnniversaryDate} name="AnniversaryDate"
+                                    onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input label="Pan No" value={BookingFormDetails.PanNo} name="PanNo"
+                                    required={isPanRequired} onchange={BFonchangeHandler} minlength="10" maxlength="10">
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_1-of-3">
+                            <lightning-input type="checkbox" name="SignthroughDigitalSignature" label="Sign through Digital Signature"
+                            checked={BookingFormDetails.SignthroughDigitalSignature} onchange={BFonchangeHandler}
+                            ></lightning-input>
+                        </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+                        
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-input label="Aadhar No" name="AadharNo" value={BookingFormDetails.AadharNo}
+                                    onchange={BFonchangeHandler} oninput={handleInputChange} required={isAadharRequired}
+                                    minlength="12" maxlength="14"></lightning-input>
+                            </div>
+                            </div>
+                    </lightning-accordion-section>
+                    <br>
+
+                    <lightning-accordion-section name="E" label="Address">
+
+                        <div class="same-address">
+
+                        </div><br />
+
+
+
+
+                        <div class="slds-grid slds-gutters slds-m-horizontal_medium slds-p-horizontal_medium">
+
+                            <div class="slds-col slds-size_1-of-2">
+                                <br/><br/>
+                                <h1 style="text-align: right; margin-right: 50%;"><b>Present Address</b></h1>
+                                <lightning-input type='text' label="Street/House No"
+                                    value={BookingFormDetails.presentStreet} name="presentStreet"
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-2" value={BookingFormDetails.presentStreet2}
+                                    name="presentStreet2" onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-3" value={BookingFormDetails.presentStreet3}
+                                    name="presentStreet3" onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-4" value={BookingFormDetails.presentStreet4}
+                                    name="presentStreet4" onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-5" value={BookingFormDetails.presentStreet5}
+                                    name="presentStreet5" onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' required label="City"
+                                    value={BookingFormDetails.presentCity} name="presentCity"
+                                    onchange={BFonchangeHandler}></lightning-input>
+
+                                <lightning-combobox label="State" options={stateOptions}
+                                    value={BookingFormDetails.selectedPresentState} name=selectedPresentState
+                                    onchange={BFonchangeHandler} required>
+                                </lightning-combobox>
+
+                                <lightning-combobox label="Country" options={countryOptions} name=selectedPresentCountry
+                                    value={BookingFormDetails.selectedPresentCountry} onchange={BFonchangeHandler}
+                                    required></lightning-combobox>
+                                <lightning-input label="Pin Code" required value={BookingFormDetails.presentPinCode}
+                                    name=presentPinCode onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input type="checkbox" label="Same as Present Address"
+                                    checked={BookingFormDetails.SameasPresentAddress} onchange={handleSameAddress}>
+                                </lightning-input><br/>
+                                <h1 style="text-align: right; margin-right: 50%;"><b>Permanent Address</b></h1>
+                                <lightning-input type='text' label="Street/House No"
+                                    value={BookingFormDetails.permanentStreet} name=permanentStreet
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-2"
+                                    value={BookingFormDetails.permanentStreet2} name=permanentStreet2
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-3"
+                                    value={BookingFormDetails.permanentStreet3} name=permanentStreet3
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-4"
+                                    value={BookingFormDetails.permanentStreet4} name=permanentStreet4
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="Street-5"
+                                    value={BookingFormDetails.permanentStreet5} name=permanentStreet5
+                                    onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-input type='text' label="City" value={BookingFormDetails.permanentCity}
+                                    name=permanentCity onchange={BFonchangeHandler}></lightning-input>
+                                <lightning-combobox label="State" options={stateOptions2}
+                                    value={BookingFormDetails.selectedPermanentState} name=selectedPermanentState
+                                    onchange={BFonchangeHandler}></lightning-combobox>
+                                <lightning-combobox label="Country" options={countryOptions2}
+                                    name=selectedPermanentCountry value={BookingFormDetails.selectedPermanentCountry}
+                                    onchange={BFonchangeHandler}></lightning-combobox>
+                                <lightning-input label="Pin Code" value={BookingFormDetails.permanentPinCode}
+                                    name=permanentPinCode onchange={BFonchangeHandler}></lightning-input>
+                            </div>
+                        </div>
+
+
+                    </lightning-accordion-section>
+
+                    <br><br>
+
+
+                    <div class="tab">
+                        <button class={otherApplicantsClass} onclick={handleTabClick} data-tab="Other Applicants">
+                            <lightning-icon icon-name="standard:avatar" size="small"
+                                alternative-text=" Other Applicant"></lightning-icon>Other Applicant
+                        </button>
+                        <button class={attachmentsClass} onclick={handleTabClick} data-tab="Attachments">
+                            <lightning-icon icon-name="standard:attach" size="small"
+                                alternative-text="Attachments"></lightning-icon>Attachments
+                        </button>
+                        <button class={schemeClass} onclick={handleTabClick} data-tab="Scheme">
+                            <lightning-icon icon-name="standard:contact_list" size="small"
+                                alternative-text="Scheme"></lightning-icon>Scheme
+                        </button>
+                        <button class={accountClass} onclick={handleTabClick} data-tab="Account">
+                            <lightning-icon icon-name="standard:account" size="small"
+                                alternative-text="Account"></lightning-icon>Account
+                        </button>
+                        <button class={otherChargesClass} onclick={handleTabClick} data-tab="Other Charges">
+                            <lightning-icon icon-name="standard:expense" size="small"
+                                alternative-text="Other Charges"></lightning-icon> Other Charges
+                        </button>
+                        <button class={sourceClass} onclick={handleTabClick} data-tab="Source">
+                            <lightning-icon icon-name="standard:expense" size="small"
+                                alternative-text="Source"></lightning-icon> Source
+                        </button>
+                        <button class={paymentScheduleClass} onclick={handleTabClick} data-tab="Payment Schedule">
+                            <lightning-icon icon-name="standard:contract_payment" size="small"
+                                alternative-text="Payment Schedule"></lightning-icon> Payment Schedule
+                        </button>
+                        <button class={otherInfoClass} onclick={handleTabClick} data-tab="Other Information">
+                            <lightning-icon icon-name="standard:account_info" size="small"
+                                alternative-text="Other Information"></lightning-icon>
+                            Other Information
+                        </button>
+                        <button class={remarksClass} onclick={handleTabClick} data-tab="Remarks">
+                            <lightning-icon icon-name="standard:feedback" size="small"
+                                alternative-text="Remarks"></lightning-icon> Remarks
+                        </button>
+                    </div>
+                </lightning-accordion>
+
+
+
+                <div if:true={isOtherApplicant} class="tabcontent">
+
+                    <!--//////////////////////////////First Add Applicant ///////////////////////////////////-->
+                    <!-- <h3>Other Applicants</h3> -->
+                    <div class="tab">
+                        <lightning-card title="Other Applicants" class="my-card">
+                            <template if:false={OtherApplicentLimitexceeded}>
+                                <lightning-button variant="brand" label="+ Add Applicant" onclick={showModalBox}
+                                    class="slds-m-top_medium" style="margin-left: 10px;"></lightning-button>
+                            </template>
+                            <br /><br /><br />
+
+                            <template for:each={OtherApplicantDetailsJson} for:item="OtherApp">
+                                <div class="slds-text-heading_small slds-card_boundary slds-m-horizontal_medium slds-m-bottom_x-small slds-p-right_large"
+                                    key={OtherApp.index}>
+                                    <lightning-card variant="Narrow" title="Name" icon-name="standard:account">
+                                        <lightning-button-menu alternative-text="Show menu" icon-name="utility:down"
+                                            variant="border-filled" slot="actions">
+                                            <lightning-menu-item label="Edit" value="Edit" data-id={OtherApp.index}
+                                                onclick={EditHandler}></lightning-menu-item>
+                                            <lightning-menu-item label="Delete" value="Delete" data-id={OtherApp.index}
+                                                data-name="name" onclick={DeleteHandler}></lightning-menu-item>
+                                        </lightning-button-menu>
+                                        <div class="slds-grid slds-gutters slds-p-left_medium">
+                                            <div class="slds-grid slds-wrap">
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Salutation </b> : {OtherApp.Salutation1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>First name </b> : {OtherApp.FirstName1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Last name </b> : {OtherApp.LastName1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Gender </b> : {OtherApp.Gender1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Organization </b> : {OtherApp.Organization1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Occupation </b> : {OtherApp.Occupation1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>S/o,W/o,D/o </b> : {OtherApp.salutationr1Options}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>First name </b> : {OtherApp.FirstNamer1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Last name </b> : {OtherApp.LastNamer1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Date of Birth </b> : {OtherApp.DateofBirth1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Age </b> : {OtherApp.age1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Marital Status</b> : {OtherApp.MaritalStatus1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Anniversary Date </b> : {OtherApp.AnniversaryDate1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Mobile </b> : {OtherApp.Mobile1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Email ID </b> : {OtherApp.Email1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Passport No </b> : {OtherApp.PassportNo1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Valid til </b> : {OtherApp.Validtill1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Pan No </b> : {OtherApp.PanNo1}</span>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <span><b>Aadhar No </b> : {OtherApp.AadharNo1}</span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </lightning-card>
+                                </div>
+                            </template>
+                        </lightning-card>
+
+                        <!-- modal start -->
+                        <template if:true={isShowModal}>
+
+                            <!--
+                            I Used SLDS for this code
+                            Here is link https://www.lightningdesignsystem.com/components/modals/
+                        -->
+
+                            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true"
+                                aria-describedby="modal-content-id-1"
+                                class="slds-modal slds-fade-in-open slds-modal_large">
+                                <div class="slds-modal__container">
+                                    <!-- modal header start -->
+                                    <header class="slds-modal__header">
+                                        <button
+                                            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                            title="Close" onclick={hideModalBox}>
+                                            <lightning-icon icon-name="utility:close" alternative-text="close"
+                                                variant="inverse" size="small"></lightning-icon>
+                                            <span class="slds-assistive-text">Close</span>
+                                        </button>
+                                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+                                            Other Applicants</h2>
+                                    </header>
+
+                                    <!-- modal body start -->
+                                    <div class="slds-modal__content slds-p-around_medium modal-content-id-1"
+                                        id="modal-content-id-1">
+                                        <p>
+                                            <!--Modal/Popup in Lightning Web Component (LWC) Demo-->
+                                        </p>
+                                        <div class="slds-grid slds-gutters slds-p-left_medium">
+                                            <div class="slds-grid slds-wrap">
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-combobox label="Salutation" name='salutation1Options'
+                                                        options={salutation1Options}
+                                                        value={OtherApplicantDetails.Salutation1}
+                                                        onchange={otherapplicantHandler} required></lightning-combobox>
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+
+                                                    <lightning-input type="text" label="First name" name='FirstName1'
+                                                        value={OtherApplicantDetails.FirstName1}
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="text" label="Last name" name='LastName1'
+                                                        value={OtherApplicantDetails.LastName1}
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-combobox label="Gender" options={gender1Options}
+                                                        name='selectedGender1' value={OtherApplicantDetails.Gender1}
+                                                        onchange={otherapplicantHandler} required></lightning-combobox>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="text" label="Organization"
+                                                        name='Organization1' value={OtherApplicantDetails.Organization1}
+                                                        onchange={otherapplicantHandler}></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-combobox label="Occupation" name='selectedOccupation1'
+                                                        options={occupation1Options}
+                                                        value={OtherApplicantDetails.Occupation1}
+                                                        onchange={otherapplicantHandler}></lightning-combobox>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-combobox label="S/o,W/o,D/o" name='selectedSalutationr1'
+                                                        options={salutationr1Options}
+                                                        value={OtherApplicantDetails.salutationr1Options}
+                                                        onchange={otherapplicantHandler} required></lightning-combobox>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="text" label="First name" name='FirstNamer1'
+                                                        value={OtherApplicantDetails.FirstNamer1}
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="text" label="Last name" name='LastNamer1'
+                                                        value={OtherApplicantDetails.LastNamer1}
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="Date" label="Date of Birth"
+                                                        name='DateofBirth1' value={OtherApplicantDetails.DateofBirth1}
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="Number" label="Age"
+                                                        value={OtherApplicantDetails.age1} name='age1'
+                                                        onchange={otherapplicantHandler} disabled="true">
+                                                    </lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-combobox label="Marital Status" name='MaritalStatus1'
+                                                        options={maritalStatus1Options}
+                                                        value={OtherApplicantDetails.MaritalStatus1}
+                                                        onchange={otherapplicantHandler} required></lightning-combobox>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="Date" label="Anniversary Date"
+                                                        name='AnniversaryDate1'
+                                                        value={OtherApplicantDetails.AnniversaryDate1}
+                                                        onchange={otherapplicantHandler}></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="tel" label="Mobile"
+                                                        value={OtherApplicantDetails.Mobile1} name='Mobile1'
+                                                        onchange={otherapplicantHandler} minlength="10" maxlength="10"
+                                                        required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="Email" label="Email ID"
+                                                        value={OtherApplicantDetails.Email1} name='Email1'
+                                                        onchange={otherapplicantHandler} required></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="text" label="Passport No" name='PassportNo1'
+                                                        value={OtherApplicantDetails.PassportNo1}
+                                                        onchange={otherapplicantHandler}></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input type="Date" label="Valid till" name='Validtill1'
+                                                        value={OtherApplicantDetails.Validtill1}
+                                                        onchange={otherapplicantHandler}></lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input label="Pan No:"
+                                                        value={OtherApplicantDetails.PanNo1} name='PanNo1'
+                                                        onchange={otherapplicantHandler} minlength="10" maxlength="10">
+                                                    </lightning-input>
+
+                                                </div>
+                                                <div class="slds-col slds-size_4-of-12">
+                                                    <lightning-input label="Aadhar No:"
+                                                        value={OtherApplicantDetails.AadharNo1} name='AadharNo1'
+                                                        required onchange={otherapplicantHandler} minlength="12"
+                                                        maxlength="14"></lightning-input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal footer start-->
+                                    <footer class="slds-modal__footer">
+                                        <template if:true={isApplicantEdit}>
+                                            <lightning-button variant="brand" data-id={OtherApplicantDetails.index}
+                                                class="slds-m-left_x-small" label="Update"
+                                                onclick={handleUpdateapplicant}></lightning-button>
+                                        </template>
+                                        <template if:false={isApplicantEdit}>
+                                            <lightning-button variant="brand" class="slds-m-left_x-small" label="Add"
+                                                onclick={handlesaveaddOtherapplicant}></lightning-button>
+                                        </template>
+
+                                        <button class="slds-button slds-button_neutral"
+                                            onclick={hideModalBox}>Cancel</button>
+                                    </footer>
+
+                                </div>
+                            </section>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </template>
+                        <!-- modal end -->
+                    </div>
+                </div>
+
+
+                <div if:true={isAttachments} class="tabcontent" data-tab="Attachments">
+                    <div class="slds-box slds-p-top_small" style="background-color: white; position: relative;">
+                        <template if:true={showSpinner}>
+                            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass">
+                            </lightning-spinner>
+                        </template>
+                        <div class="slds-text-heading_medium">Multiple Files Upload</div> <br />
+                        <lightning-input type="file" label="Note: Upload one or more PDF files, ensuring the total size does not exceed 5MB" onchange={handleFileUploaded} multiple
+                            accept=".pdf">
+                        </lightning-input>
+                        <template if:true={filesToUpload}>
+                            <template for:each={filesToUpload} for:item="imgName" for:index="index">
+                                <div key={imgName.fileName} class="file-item">
+                                    {imgName.fileName}
+                                    <span class="removeImage" data-id={index} onclick={removeReceiptImage} title="Remove file">x</span>
+                                </div>
+                            </template>
+                        </template>
+                        <br />
+
+                    </div>
+                </div>
+
+                <div if:true={isScheme} class="tabcontent">
+                    <h3>Scheme</h3>
+                    <div class="slds-p-left_large">
+                        <lightning-input type="checkbox" name="NDSORSDS" label="NDS or SDS"
+                            checked={BookingFormDetails.NDSORSDS} onchange={BFonchangeHandler}
+                            value={BookingFormDetails.NDSORSDS}></lightning-input>
+                        <!-- <lightning-input if:true={BookingFormDetails.NDSORSDS} label="NDS per sft" name="ndsValue" value={BookingFormDetails.ndsValue}
+                            onchange={BFonchangeHandler}></lightning-input>
+                        <lightning-input if:true={BookingFormDetails.NDSORSDS} label="SDS per sft" name="sdsValue" value={BookingFormDetails.sdsValue}
+                            onchange={BFonchangeHandler}></lightning-input> -->
+                    </div>
+                    <div class="slds-p-horizontal_medium">
+                        <table if:true={BookingFormDetails.NDSORSDS} class="slds-m-horizontal_medium">
+                            <tr>
+                                <td class="slds-p-left_large slds-p-right_small">
+                                    <lightning-input type="number" label="Total Discount Amount" name="DiscountAmount"
+                                        value={BookingFormDetails.DiscountAmount} onchange={BFonchangeHandler}>
+                                    </lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input type="number" label="Extra Discount per sft" name="discount"
+                                        value={BookingFormDetails.discount} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input label="Extra Discount Amount"
+                                        value={BookingFormDetails.ExtraDiscountAmount} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+
+                                <td class="slds-p-right_small">
+                                    <lightning-input type="number" label="NDS per sft" name="ndsValue"
+                                        value={BookingFormDetails.ndsValue} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input label="NDS Discount Amount"
+                                        value={BookingFormDetails.ndsDiscountAmount} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                            </tr>
+                        </table>
+                        <table if:true={BookingFormDetails.NDSORSDS} class="slds-m-horizontal_medium">
+                            <tr>
+                                <td class="slds-p-left_large slds-p-right_small">
+                                    <lightning-input label="SDS per sft" name="sdsValue"
+                                        value={BookingFormDetails.sdsValue} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input label="SDS Discount Amount"
+                                        value={BookingFormDetails.sdsDiscountAmount} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input label="SDS Approvel Status"
+                                        value={BookingFormDetails.SDSApprovelStatus} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+                                <td class="slds-p-right_small">
+                                    <lightning-input label="SDS Approvel Comments"
+                                        value={BookingFormDetails.SDSApprovelComments} onchange={BFonchangeHandler}
+                                        disabled="true"></lightning-input>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+                    <br/>
+                    <div>
+                        <lightning-input type="checkbox" class="slds-p-left_large" label="Use scheme" name="useScheme"
+                            value={BookingFormDetails.useScheme} onchange={BFonchangeHandler}
+                            checked={BookingFormDetails.useScheme}></lightning-input>
+                        <div class="three-column" if:true={BookingFormDetails.useScheme}>
+                            <lightning-combobox label="Select Schemes" name='selectedScheme' placeholder="Select Scheme"
+                                options={schemeOptions} value={BookingFormDetails.selectedScheme}
+                                onchange={BFonchangeHandler}>
+                            </lightning-combobox><br/>
+                            <span if:false={schemavalidation} >No schemes available.</span>
+
+                            <lightning-input type="checkbox" if:true={schemavalidation} class="slds-p-left_large"
+                                label="Encash" name="encash" onchange={BFonchangeHandler}
+                                checked={BookingFormDetails.encash}></lightning-input>
+                            <br/>
+                            <lightning-input if:true={BookingFormDetails.encash} label="scheme Amount"
+                                name="SchemeAmount" onchange={BFonchangeHandler} value={BookingFormDetails.SchemeAmount}
+                                disabled="true"></lightning-input>
+                            <br/>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div if:true={isAccount} class="tabcontent">
+                    <h3>Account</h3>
+                    <div class="two-column">
+                        <lightning-input label="Account Holder Name" name='AccountHolderName'
+                            value={BookingFormDetails.AccountHolderName} onchange={BFonchangeHandler}></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Account No" name='AccountNo' value={BookingFormDetails.AccountNo}
+                            onchange={BFonchangeHandler} required={AccountFieldRequired}></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Name of Bank" name='NameofBank' value={BookingFormDetails.NameofBank}
+                            onchange={BFonchangeHandler} required={AccountFieldRequired}></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="IFSC Code" name='IFSCCode' value={BookingFormDetails.IFSCCode}
+                            onchange={BFonchangeHandler} required={AccountFieldRequired}></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Bank Branch" name='BankBranch' value={BookingFormDetails.BankBranch}
+                            onchange={BFonchangeHandler} required={AccountFieldRequired}></lightning-input>
+                    </div>
+                </div>
+
+                <div if:true={isOtherCharges} class="tabcontent">
+                    <h3>Other Charges</h3>
+                    <div class="two-column">
+                        <lightning-input label="Corpus Fund" name='CampusFund' value={BookingFormDetails.CampusFund}
+                            onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Advance Maintenance (+) Applicable GST"
+                            value={BookingFormDetails.AdvanceMaintenance} name='AdvanceMaintenance'
+                            onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="GST on Instalments" name='GSTonInstalments'
+                            value={BookingFormDetails.GSTonInstalments} onchange={BFonchangeHandler} disabled="true">
+                        </lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Stamp Duty and Reg. Fee" name='StampDuty'
+                            value={BookingFormDetails.StampDuty} onchange={BFonchangeHandler} disabled="true">
+                        </lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Documentation Charges (+) Applicable GST"
+                            value={BookingFormDetails.DocumentationCharges} name='DocumentationCharges'
+                            onchange={BFonchangeHandler} disabled="true"></lightning-input>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Other Charges. If any with GST" name='OtherChargesIf'
+                            value={BookingFormDetails.OtherChargesIf} onchange={BFonchangeHandler} disabled="true">
+                        </lightning-input>
+                    </div>
+                </div>
+
+                <div if:true={isSource} class="tabcontent">
+                    <h3>Source</h3>
+                    <div class="center-wrapper2">
+                        <lightning-combobox label="How did you come to know about Us?" options={SourcesOptions}
+                            value={BookingFormDetails.SourceValue} name="SourceValue" required
+                            onchange={BFonchangeHandler}></lightning-combobox>
+
+                        <div if:true={isexistingcustomer}>
+                            <lightning-input label="Customer Code" name='SourceExiCustomerCode'
+                                value={BookingFormDetails.SourceExiCustomerCode} onchange={BFonchangeHandler}>
+                            </lightning-input>
+                            <lightning-input label="Customer Name" name='SourceExiCustomerName'
+                                value={BookingFormDetails.SourceExiCustomerName} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                            <lightning-input label="Relation" name='SourceExiCustomerRelationName'
+                                value={BookingFormDetails.SourceExiCustomerRelationName} onchange={BFonchangeHandler}>
+                            </lightning-input>
+                            <lightning-input label="Flat No" name='SourceExiFlatNo'
+                                value={BookingFormDetails.SourceExiFlatNo} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                            <lightning-input label="Project Name" name='SourceExiProjectName'
+                                value={BookingFormDetails.SourceExiProjectName} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                            <lightning-input label="Existing Customer Discount" name='SourceExistCustomerDiscount'
+                                value={BookingFormDetails.SourceExistCustomerDiscount} onchange={BFonchangeHandler}
+                                disabled="true"></lightning-input>
+                        </div>
+                        <div if:true={isChannel}>
+                            <lightning-input label="Channel Partner RERA Number" name='SourceChannelPartnerCode'
+                                value={BookingFormDetails.SourceChannelPartnerCode} onchange={BFonchangeHandler}
+                                required></lightning-input>
+                            <lightning-input label="Channel Partner Name" name='SourceChannelPartnerName'
+                                value={BookingFormDetails.SourceChannelPartnerName} onchange={BFonchangeHandler}
+                                required></lightning-input>
+
+                        </div>
+
+                        <div if:true={isreferenceEmp}>
+                            <lightning-input label="Reference Employee Code" name='SourceReferenceEmployeeCode'
+                                value={BookingFormDetails.SourceReferenceEmployeeCode} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                            <lightning-input label="Employee Name" name='SourceEmployeeName'
+                                value={BookingFormDetails.SourceEmployeeName} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                            <lightning-input label="Employee Company Name" name='SourceEmployeeCompanyName'
+                                value={BookingFormDetails.SourceEmployeeCompanyName} onchange={BFonchangeHandler}
+                                required></lightning-input>
+                        </div>
+
+                        <div if:true={isCustomer}>
+                            <lightning-input label="Customer Code" name='SourceCustomerCode'
+                                value={BookingFormDetails.SourceCustomerCode} onchange={BFonchangeHandler}>
+                            </lightning-input>
+                            <lightning-input label="Customer Name" name='SourceCustomerName'
+                                value={BookingFormDetails.SourceCustomerName} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+
+                            <lightning-input label="Flat No" name='SourceFlatNo' value={BookingFormDetails.SourceFlatNo}
+                                onchange={BFonchangeHandler} required></lightning-input>
+                            <lightning-input label="Project Name" name='SourceProjectName'
+                                value={BookingFormDetails.SourceProjectName} onchange={BFonchangeHandler} required>
+                            </lightning-input>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div if:true={isPaymentSchedule} class="tabcontent">
+                    <h3>Payment Schedule</h3>
+                    <div class="center-wrapper2">
+                        <lightning-combobox label="Payment Type" name='selectedPaymentType' options={paymentTypeOptions}
+                            value={BookingFormDetails.selectedPaymentType} onchange={BFonchangeHandler}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="slds-float_right slds-p-right_x-large" style="color: red;">*GST is Applicable as per
+                        government norms</div>
+
+                    <div if:true={isHi5Payment} class="tabcontent">
+                        <br/>
+                        <br/>
+                        <div>
+                            <table class="payment-table">
+                                <tr>
+                                    <th>Payment Schedule
+                                    </th>
+                                    <th>% OF AGREEMENT VALUE
+                                    </th>
+                                    <th>AMOUNT
+                                    </th>
+                                </tr>
+                                <template for:each={PaymentScheduleMD} for:item="PAYShedul" for:index="index">
+                                    <tr key={PAYShedul.Payment_Particulars}>
+                                        <td>{PAYShedul.Payment_Particulars}</td>
+                                        <td>{PAYShedul.Amount}</td>
+                                        <td>{PAYShedul.Amount_In_Local_Currency}</td>
+                                    </tr>
+                                </template>
+                                <tr>
+                                    <th> TOTAL Amount</th>
+                                    <th>{BookingFormDetails.PaymentSchedulepercentage} </th>
+                                    <th>{BookingFormDetails.PaymentScheduleTotalAmount}</th>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div if:true={isFlexiblePayment} class="tabcontent">
+                        <br/><br/>
+                        <lightning-card>
+                            <!-- <lightning-button label="New" slot="actions"></lightning-button> -->
+
+                            <lightning-button variant="neutral" label="Add Row" title="Add Row" icon-name="utility:add"
+                                onclick={AddRowHandler} slot="actions"></lightning-button>
+
+                            <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+                            <table
+                                class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout ">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="" scope="col">Payment Schedule</th>
+                                        <th class="" scope="col">%OF AGREEMENT VALUE</th>
+                                        <th class="" scope="col">Amount</th>
+                                        <th class="" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <template for:each={PaymentScheduleMD} for:item="rec">
+                                        <tr key={rec.index}>
+                                            <td>
+                                                <lightning-input type="text" onchange={handlerInputChange} label=""
+                                                    value={rec.Payment_Particulars} data-id={rec.index}
+                                                    name="Payment_Particulars"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="Number" onchange={handlerInputChange} label=""
+                                                    value={rec.Amount} data-id={rec.index} name="Amount">
+                                                </lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="Number" onchange={handlerInputChange} label=""
+                                                    value={rec.Amount_In_Local_Currency} data-id={rec.index}
+                                                    name="Amount_In_Local_Currency" disabled="true"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-button variant="destructive" label="Delete Row"
+                                                    title="Delete Row" name={rec.index} onclick={DeleteRowHandler}
+                                                    class="slds-m-left_x-small"></lightning-button>
+
+                                            </td>
+                                        </tr>
+
+                                    </template>
+                                    <tr>
+                                        <td>TOTAL</td>
+                                        <td>{BookingFormDetails.PaymentSchedulepercentage} </td>
+                                        <td>{BookingFormDetails.PaymentScheduleTotalAmount}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <p slot="footer">
+                                <!-- <lightning-button variant="brand" label="Create Accounts" title="Create Account" onclick={CreateAccount} class="slds-m-left_x-small"></lightning-button> -->
+                            </p>
+                        </lightning-card>
+                    </div>
+
+
+
+                </div>
+                <div if:true={isOtherInfo} class="tabcontent">
+                    <h3>Other Information</h3>
+                    <div class="two-column">
+                        <lightning-combobox label="Service Category
+                                        " options={serviceCategoryOptions} name="selectedServiceCategory"
+                            value={BookingFormDetails.selectedServiceCategory} onchange={BFonchangeHandler} required>
+                        </lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-combobox label="Professional Details" name="selectedProfessionDetails"
+                            options={professionDetailsOptions} value={BookingFormDetails.selectedProfessionDetails}
+                            onchange={BFonchangeHandler} required></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-combobox label="Annual Income" options={annualIncomeOptions}
+                            value={BookingFormDetails.selectedAnnualIncome} name="selectedAnnualIncome"
+                            onchange={BFonchangeHandler} required></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-combobox label="Mode of Payment source" options={paymentSourceOptions}
+                            name="selectedPaymentSource" value={BookingFormDetails.selectedPaymentSource}
+                            onchange={BFonchangeHandler} required></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-combobox label="Purchase of Purpose" options={purchaseOptions}
+                            value={BookingFormDetails.selectedPurchase} name="selectedPurchase"
+                            onchange={BFonchangeHandler} required></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-combobox label="Would you be interested in other projects by RAMKY"
+                            options={otherProjectOptions} value={BookingFormDetails.selectedOtherProject}
+                            name="selectedOtherProject" onchange={BFonchangeHandler} required></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-dual-listbox label="Location of Interest" source-label="Available Options"
+                            selected-label="Selected Options" name="selectedLocation" options={LocationOptions}
+                            value={selectedLocation} onchange={BFonchangeHandler} required></lightning-dual-listbox>
+                    </div>
+                </div>
+
+                <div if:true={isRemarks} class="tabcontent">
+                    <h3>Remarks</h3>
+                    <div class="two-column">
+                        <lightning-combobox label="Select Remarks" options={remarksOptions}
+                            value={BookingFormDetails.selectedRemarks} name='selectedRemarks'
+                            onchange={BFonchangeHandler}></lightning-combobox>
+                    </div>
+                    <div class="two-column">
+                        <lightning-input label="Remarks Description" value={BookingFormDetails.RemarksDescription}
+                            name="RemarksDescription" onchange={BFonchangeHandler}></lightning-input>
+                    </div><br />
+                    <div>
+                        <lightning-card title="DECLARATION" style="background-color: #c8d9eb;">
+                            <lightning-input type="checkbox"
+                                label="I declare that the details provoided in this form are correct & validated by me"
+                                checked={BookingFormDetails.Declaration} name="Declaration"
+                                onchange={BFonchangeHandler}></lightning-input>
+                            <!-- <template if:true={showModal}>
+                                <div class="modal">
+                                    <header class="slds-modal__header">
+                                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                                            Validate Email /
+                                            Phone</h2>
+                                    </header>
+                                    <div class="slds-p-around_medium">
+                                        <lightning-input label="Email" type="email" value={email}
+                                            onchange={handleEmailChange}></lightning-input>
+                                        <lightning-button variant="brand" label="Send OTP"
+                                            onclick={sendingOTP}></lightning-button>
+                                        <lightning-input label="OTP" type="text" value={otp}
+                                            onchange={handleOTPChange}></lightning-input>
+                                        <lightning-button variant="brand" label="Verify OTP"
+                                            onclick={verifyOTP}></lightning-button>
+                                    </div>
+                                    <footer class="slds-modal__footer">
+                                        <button class="slds-button slds-button_neutral"
+                                            onclick={closeModal}>Close</button>
+                                        <button class="slds-button slds-button_brand" onclick={saveModal}>Save</button>
+                                    </footer>
+                                </div>
+                            </template> -->
+                            <div class="center-wrapper2">
+                                <lightning-input type="Text" label="Sales Person Employee ID"
+                                    value={BookingFormDetails.SalesPersonEmployeeID} disabled="true"></lightning-input>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </div>
+
+
+            </template>
+
+
+
+
+        </div>
+
+
+        <template if:true={isNext}>
+            <!-- Your footer content here -->
+            <lightning-card>
+                <p slot="footer">
+                    <lightning-button variant="Neutral" class="slds-m-left_x-small" label="Save as Draft"
+                        onclick={handleSaveAsDraft} disabled={isDraftSaving}></lightning-button>
+                    <lightning-button variant="brand" class="slds-m-left_x-small" label="Save" onclick={handleSave}
+                        disabled={isSaving}></lightning-button>
+                    <template if:true={BookingFormDetails.BookingFormId}>
+                        <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Preview"
+                            onclick={handlePreview}></lightning-button>
+
+                    </template>
+                    <lightning-button variant="destructive" class="slds-m-left_x-small" label="Cancel"
+                        onclick={handleCancel}></lightning-button>
+                </p>
+            </lightning-card>
+            <template if:true={showModal}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                            <h2 class="slds-text-heading_medium">BookingForm Preview</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <iframe src={vfPageUrl} width="100%" height="500px" frameborder="0"></iframe>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+        </template>
+    </lightning-card>
+
+
+
+</template>

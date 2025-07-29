@@ -1,0 +1,98 @@
+.tds-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+}
+.tds-card .scroll-container {
+    max-height: 37.5rem;
+    overflow-y: auto;
+}
+
+.tds-card .scroll-container .heading {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card .scroll-container .subtext {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin: 0.5rem 0 1rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card .scroll-container .link {
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 2rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card .scroll-container .link strong {
+    font-weight: 600;
+}
+
+.tds-card .scroll-container .link a {
+    color: #19253D;
+    text-decoration: none;
+}
+
+.tds-card .step-card {
+    background: #EBEAEA;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.tds-card .step-heading {
+    color: #1A1A1A;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 1rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card .step-heading.mt-0 {
+    margin-top: 0;
+}
+
+.tds-card .step-heading strong {
+    font-weight: 600;
+}
+
+.tds-card p {
+    color: #1A1A1A;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 1rem 0 0.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card p strong {
+    font-weight: 600;
+}
+
+.tds-card ul li {
+    color: #1A1A1A;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    list-style: disc inside;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.tds-card .guide-image {
+    width: 33.75rem;
+}

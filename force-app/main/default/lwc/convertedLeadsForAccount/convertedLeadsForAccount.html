@@ -1,0 +1,118 @@
+<template>
+    <div class="refer">
+        <h2>Refer & Earn</h2>
+        <div class="subheading">
+            Refer friends and colleagues to Ramky Estates! Share your unique referral link below to help others discover our services.
+        </div>
+
+        <!-- Moved scroll container inside conditional check -->
+        <template if:true={convertedLeads.length}>
+            <div class="scroll-container">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Property Name</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={convertedLeads} for:item="lead" for:index="index">
+                                <tr key={lead.Id}>
+                                    <td>{lead.serialNumber}</td>
+                                    <td>{lead.Projects__c}</td>
+                                    <td>{lead.Name}</td>
+                                    <td>{lead.Phone}</td>
+                                    <td>
+                                        <span class={lead.statusClass}>{lead.Status}</span>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={noData}>
+            <div class="no-record-wrapper">
+                <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                <p class="no-record-text">No records found!!</p>
+            </div>
+        </template>
+        <div class="text-end">
+            <button class="refer-btn" onclick={handleReferClick}>Refer Now</button>
+        </div>
+        
+
+        <template if:true={showModal}>
+            <section role="dialog" class="refer-modal">
+                <div class="modal-content">
+                    <template if:true={isLoading}>
+                        <div class="spinner-wrapper">
+                            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <h2 class="modal-header">Refer</h2>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Property Name</label>
+                            <select class="modal-input" onchange={handlePropertyChange}>
+                                <option value="">Select-</option>
+                                <template for:each={propertyOptions} for:item="option">
+                                    <option key={option.value} value={option.value}>{option.label}</option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Enter your friend’s name" class="modal-input" onchange={handleNameChange} />
+                        </div>                        
+
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <div class="phone-field">
+                                <div class="phone-flag">
+                                    <img src={flagImage} alt="Flag" class="flag-img" />
+                                    <span class="country-code">91</span>
+                                </div>
+                                <input type="number" placeholder="Enter your friend’s mobile number" class="modal-input" onchange={handlePhoneChange} />
+                            </div>
+                        </div>                       
+
+                        <template if:true={showPhoneError}>
+                            <p class="error-text">Please enter a valid 10-digit mobile number.</p>
+                        </template>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn-cancel" onclick={closeModal}>Cancel</button>
+                        <button class="btn-send" onclick={sendInvite} disabled={isSendDisabled}>Send Invite</button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <template if:true={showSuccessModal}>
+            <section role="dialog" class="referral-sent">
+                <div class="modal-content">
+                    <button class="close" onclick={closeSuccessModal}>
+                        <img src={close} alt="Close Icon" />
+                    </button>
+                    <img src={messageLogo} alt="Success" class="thumb" />
+                    <h3>Referral Sent</h3>
+                    <p>
+                        Congratulations! Your referral has been successfully submitted.
+                        We appreciate your support in recommending Ramky Estates to others.
+                    </p>
+                </div>
+            </section>
+        </template>
+    </div>
+</template>

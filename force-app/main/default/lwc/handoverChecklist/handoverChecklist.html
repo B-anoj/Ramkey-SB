@@ -1,0 +1,126 @@
+<template>
+    <div class="container">
+        <!-- Title -->
+        <h1 class="title">Handover (Checklist for final handing over)</h1>
+
+        <!-- Project Selector Dropdown -->
+        <template if:true={projectOptions.length}>
+            <lightning-combobox
+                name="projectSelector"
+                label="Choose Project"
+                value={selectedProjectName}
+                options={projectOptions}
+                onchange={handleProjectChange}
+                class="slds-m-bottom_medium"
+            ></lightning-combobox>
+        </template>
+
+        <!-- Selected Project Card -->
+        <template if:true={selectedProject}>
+            <div class="project-card slds-grid slds-wrap slds-box slds-m-top_medium">
+                <div class="slds-col slds-size_1-of-4 logo">
+                    <img src={resolvedImageUrl} alt="Project Logo" />
+                </div>
+                <div class="slds-col slds-size_3-of-4 project-details">
+                    <h2>{selectedProject.projectName}</h2>
+                    <p>Project Address: {selectedProject.propertyAddress}</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <template if:true={tabList.length}>
+                <div class="tabs slds-m-top_medium">
+                    <template for:each={tabList} for:item="tab">
+                        <div
+                            key={tab.name}
+                            class={tab.class}
+                            data-type={tab.name}
+                            onclick={handleTabClick}
+                        >
+                            {tab.label}
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Checklist Table -->
+            <template if:true={activeChecklist.length}>
+                <table class="checklist-table slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_medium">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">Sr.</th>
+                            <th scope="col">Activity</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={activeChecklist} for:item="item" for:index="index">
+                            <tr key={item.id}>
+                                <td>{item.serial}</td>
+                                <td>{item.activity}</td>
+                                <td>{item.description}</td>
+                                <td>
+                                    <div class="radio-group slds-grid slds-gutters_small">
+                                        <label class="radio-pill slds-col">
+                                            <input
+                                                type="radio"
+                                                name={item.id}
+                                                value="Yes"
+                                                data-index={index}
+                                                checked={item.actionYes}
+                                                onchange={handleActionChange}
+                                            />
+                                            <span>Yes</span>
+                                        </label>
+                                        <label class="radio-pill slds-col">
+                                            <input
+                                                type="radio"
+                                                name={item.id}
+                                                value="No"
+                                                data-index={index}
+                                                checked={item.actionNo}
+                                                onchange={handleActionChange}
+                                            />
+                                            <span>No</span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        class="remark-input slds-input"
+                                        value={item.remarks}
+                                        placeholder="Enter remarks"
+                                        data-index={index}
+                                        onchange={handleRemarkChange}
+                                    />
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- No Checklist Data Message -->
+            <template if:true={noChecklistData}>
+                <div class="no-data-message slds-text-color_weak slds-m-top_medium">
+                    No checklist data found for this project.
+                </div>
+            </template>
+
+            <!-- Submit Button -->
+            <template if:true={activeChecklist.length}>
+                <div class="submit-section slds-m-top_medium slds-align_absolute-center">
+                    <lightning-button
+                        label="Submit Checklist"
+                        onclick={handleSubmit}
+                        variant="brand"
+                        class="submit-button"
+                    ></lightning-button>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

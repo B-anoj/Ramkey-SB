@@ -1,0 +1,74 @@
+<template>
+   <lightning-card title="Filters" icon-name="standard:calibration" style="margin-right: 200px;">
+       <hr style="width: 100%; margin: 10px 0; border: 1px solid #ddd;">
+ <lightning-layout multiple-rows="true" > 
+   <div class="slds-form-element  slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                               <lightning-record-edit-form object-api-name="Product2">
+                                <lightning-layout-item size="12" small-device-size="6"  
+                                padding="around-small">
+                                   <lightning-input-field field-name="Location__c" data-type="input-field" value={Location__c} name="Location__c" onchange={locationhandlechange} required >
+                                    </lightning-input-field>
+                                </lightning-layout-item>
+                              </lightning-record-edit-form>  
+                            </div>
+                             
+                            <div class="slds-form-element slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                              <lightning-record-edit-form object-api-name="Product2">
+                               <lightning-layout-item size="12" small-device-size="6"  
+                               padding="around-small">
+                                  <lightning-input-field field-name="Project__c" data-type="input-field" value={Project__c} name="Project__c" onchange={projecthandlechange}>
+                                   </lightning-input-field>
+                               </lightning-layout-item>
+                             </lightning-record-edit-form>  
+                           </div>
+                           <div class="slds-form-element slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                            <lightning-record-edit-form object-api-name="Product2">
+                             <lightning-layout-item size="12" small-device-size="6"  
+                             padding="around-small">
+                                <lightning-input-field field-name="Towers__c" data-type="input-field" value={Towers__c} name="Towers__c"  onchange={blockhandlechange}>
+                                 </lightning-input-field>
+                             </lightning-layout-item>
+                           </lightning-record-edit-form>  
+                         </div>
+                          <div class="slds-form-element slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                         <lightning-record-edit-form object-api-name="Product2">
+                           <lightning-layout-item size="12" small-device-size="6"  
+                           padding="around-small">
+                              <lightning-input-field field-name="Facing__c" data-type="input-field" value={Facing__c} name="Facing__c" onchange={facevaluehandlechange} >
+                               </lightning-input-field>
+                           </lightning-layout-item>
+                         </lightning-record-edit-form>  
+                       </div>
+                       <div class="slds-form-element slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                        <lightning-record-edit-form object-api-name="Product2">
+                          <lightning-layout-item size="12" small-device-size="6"  
+                          padding="around-small">
+                             <lightning-input-field field-name="Type__c" data-type="input-field" value={Type__c} name="Type__c" onchange={typehandlechange} >
+                              </lightning-input-field>
+                          </lightning-layout-item>
+                        </lightning-record-edit-form>  
+                      </div>
+                       <div class="slds-form-element slds-size_6-of-12" style="margin-bottom:-20px; margin-top:-20px"> 
+
+                        <lightning-record-edit-form object-api-name="Product2">
+                          <lightning-layout-item size="12" small-device-size="6"  
+                          padding="around-small">
+                             <lightning-input-field field-name="Status__c" data-type="input-field" value={Status__c} name="Status__c" onchange={statushandlechange} >
+                              </lightning-input-field>
+                          </lightning-layout-item>
+                        </lightning-record-edit-form>  
+                      </div>
+     <div class="slds-form-element slds-size_12-of-12" style="margin-bottom:10px; margin-top:5px;  text-align: center;" > 
+          <lightning-layout-item size="12" small-device-size="6"  
+                                padding="around-small">
+    <lightning-button label="Search" onclick={handleSearchClick} variant="brand"></lightning-button>
+     </lightning-layout-item>
+     </div>
+       </lightning-layout> 
+      </lightning-card>
+</template>

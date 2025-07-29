@@ -1,0 +1,11 @@
+<apex:page ><!--standardController="Cost_Sheet__c" extensions="CostSheetPdfController">
+    <apex:form>
+        <apex:commandButton value="Preview & Save as PDF" action="{!saveAndPreviewPdf}" rerender="outputPanel"/>
+    </apex:form>
+
+    <apex:outputPanel id="outputPanel">
+        <apex:outputText value="PDF saved successfully. Click " rendered="{!NOT(ISNULL(pdfUrl))}" />
+        <apex:outputLink value="{!pdfUrl}" target="_blank">here</apex:outputLink>
+        <apex:outputText value=" to view the PDF." rendered="{!NOT(ISNULL(pdfUrl))}" />
+    </apex:outputPanel>-->
+</apex:page>

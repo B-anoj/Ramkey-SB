@@ -1,0 +1,54 @@
+<template>
+    <lightning-card icon-name="standard:apex_plugin">
+        <template lwc:if={recordId}>
+            <span slot="title">{Name}</span>
+            <lightning-button-icon style="margin-right: 7px;"
+            icon-name="utility:download"
+            slot="actions"
+            onclick={handleGeneratePDF}
+            variant="brand"
+            ><label>Download</label></lightning-button-icon>
+       
+            <lightning-button-icon
+                icon-name="utility:expand_alt"
+                slot="actions"
+                onclick={handleNavigateToRecord}
+                ><label>Open Record</label></lightning-button-icon>
+               
+            <div class="slds-var-m-horizontal_medium">
+               
+                <lightning-record-view-form
+                    record-id={recordId}
+                    onload={handleRecordLoaded}
+                    object-api-name="Product2"
+                    density="compact">
+                <lightning-output-field
+                field-name={location}>
+            </lightning-output-field>
+           
+            <lightning-output-field
+                field-name={project} >
+            </lightning-output-field>
+            <lightning-output-field
+                field-name={flatstatus} >
+               </lightning-output-field>
+            <lightning-output-field
+                field-name={tower} >
+            </lightning-output-field>
+        <lightning-output-field
+        field-name={face} >
+    </lightning-output-field>
+    <lightning-output-field
+        field-name={protype} >
+    </lightning-output-field>
+            </lightning-record-view-form>
+            </div>
+        </template>
+
+        <template lwc:else>
+           <div style="text-align: center; margin-top: 10px; color: red;">
+            <img src={errorMessage} alt="My Image">
+            </div>
+        </template>
+    </lightning-card>
+</template>

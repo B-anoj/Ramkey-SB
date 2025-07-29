@@ -1,0 +1,678 @@
+/* ========== LAYOUT WRAPPER ========== */
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ========== TOP NAVIGATION ========== */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    /* background-color: transparent; */
+    background-color: white;
+}
+
+.nav-content {
+    background-color: white;
+    border-radius: 0 0 40px 40px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    height: 65px;
+    position: relative;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); */
+}
+
+
+.dashboard,
+.booking,
+.constructions,
+.invoice,
+.document,
+.visit,
+.support,
+.event,
+.faq,
+.refer,
+.letstalk,
+.blogs,
+.tds {
+    /* margin-top: 20px;
+    margin-bottom: 10px; */
+    /* overflow: hidden;  */
+    height: 100dvh;
+    /* padding: 15px 64px 0 20px; */
+}
+
+.schedule-button{
+    margin-top: 0.875rem !important;
+}
+
+.construction-updates.card{
+    overflow-y: auto;
+}
+
+.nav-content::before {
+    background: #a8cddd;
+    content: '';
+    width: 24px;
+    height: 20px;
+    position: absolute;
+    bottom: 5px;
+    left: -14px;
+    display: block;
+    border-radius: 0 10px 0 0;
+}
+
+.nav-content::after {
+    background: #a8cddd;
+    content: '';
+    width: 24px;
+    height: 20px;
+    position: absolute;
+    bottom: 5px;
+    right: -14px;
+    display: block;
+    border-radius: 10px 0 0 0;
+}
+
+.nav-content a {
+    text-decoration: none;
+    color: #232323;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.logo {
+    height: 28px;
+}
+
+/* ========== SIDEBAR + BODY ========== */
+.layout-body {
+    display: flex;
+    flex: 1;
+    overflow-x: visible;
+    /* important */
+    overflow-y: hidden;
+    box-sizing: border-box;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* ========== RIGHT PANEL ========== */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    margin-top: 50px;
+}
+
+/* === TOP BAR WITH SEARCH & ICONS === */
+/* === Clean top-bar container === */
+.top-bar.clean-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 16px 64px 16px 24px;
+    gap: 12px;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* === Horizontal search bar === */
+.clean-search {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 280px;
+    height: 38px;
+    box-sizing: border-box;
+}
+
+.clean-search i {
+    color: #666;
+    font-size: 16px;
+}
+
+.clean-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.clean-search {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 440px;
+    /* ⬅️ Wider */
+    height: 55px;
+    /* ⬅️ Taller */
+    box-sizing: border-box;
+}
+
+.clean-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 22px;
+    /* ⬅️ Slightly bigger text */
+    margin-left: 15px;
+    width: 100%;
+}
+
+/* Icon buttons */
+.icon-button {
+    background: white;
+    width: 40px;
+    height: 40px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-button.black {
+    background: #19253D;
+}
+
+/* Optional: force icon color to black */
+lightning-icon.search-icon ::part(icon),
+lightning-icon.bell-icon ::part(icon),
+lightning-icon.profile-icon ::part(icon) {
+    fill: black;
+}
+
+
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    flex: 1;
+    padding: 15px 64px 0 20px;
+    overflow-y: auto;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+/* ========== CARD STYLES ========== */
+.card-grid {
+    margin-bottom: 1rem;
+    row-gap: 1rem;
+}
+
+.card {
+    width: 450px;
+    height: 268px;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    border-radius: 16px;
+    background: linear-gradient(to right, #ffffff, #3ca8df, #ffffff);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* ========== IMAGE CARD ========== */
+.card.image-card {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 300px;
+    padding: 0;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-card .card-title {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 0.75rem 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/* ========== DATE CARD ========== */
+.date-card {
+    width: 303px;
+    height: 134px;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.date-day {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-right: 1rem;
+}
+
+.date-month {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.2rem;
+}
+
+.date-subtext {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* ========== LINK CARDS (Small Cards) ========== */
+.card.link-card {
+    width: 303px;
+    height: 268px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.card.link-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    border-radius: 16px;
+    background: linear-gradient(to right, #ffffff, #3ca8df, #ffffff);
+}
+
+.card-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-radius: 8px;
+}
+
+.card-link:last-child {
+    border-bottom: none;
+}
+
+.card-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Placeholder icons */
+.icon-booking::before {
+    content: "🏠";
+}
+
+.icon-payment::before {
+    content: "💳";
+}
+
+.icon-units::before {
+    content: "📋";
+}
+
+.card-label {
+    flex-grow: 1;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* ========== WELCOME MESSAGE ========== */
+.welcome-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: #cfe6f2;
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    width: 400px;
+    max-width: 90%;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logout-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.message {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: white;
+    color: #333;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.logout-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #ff9000;
+    color: white;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Sidebar Container */
+.sidebar {
+    background-color: #ffffff;
+    min-width: 210px;
+    width: 210px;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    position: relative;
+    padding: 0 8px;
+    margin: 0 30px 0 24px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 6px 0;
+}
+
+.sidebar li a {
+    text-decoration: none;
+    color: #232323;
+    font-size: 12px;
+    line-height: 16px;
+    display: block;
+    padding: 13px 16px;
+    border-radius: 8px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar li a .menu-icon {
+    width: 20px;
+}
+
+.sidebar li.active a {
+    background-color: #19253D;
+    color: white;
+    font-weight: 600;
+}
+
+/* Sidebar Toggle Inside */
+.sidebar .sidebar-toggle {
+    padding: 24px 0 16px 16px;
+}
+
+.sidebar .sidebar-toggle .arrow {
+    cursor: pointer;
+}
+
+.sidebar.collapsed .arrow {
+    transform: rotate(180deg);
+}
+
+/* Hide label on collapse */
+.sidebar.collapsed .menu-label {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
+    margin-left: 0;
+}
+
+/* Sidebar styling */
+.sidebar.collapsed {
+    min-width: 70px;
+    width: 70px;
+    /* Collapsed width */
+}
+
+/* Menu Icon (Always visible) */
+
+.menu-icon1 {
+    width: 16px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Menu Label */
+.menu-label {
+    margin-left: 12px;
+    white-space: nowrap;
+    font-size: 12px;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+
+
+
+/* page scroll css*/
+
+.main-content {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Slide Up */
+.main-content.slide-out-up {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.main-content.slide-in-up {
+    transform: translateY(100%);
+    opacity: 0;
+    animation: slideInFromBottom 0.5s forwards;
+}
+
+/* Slide Down */
+.main-content.slide-out-down {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.main-content.slide-in-down {
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: slideInFromTop 0.5s forwards;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* new css*/
+
+/* CustomThemeLayout.css */
+
+.main-content {
+
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    /* max-height: 100dvh; */
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 264px);
+    transition: transform 0.8s ease-in-out;
+    /* height: 100dvh; */
+}
+
+
+.content-wrapper>* {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card {
+    margin-bottom: 90px;
+    transform: translate(0px, -87px);
+}
+
+
+
+/* Other existing CSS for sidebar items, icons, active states, and logout modal */
+/* Ensure your logout modal has proper positioning (e.g., fixed or absolute) and z-index */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure it's on top of everything */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+}

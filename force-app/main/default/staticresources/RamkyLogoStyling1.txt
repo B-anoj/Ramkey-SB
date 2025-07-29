@@ -1,0 +1,56 @@
+@page {
+margin-top: 3cm;
+ 
+margin-bottom: 2.3cm;
+ 
+@top-center {
+ 
+content: element(header);
+ 
+}
+ 
+@top-right {
+content: element(header2);
+ 
+  }
+ 
+ 
+@bottom-left {
+    content: element(footer);
+ 
+}
+ 
+}
+ 
+div.header {
+ 
+padding: 10px;
+ 
+width: 100%;
+ 
+text-align: Right;
+ 
+position: running(header);
+ 
+}
+ 
+div.header2 {
+ 
+width: 50%;
+ 
+text-align: right;
+ 
+position: running(header2);
+ 
+}
+ 
+div.footer {
+ 
+display: block;
+Bottom:10px:
+Width:100%;
+padding: 1px;
+ 
+position: running(footer);
+ 
+}

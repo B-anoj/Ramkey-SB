@@ -1,0 +1,73 @@
+<template>
+    <div class="container">
+        <h2 class="title">Let's Talk</h2>
+        <p class="subtitle">Need to get in touch with us?</p>
+
+          <template if:true={showNoData}>
+            <div class="no-record-wrapper">
+                <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                <p class="no-record-text">No data found for your profile.</p>
+            </div>
+        </template>
+
+        <template if:true={propertyOptions}>
+            <div class="dropdown">
+                <lightning-combobox
+                    name="propertySelector"
+                    label=""
+                    value={selectedProperty}
+                    options={propertyOptions}
+                    onchange={handlePropertyChange}
+                ></lightning-combobox>
+            </div>
+        </template>
+
+        <template if:true={selectedData}>
+            <div class="card-grid">
+                <!-- Property Address -->
+                <div class="card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:location" size="small"></lightning-icon>
+                        <h3>Property Address</h3>
+                    </div>
+                    <p>{selectedData.propertyAddress}</p>
+                    <a class="btn" href="https://maps.google.com" target="_blank">Open Google Maps</a>
+                </div>
+
+                <!-- Email -->
+                <div class="card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:email" size="small"></lightning-icon>
+                        <h3>Email</h3>
+                    </div>
+                    <p>{selectedData.email}</p>
+                    <a class="btn" href={mailtoLink}>Email us</a>
+                </div>
+
+                <!-- CRM Contact -->
+                <div class="card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:call" size="small"></lightning-icon>
+                        <h3>CRM Contact</h3>
+                    </div>
+                    <p>{selectedData.contactPerson}: {selectedData.crmContact}</p>
+                    <a class="btn" href={telLink}>Call Us</a>
+                </div>
+
+                <!-- Corporate Address -->
+                <div class="card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:location" size="small"></lightning-icon>
+                        <h3>Corporate Address</h3>
+                    </div>
+                    <p>{selectedData.corporateAddress}</p>
+                    <a class="btn" href="https://maps.google.com" target="_blank">Open Google Maps</a>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <p class="error">{error}</p>
+        </template>
+    </div>
+</template>

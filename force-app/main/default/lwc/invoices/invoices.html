@@ -1,0 +1,105 @@
+<template>
+    <div class="container">
+        <div class="invoices card">
+            <h2 class="heading">Invoices</h2>
+            <p class="subtext">
+                Manage your invoices with Ramky Estates by viewing or downloading them below.
+                Stay informed on your financial records, access detailed billing information,
+                and take necessary actions promptly. Our team is committed to providing you with
+                efficient invoice management. For any questions or assistance, please don't hesitate
+                to contact our support team.
+            </p>
+
+            <template if:false={noData}>
+                <div class="scroll-container">
+                    <div class="table-wrapper">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Receipt No</th>
+                                    <th>Invoice No</th>
+                                    <th>Description</th>
+                                    <th>Created Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>TDS Submission</th>
+                                    <th>TDS Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={invoiceData} for:item="invoice">
+                                    <tr key={invoice.Id}>
+                                        <td>{invoice.srNo}</td>
+                                        <td>{invoice.Receipt_No__c}</td>
+                                        <td class="invoice-nunmber">{invoice.Name}</td>
+                                        <td>{invoice.Description__c}</td>
+                                        <td>{invoice.formattedDate}</td>
+                                        <td>₹{invoice.Amount__c}</td>
+                                        <td>
+                                            <span class={invoice.statusClass}>
+                                                {invoice.Status__c}
+                                            </span>
+                                        </td>
+                                        <td class="tds-submission">
+                                            <template if:true={invoice.TDS_Submission__c}>
+                                                <span>{invoice.TDS_Submission__c}</span>
+                                            </template>
+                                            <template if:false={invoice.TDS_Submission__c}>
+                                                <span class="upload-link">Upload</span>
+                                            </template> &nbsp;
+                                            <span class="icon-button" title="View"
+                                                  onclick={navigateToFilePreview}
+                                                  data-url={invoice.Preview_File_Url__c}
+                                                  data-name={invoice.File_Name__c}>
+                                                <lightning-icon icon-name="utility:preview"
+                                                                alternative-text="View"
+                                                                size="xx-small">
+                                                </lightning-icon>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class={invoice.tdsClass}>
+                                                {invoice.TDS_Status__c}
+                                            </span>
+                                        </td>
+                                        <td class="actions">
+                                            <span class="icon-button" title="Download"
+                                                  onclick={handleDownloadDoc}
+                                                  data-url={invoice.Download_File_Url__c}>
+                                                <lightning-icon icon-name="utility:download"
+                                                                alternative-text="Download"
+                                                                size="xx-small">
+                                                </lightning-icon>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={noData}>
+                <div class="no-record-wrapper">
+                    <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                    <p class="no-record-text">No records found!!</p>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <template if:true={showDocModal}>
+        <div class="custom-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>{selectedDoc.name}</h3> 
+                    <button onclick={closeModal} class="close-button">×</button>
+                </div>  
+                <iframe src={publicUrl} width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </template>
+</template>

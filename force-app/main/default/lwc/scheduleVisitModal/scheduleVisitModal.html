@@ -1,0 +1,95 @@
+<template>
+    <div class="modal-backdrop">
+        <div class="modal-container {successClass}">
+
+            <!-- ❌ Close icon (top right) - Only shown when NOT in success screen -->
+            <template if:false={isSuccess}>
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={handleClose}
+                    class="close-icon" variant="bare">
+                </lightning-button-icon>
+            </template>
+
+            <!-- ✅ Success Screen -->
+            <!-- ✅ Success Screen -->
+            <template if:true={isSuccess}>
+                <div class="success-screen">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={handleClose}
+                        class="close-icon success-close" variant="bare">
+                    </lightning-button-icon>
+
+                    <img src={schedule} alt="Verified" class="success-icon" />
+                    <h2 class="success-heading">Your visit has been scheduled!</h2>
+                    <p class="success-subtext">
+                        Your site visit to <strong>{selectedProperty}</strong> has been scheduled
+                        for <strong>{visitDate}</strong> at <strong>{visitTime}</strong>.<br />
+            We look forward to showing you the property.
+                    </p>
+                </div>
+            </template>
+
+
+            <!-- ❌ Visit Form (only if not success) -->
+            <template if:false={isSuccess}>
+                <!-- Header -->
+                <div class="modal-header">
+                    <h2 class="modal-title">Schedule a Visit</h2>
+                </div>
+
+                <!-- Description -->
+                <p class="modal-description">
+                    Please select an appointment time that works better for you using the options below.
+                </p>
+
+                <!-- Property Dropdown -->
+                <div class="form-group">
+                    <lightning-combobox label="Select Property" value={selectedProperty} options={propertyOptions}
+                        onchange={handlePropertyChange}>
+                    </lightning-combobox>
+                </div>
+
+                <!-- Form Inputs -->
+                <div class="form-grid">
+                    <lightning-input class="input-item" label="Date Of Visit" name="visitDate" type="date"
+                        value={visitDate} onchange={handleDateChange}>
+                    </lightning-input>
+
+                    <lightning-input class="input-item" label="Time Of Visit" name="visitTime" type="time"
+                        value={visitTime} onchange={handleTimeChange}>
+                    </lightning-input>
+
+                    <!--<lightning-combobox class="input-item" label="Visit Type" value={visitType}
+                        options={visitTypeOptions} placeholder="Select -" onchange={handleVisitTypeChange}>
+                    </lightning-combobox> -->
+                    <lightning-input class="input-item" label="Visit Type" type="text"
+                         onchange={handleVisitTypeChange}>
+                    </lightning-input>
+
+                    <lightning-textarea class="input-item full-width" label="Visit Details" value={visitDetails}
+                        placeholder="Purpose of rescheduling your visit" onchange={handleDetailsChange}>
+                    </lightning-textarea>
+                </div>
+
+                <!-- Spinner -->
+                <template if:true={isSubmitting}>
+                    <div class="slds-align_absolute-center slds-m-top_medium">
+                        <lightning-spinner alternative-text="Scheduling visit..." size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                <!-- Error -->
+                <template if:true={errorMessage}>
+                    <div class="slds-text-color_error slds-m-top_small">
+                        {errorMessage}
+                    </div>
+                </template>
+
+                <!-- Submit Button -->
+                <div class="button-wrapper">
+                    <lightning-button variant="brand" label="Schedule Visit" onclick={handleSubmit}
+                        disabled={isSubmitDisabled}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

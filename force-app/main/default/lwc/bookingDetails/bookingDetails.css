@@ -1,0 +1,302 @@
+.container {
+    height: 100%;
+}
+
+.booking-card {
+    background-color: #fff;
+    height: 100%;
+    padding: 1.5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.booking-card .breadcrumb-wrapper .breadcrumb .breadcrumb-muted {
+    color: #C7C4C4;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.booking-card .breadcrumb-wrapper .breadcrumb .breadcrumb-separator {
+    color: #B5BBBE;
+    margin: 0 0.5rem;
+}
+
+.booking-card .breadcrumb-wrapper .breadcrumb {
+    color: #1A1A1A;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.booking-card .project-name {
+    color: #232323;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin: 2rem 0 0.25rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.booking-card .booking-id {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* Section Header - Toggle Button Style */
+.booking-card .section-header {
+    padding: 0.875rem 1rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    margin: 1rem 0 0 0;
+}
+
+.booking-card .section-header .icon img {
+    width: 1rem;
+}
+
+.booking-card .section-header .section-label {
+    color: #232323;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.booking-card .section-header .toggle-icon {
+    float: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.booking-card .section-header .toggle-icon img {
+    width: 1.125rem;
+}
+
+.section-header:hover {
+    background-color: #d3e4f9;
+}
+
+.section-header.dark {
+    background-color: #0c1e44;
+    color: white;
+}
+
+.section-header.light {
+    background-color: #e5f0fd;
+    color: #0c1e44;
+}
+
+.booking-card .toggle-section .info-grid {
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem 1.5rem;
+    padding: 1.25rem 0;
+    color: #585858;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.booking-card .toggle-section .info-grid strong {
+    color: #232323;
+    font-weight: 500;
+    padding-bottom: 0.25rem;
+    display: block;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* Amount Summary (Optional) */
+.amount-summary {
+    display: flex;
+    justify-content: space-between;
+    background-color: #0070d2;
+    color: white;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.amount-summary div {
+    flex: 1 1 200px;
+}
+
+/* No Bookings Message */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px 16px;
+    }
+
+    .section-header {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    .project-name {
+        font-size: 20px;
+    }
+
+    .booking-card {
+        padding: 1rem;
+    }
+}
+
+.payment-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.summary-item {
+    flex: 1;
+    text-align: center;
+}
+
+.amount {
+    font-weight: 600;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+}
+
+.custom-table thead {
+    background-color: #0d1a40;
+    color: white;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 4px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.gateway-info {
+    background-color: #ffeb3b;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.paid {
+    background-color: #00c853;
+    color: white;
+}
+
+.unpaid {
+    background-color: #ff9100;
+    color: white;
+}
+
+.action-btn {
+    background-color: #003b95;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 6px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.paynow-btn {
+    background-color: #f1f1f1;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.icon-button {
+    background-color: #003b71;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    background-color: #005299;
+}
+
+lightning-icon {
+    --slds-c-icon-color-foreground-default: white;
+    --slds-c-icon-color-background: transparent;
+}
+
+ .gap-row td {
+    height: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+/* Styling the yellow message row */
+.gateway-info {
+    text-align: center;
+    background-color: #f9d923;
+    color: #000;
+    font-weight: 600;
+    font-style: italic;
+    padding: 12px;
+    border-radius: 5px;
+}
+.header {
+    height: 45px;
+}
+
+.hidden {
+    display: none;
+}
+.show {
+    display: block;
+    margin: 1rem 0;
+}

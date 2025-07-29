@@ -1,0 +1,17 @@
+<template>
+    <div class="slds-text-heading_medium">Multiple Files Upload</div>
+    <lightning-input type="file" label="Note: Upload one or more PDF files, ensuring the total size does not exceed 5MB" onchange={handleFileChange} multiple accept=".pdf">
+    </lightning-input>
+    <template if:true={filesToUpload}>
+        <div class="file-list">
+            <template for:each={filesToUpload} for:item="file" for:index="index">
+                <div key={file.fileName} class="file-item">
+                    {file.fileName}
+                    <span class="removeImage" data-id={index} onclick={removeFile} title="Remove file">x</span>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <lightning-button label="Done" class="done-button" onclick={handleUpload} disabled={isDone}></lightning-button>
+</template>

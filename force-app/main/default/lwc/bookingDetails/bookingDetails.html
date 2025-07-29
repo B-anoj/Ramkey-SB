@@ -1,0 +1,170 @@
+<template>
+    <template if:true={bookings}>
+        <div class="container">
+            <template for:each={bookings} for:item="booking">
+                <div key={booking.bookingId} class="booking-card">
+
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb-wrapper">
+                        <p class="breadcrumb">
+                            <span class="breadcrumb-muted" onclick={handleBackClick}>
+                                My Bookings
+                            </span>
+                            <span class="breadcrumb-separator">/</span>
+                            <span class="breadcrumb-current">Payment Plan - {booking.projectName}</span>
+                        </p>
+                        <h2 class="project-name">{booking.projectName}</h2>
+                        <p class="booking-id">Booking ID: {booking.id}</p>
+                    </div>
+
+                    <!-- Booking Details -->
+                    <div class="toggle-section">
+                        <div class="section-header light" onclick={toggleSection} data-id={booking.bookingId}
+                            data-section="bookingDetails">
+                            <span class="icon"><img src={person} alt=""/></span>
+                            <span class="section-label">Booking Details</span>
+                            <span class="toggle-icon"><img src={chevronBottom} alt=""/></span>
+                        </div>
+                        <template if:true={booking.showBookingDetails}>
+                            <div class="info-grid">
+                                <div><strong>Booking Date:</strong> {booking.bookingDate}</div>
+                                <div><strong>Flat/Villa:</strong> {booking.flatVilla}</div>
+                                <div><strong>Unit Type:</strong> {booking.unitType}</div>
+                                <div><strong>Unit Number:</strong> {booking.unit}</div>
+                                <div><strong>Square Feet:</strong> {booking.AreainSqft}</div>
+                                <div><strong>No. Of Car Parkings:</strong> {booking.CarParking}</div>
+                                <div><strong>Property Value (GST Ex.):</strong> ₹ {booking.totalAmount}</div>
+                                <div><strong>Other Charges (GST Ex.):</strong> ₹ {booking.OtherCharges}</div>
+                                <div><strong>Maintenance:</strong> ₹ {booking.AdvanceMaintenance}</div>
+                                <div><strong>Corpus Fund:</strong> ₹ {booking.CorpusFund}</div>
+                                <div><strong>Legal & Documentation Charges:</strong> ₹ {booking.DocCharges}</div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- First Applicant -->
+                    <!-- <div class="toggle-section">
+                        <div class="section-header light" onclick={toggleSection} data-id={booking.bookingId}
+                            data-section="firstApplicant">
+                            <span class="icon"><img src={person} alt=""/></span>
+                            <span class="section-label">First Applicant</span>
+                            <span class="toggle-icon"><img src={chevronBottom} alt=""/></span>
+                        </div>
+                        <template if:true={booking.showFirstApplicant}>
+                            <div class="info-grid">
+                                <div><strong>Name:</strong> {booking.firstName} {booking.lastName}</div>
+                                <div><strong>Date of Birth:</strong> {booking.dob}</div>
+                                <div><strong>Mobile Number:</strong> {booking.mobile}</div>
+                                <div><strong>Email ID:</strong> {booking.email}</div>
+                                <div><strong>Aadhaar Number:</strong> {booking.aadhar}</div>
+                                <div><strong>PAN Number:</strong> {booking.pan}</div>
+                            </div>
+                        </template>
+                    </div> -->
+
+                    <!-- Other Applicants (Second, Third, etc.) -->
+                    <template if:true={booking.applicants}>
+                        <template for:each={booking.applicants} for:item="applicant">
+                            <div key={applicant.sectionKey} class="toggle-section">
+                                <div class="section-header light" onclick={toggleSection} data-id={booking.bookingId}
+                                    data-section={applicant.sectionKey}>
+                                    <span class="icon"><img src={person} alt=""/></span>
+                                    <span class="section-label">{applicant.label}</span>
+                                    <span class="toggle-icon"><img src={chevronBottom} alt=""/></span>
+                                </div>
+                                <template if:true={applicant.isOpen}>
+                                    <div class="info-grid">
+                                        <div><strong>Name:</strong> {applicant.firstName} {applicant.lastName}</div>
+                                        <div><strong>Date of Birth:</strong> {applicant.dob}</div>
+                                        <div><strong>Mobile Number:</strong> {applicant.mobile}</div>
+                                        <div><strong>Email ID:</strong> {applicant.email}</div>
+                                        <div><strong>Aadhaar Number:</strong> {applicant.aadhar}</div>
+                                        <div><strong>PAN Number:</strong> {applicant.pan}</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+                    <br>
+                    <!-- Customer Payment Details -->
+
+                    <div class="payment-summary">
+                        <div class="summary-item">
+                            Total Amount: <span class="amount">₹ {formattedTotal}</span>
+                        </div>
+                        <div class="summary-item">
+                            Amount Paid: <span class="amount">₹ {formattedPaid}</span>
+                        </div>
+                        <div class="summary-item">
+                            Amount Due: <span class="amount">₹ {formattedDue}</span>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="table-wrapper">
+                        <table class="custom-table">
+                            <thead class="header">
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Receipt No.</th>
+                                    <th>Payment Schedule</th>
+                                    <th>Amount</th>
+                                    <th>Due Date</th>
+                                    <th>Unpaid Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- GAP before COMING SOON message -->
+                                <tr class="gap-row">
+                                    <td colspan="8"></td>
+                                </tr>
+
+                                <!-- COMING SOON message row -->
+                                <tr class="gaph">
+                                    <td colspan="8" class="gateway-info">
+                                        Payment gateway <strong>"COMING SOON"</strong>
+                                    </td>
+                                </tr>
+
+                                <!-- Actual data rows -->
+                                <template for:each={paymentList} for:item="pay">
+                                    <tr key={pay.Id}>
+                                        <td>{pay.srNo}</td>
+                                        <td>{pay.receipt}</td>
+                                        <td>{pay.description}</td>
+                                        <td>₹ {pay.amount}</td>
+                                        <td>{pay.dueDate}</td>
+                                        <td>₹ {pay.unpaidAmount}</td>
+                                        <td><span class={pay.badgeClass}>{pay.status}</span></td>
+                                        <td>
+                                            <!-- <button class="action-btn view-btn" title="View">👁️</button>
+                                                            <button class="action-btn download-btn" title="Download">⬇️</button> -->
+                                            <span class="icon-button" title="View" onclick={navigateToFilePreview} data-url={pay.previewUrl} data-name={pay.fileName}>
+                                                <lightning-icon icon-name="utility:preview" alternative-text="View" size="xx-small"></lightning-icon>
+                                            </span>
+                                            <span class="icon-button" title="Download" onclick={handleDownloadDoc} data-url={pay.downloadUrl}>
+                                                <lightning-icon icon-name="utility:download" alternative-text="Download" size="xx-small"></lightning-icon>
+                                            </span>
+                                            <template if:true={pay.showPayNow}>
+                                                <button class="paynow-btn">Pay Now</button>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- END -->
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <template if:false={bookings}>
+        <div class="slds-text-color_weak">No bookings available.</div>
+    </template>
+</template>

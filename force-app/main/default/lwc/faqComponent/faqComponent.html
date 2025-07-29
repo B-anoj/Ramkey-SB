@@ -1,0 +1,50 @@
+<template>
+<div class="faq-container">
+    <h1 class="faq-heading">FAQ’s</h1>
+    <p class="faq-description">
+        Explore answers to common questions about Ramky Estates below.
+        Find information on bookings, payments, property features, and more.
+        Our FAQ section aims to provide clarity and assistance.
+        For any questions not covered here, please contact our support team.
+    </p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class={BillingClass} data-tab="Billing" onclick={handleTabClick}>Billing</div>
+        <div class={AgreementClass} data-tab="Agreement" onclick={handleTabClick}>Agreement</div>
+        <div class={HomeLoanClass} data-tab="Home Loan" onclick={handleTabClick}>Home Loan</div>
+        <div class={ConstructionClass} data-tab="Construction" onclick={handleTabClick}>Construction</div>
+    </div>
+
+    <!-- FAQ Content -->
+   <div class="scroll-container">
+    <div class="faq-wrapper">
+        <template if:true={currentFaqs.length}>
+            <template for:each={currentFaqs} for:item="faq">
+                <div key={faq.Id} class="faq-block">
+                    <div class="faqquestion" data-id={faq.Id} onclick={handleToggle}>
+                        <p class="faq-question-text">{faq.Question__c}</p>
+                        <lightning-icon icon-name={faq.iconName} alternative-text="Toggle" size="x-small"
+                            class={faq.iconClass}>
+                        </lightning-icon>
+                    </div>
+
+                    <template if:true={faq.isOpen}>
+                        <div class="openfaq">
+                            {faq.Answer__c}
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template if:false={currentFaqs.length}>
+            <div class="no-record-wrapper">
+                <img src={norecordfound} alt="No FAQs Found" class="no-record-image" />
+                <p class="no-record-text">No FAQs found for this category.</p>
+            </div>
+        </template>
+    </div>
+ </div>
+</div>
+</template>

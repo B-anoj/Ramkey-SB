@@ -1,0 +1,411 @@
+<apex:page standardStylesheets="false" showHeader="false" standardController="Cost_Sheet__c" extensions="CostSheetPdfController" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false">        
+        
+    <head>
+          <style>
+                @page {
+                                    margin-top: 0.5cm;
+
+                                    margin-bottom: 1cm;
+                              }
+                     </style>
+     </head>
+   <!-- <head>
+        <div style="text-align:right; margin: 5px;"> 
+            
+            <img src="{!URLFOR($Resource.RamkyEstateLogo)}" style="width:200px; height:150px"/>
+        </div>
+    </head>  --->
+    
+    <table>
+        <apex:repeat value="{!costSheets}" var="costSheet">
+           <tr>
+               <td colspan="2" style="text-align:left" width="95%">
+          <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Orion'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Orion)}" style="width:200px; height:80px"/>
+                </apex:outputPanel> 
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky Nextown'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_Nextown)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Harmony'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Harmony)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Krystal'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Krystal)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Astra'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Astra)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Genext Towers'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Genext_Towers)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Odyssey'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Odyssey)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Orbit'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Orbit)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Karnival'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Karnival)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Symphony'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Symphony)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+               </td>
+               <td style="text-align:right" width="5%" >
+               <img src="{!URLFOR($Resource.RamkyEstateLogo)}" style="width:200px; height:150px"/>
+                  
+               </td>
+            </tr>   
+         </apex:repeat>   
+    </table>
+    <body>       
+       <div>
+            <apex:repeat value="{!costSheets}" var="costSheet">
+                <div style="font-weight:bold; text-align:center">{!costSheet.Project__c}</div>
+            </apex:repeat>
+        </div>
+        <br/>
+        <div style="font-weight:bold; text-align:center">Quotation</div> 
+
+      <!--  <div style="text-align:left; margin: 5px;">
+            <apex:repeat value="{!costSheets}" var="costSheet">
+                <apex:outputPanel rendered="{!costSheet.Project__c == 'Ramky One Orion'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_One_Orion)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!costSheet.Project__c == '	Ramky Nextown'}" layout="none">
+                    <img src="{!URLFOR($Resource.Ramky_Nextown)}" style="width:200px; height:80px"/>
+                </apex:outputPanel>
+                
+            </apex:repeat>
+            </div> -->
+        
+        
+        <br/>            
+        
+        <table  style="font-size: 13px; border-spacing: 0;-fs-table-paginate: paginate;" border="1" cellspacing="0" cellpadding="5" width="100%">
+            
+            <apex:repeat value="{!costSheets}" var="CostSheet">
+                <tr>
+                    
+                    <td colspan="2">Name</td>
+                    
+                    <td style="text-align:center">{!CostSheet.Cost_Sheet_Name__c}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Date Of Quotation</td>
+                    
+                    <td style="text-align:center">{!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}</td>         
+                </tr> 
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Salable_Area_in_Sq_Ft__c != null}" layout="none"> 
+                        <td colspan="2">Salable Area (in Sq.Ft.)</td>
+                        <td colspan="2" style="text-align:center">{!CostSheet.Salable_Area_in_Sq_Ft__c} </td>
+                    </apex:outputPanel> 
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Basic_Price__c != null}" layout="none"> 
+                        <td colspan="2">Basic Price</td>
+                        <td colspan="2" style="text-align:center">{!CostSheet.Basic_Price__c}</td>
+                    </apex:outputPanel> 
+                </tr>
+                <tr>
+                    
+                    <td colspan="2">Tower</td>
+                    <td colspan="2" style="text-align:center"> {!CostSheet.Tower__c}</td>
+                    
+                </tr>                                        
+                <tr>                       
+                    <td colspan="2">Floor</td>
+                    <td colspan="2" style="text-align:center">{!CostSheet.Floor__c}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Unit. No</td>                        
+                    <td colspan="2" style="text-align:center"> {!CostSheet.Unit_No__c}</td>                                             
+                </tr>                 
+                <tr>
+                    <td colspan="2">Facing</td>
+                    <td colspan="2" style="text-align:center">{!CostSheet.Facing__c} </td>
+                </tr>                  
+                <tr>
+                    <td colspan="2">Type</td>
+                    
+                    <td colspan="2" style="text-align:center">{!CostSheet.Type__c}</td>
+                </tr>                   
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Charges_for_Floor_Rise__c != null && CostSheet.Charges_for_Floor_Rise__c != 0}" layout="none"> 
+                        <td colspan="2">Charges for Floor Rise</td>
+                        <td colspan="2" style="text-align:center">{!CostSheet.Charges_for_Floor_Rise__c}</td>
+                    </apex:outputPanel> 
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.PLC_Charges__c != null && CostSheet.PLC_Charges__c != 0}" layout="none"> 
+                        <td colspan="2">PLC Charges</td>
+                        <td colspan="2" style="text-align:center">{!CostSheet.PLC_Charges__c}</td>
+                    </apex:outputPanel> 
+                </tr>
+                <tr>
+                     <apex:outputPanel rendered="{!CostSheet.Project__c != 'Ramky One Krystal Villas'}" layout="none">
+                    <td colspan="2">Rate / Sq.Ft</td>                       
+                    <td style="text-align:center">{!CostSheet.Rate_Sq_Ft__c}</td>
+                    </apex:outputPanel> 
+                    
+                </tr>          
+                
+                <tr style="font-weight:bold;background-color:#4682B4;">
+                    
+                    <td colspan="2" style="text-align:center">PARTICULARS</td>
+                    
+                    <td style="text-align:center">Amount in Rs</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td colspan="2">COST OF THE UNIT</td>
+                    
+                    <td style="text-align:center">{!CostSheet.Cost_of_the_Unit__c}</td>
+                    
+                </tr>
+                
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Clubhouse_Charges__c != null && CostSheet.Clubhouse_Charges__c != 0}" layout="none">
+                        <td colspan="2">Clubhouse Charges</td>
+                        
+                        <td style="text-align:center">{!CostSheet.Clubhouse_Charges__c}</td>
+                    </apex:outputPanel>
+                </tr>
+                
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Car_Parking__c != null && CostSheet.Car_Parking__c != 0}" layout="none">                        
+                        <td colspan="2">Car Parking ({!CostSheet.No_Of_Parking__c})</td>
+                        
+                        <td style="text-align:center">{!CostSheet.Car_Parking__c}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.EV_Car_Charging_Point__c != null && CostSheet.EV_Car_Charging_Point__c != 0}" layout="none">
+                        <td colspan="2">EV Charging Point</td>
+                        
+                        <td style="text-align:center">{!CostSheet.EV_Car_Charging_Point__c}</td>
+                    </apex:outputPanel>
+                </tr>
+                
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Infrastructure_charges__c != null && CostSheet.Infrastructure_charges__c != 0}" layout="none">
+                        <td colspan="2">Infrastructure charges ( DG Backup,STP, Water…etc)</td>
+                        
+                        <td style="text-align:center">{!CostSheet.Infrastructure_charges__c}</td>
+                    </apex:outputPanel> 
+                </tr>
+                
+                
+                <tr style="font-weight:bold">
+                    
+                    <td colspan="2" style="text-align:center">UNIT VALUE</td>
+                    
+                    <td style="text-align:center">{!CostSheet.UNIT_VALUE__c}</td>
+                    
+                </tr>
+                
+                <tr style="font-weight:bold">
+                     <apex:outputPanel rendered="{!CostSheet.GST_5__c != 0}" layout="none"> 
+                    <td colspan="2" style="text-align:center">GST - 5%</td>
+                    
+                    <td style="text-align:center">{!CostSheet.GST_5__c}</td>
+                    </apex:outputPanel> 
+                </tr>
+                
+                <tr style="font-weight:bold">
+                    
+                    <td colspan="2" style="text-align:center">TOTAL - A</td>
+                    
+                    <td style="text-align:center">{!CostSheet.TOTAL_A__c}</td>
+                    
+                </tr> 
+            </apex:repeat>
+            
+        </table>
+        
+        <div style="page-break-after: always; margin: 20px 0;">       
+            
+        </div>
+        
+        <h3>Payment Schedule</h3>
+        
+        <table style="font-size: 12px; -fs-table-paginate: paginate; border-spacing: 0;" border="1" cellspacing="0" cellpadding="4" width="100%">
+            <thead style="display: table-header-group;">
+                
+                <tr>
+                    
+                    <th style="text-align:center">S.No</th>
+                    <!--<th style="text-align:center">S.No</th>-->
+                    
+                    <th style="text-align:center">Description of Progress of Work</th>
+                    
+                    <th style="text-align:center">%</th>
+                    
+                    <th style="text-align:center">Installment Amount</th>
+                    
+                    <th style="text-align:center">GST %</th>
+                    
+                    <th style="text-align:center">GST Amt</th>
+                    
+                    <th style="text-align:center">Total Installment (incl. GST)</th>
+                    
+                    <th style="text-align:center">TDS@1% Amount</th>
+                    
+                    <th style="text-align:center">Net Payable</th>
+                    
+                </tr>  
+                
+            </thead>
+            
+            <tbody>
+                
+                <apex:variable var="rowNumber" value="{!1}" />
+                
+                <apex:repeat value="{!csli}" var="c">
+                    
+                    <tr>
+                        
+                        <td style="text-align: center;">{!rowNumber}</td>	
+                        <!--<td style="text-align: center;">{!c.S_No__c}</td>-->
+                        
+                        <td>{!c.Payment_Particulars__c}</td>
+                        
+                        <td style="text-align:center">{!c.Amount__c}</td>
+                        
+                        <td style="text-align:center">{!c.Installment_Amount__c}</td>
+                        
+                        <td style="text-align:center">
+                            <apex:outputText rendered="{!NOT(ISNULL(c.Installment_Amount__c))}">{!c.GST__c}</apex:outputText></td>
+                        <td style="text-align:center">
+                            <apex:outputText rendered="{!NOT(ISNULL(c.Installment_Amount__c))}">{!c.GST_Amount__c}</apex:outputText>
+                        </td>
+                        
+                        <td style="text-align:center">{!c.Total_Installment__c}</td>
+                        <td style="text-align:center">{!c.TDS_Amount__c}</td>
+                        <td style="text-align:center">{!c.Net_Payable__c}</td>
+                        
+                    </tr>
+                    
+                    <apex:variable var="rowNumber" value="{!rowNumber + 1}" />
+                    
+                </apex:repeat>
+                
+                <apex:repeat value="{!costSheets}" var="CostSheet">
+                    <tr style="font-weight:bold">
+                        <td colspan="2" style="text-align:center">TOTAL </td>
+                        <td style="text-align:center">100</td>
+                        <td style="text-align:center">{!CostSheet.Total_Installment_Amount__c}</td>
+                        <td style="text-align:center"></td> <!-- Add the correct colspan here -->
+                        <td style="text-align:center">{!CostSheet.Total_GST_Amount__c}</td>
+                        <td style="text-align:center">{!CostSheet.Total_Installment_All__c}</td>
+                        <td style="text-align:center">{!CostSheet.Total_TDS_Value__c}</td>
+                        <td style="text-align:center">{!CostSheet.Total_Net_Payable__c}</td>
+                    </tr>
+                </apex:repeat>                    
+            </tbody>              
+        </table>
+        
+        <table  style="font-size: 12px; border-spacing: 0;-fs-table-paginate: paginate;" border="1" cellspacing="0" cellpadding="4" width="100%">
+            
+            <tr style="font-weight: bold;background-color:#87CEEB;">
+                
+                <td colspan="8">AMOUNTS PAYABLE AT THE TIME OF HANDING OVER OF APARTMENT</td>
+                
+            </tr>
+            
+            <tr style="font-weight:bold">
+                
+                <td colspan="2" style="text-align: center;">Particulars</td>
+                
+                <td colspan="2" style="text-align:center">Amount in INR</td>
+                
+            </tr>
+            
+            <apex:repeat value="{!costSheets}" var="CostSheet">
+                
+                <tr>
+                    
+                    <td colspan="2">Legal and Documentation Charges + GST @ 18%	</td>
+                    
+                    <td colspan="2" style="text-align:center">{!CostSheet.LegalDocumentTotalAmount__c}</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td colspan="2">Maintenance for 2Years @ Rs.{!CostSheet.ProdMaitananceFund__c} Per Sq.ft and GST @ 18%</td>                        
+                    <td colspan="2" style="text-align:center">{!CostSheet.MaintananceTotalAmount__c}</td>
+                </tr>
+                <tr>                      
+                    <td colspan="2">Corpus Fund@ Rs.{!CostSheet.prodCorpusFund__c} Per Sq.ft</td>
+                    <td colspan="2" style="text-align:center">{!CostSheet.Corpus_Fund__c}</td>                       
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!CostSheet.Electrical_Water_Charges__c != null && CostSheet.Electrical_Water_Charges__c != 0}" layout="none">
+                        
+                        <td colspan="2">Electrical &amp; Water Charges and GST @ 18%</td>
+                        
+                        <td style="text-align:center">{!CostSheet.Electrical_Water_Charges__c}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr style="font-weight:bold">                     
+                    <td colspan="2">TOTAL - B</td>
+                    <td colspan="2" style="text-align:center">{!CostSheet.Total_B2__c} </td>
+                </tr>                 
+                <tr style="font-weight:bold">
+                    
+                    <td colspan="2">GRAND TOTAL ( EXCLUDING REGISTRATION CHARGES)</td>
+                    
+                    <td colspan="2" style="text-align:center">{!CostSheet.Grand_Total2__c} </td>
+                </tr>
+                
+            </apex:repeat>
+            
+        </table>
+        <h3>
+            Note
+        </h3>
+        <table  style="font-size: 12px; border-spacing: 0;-fs-table-paginate: paginate;" border="1" cellspacing="0" cellpadding="5" width="100%">
+            <apex:repeat value="{!costSheets}" var="CostSheet">
+                <tr>
+                    <td>
+                        NOTE : All payments shall be in favour of <B>"RAMKY ESTATES &amp; FARMS LTD" </B>Bangalore Price w.e.f 01-03-2024.
+                        GST upto 5% / as applicable will be collected proportionatly with each payment. GST 18% as applicable towards statutory charges.
+                        E stamping 0.5% for agreement, Registration and Stamp duty payable on actuals. PLC of Rs 100/sft to Rs 250/sft for select units applicable. Floor rise charges of Rs 20/per floor up applicable. Open / shared Parking for 755 sft @ Rs 1.50 lakh only Rates subject to change without prior notice.
+                        This cost estimate is not a legal offering.
+                        RERA Reg No. PRM/KA/RERA/1251/308/PR/200226/003306
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td colspan="8">{!CostSheet.Note_1__c}</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td colspan="8">{!CostSheet.Note_2__c}</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td colspan="8">{!CostSheet.Note_3__c}</td>
+                    
+                </tr>               
+            </apex:repeat>           
+        </table>
+        <apex:form >
+        
+    <div style="text-align:right;">
+        <!-- Save PDF Button -->
+        <apex:commandButton value="Save as PDF" action="{!savePdfAsAttachment}" reRender=" " />
+        
+        </div>
+            </apex:form>
+        
+         </body> 
+</apex:page>

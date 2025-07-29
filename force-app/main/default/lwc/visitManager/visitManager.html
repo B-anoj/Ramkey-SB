@@ -1,0 +1,154 @@
+<template>
+    <!--  Visits List -->
+    <template if:false={showVisitDetails}>
+        <div class="visit-container">
+            <h1 class="heading">Visits</h1>
+            <p class="subheading">
+                Schedule and manage your site visits effortlessly with Ramky Estates. Stay updated on your visit
+                appointments, access location details, and receive reminders for upcoming visits.
+            </p>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class={upcomingClass} onclick={showUpcoming}>Upcoming</div>
+                <div class={completedClass} onclick={showCompleted}>Completed</div>
+                <div class={cancelledClass} onclick={showCancelled}>Cancelled</div>
+            </div>
+
+            <!-- Visit Cards -->
+            <div class="scroll-container">
+                <div class="cards">
+                    <template if:true={activeVisits.length}>
+                        <template for:each={activeVisits} for:item="visit">
+                            <div class="visit-card" key={visit.visit_id} data-id={visit.visit_id}
+                                onclick={handleVisitClick}>
+                                <div class="visit-header">
+                                    <div class="column">
+                                        <div class="icon">
+                                            <img src={Location} alt="Location" />
+                                        </div>
+                                        <div class="property-name">
+                                            {visit.property_name}
+                                            <span>2nd Phase, 4th cross, 16th Main Rd, KSRTC Layout, Karnataka</span>
+                                        </div>
+                                    </div>
+                                    <div class="arrow">
+                                        <img src={ChevronRight} alt="ChevronRight" />
+                                    </div>
+                                </div>
+                                <div class="visit-info">
+                                    <p><strong>Visit Date:</strong> {visit.visit_date}</p>
+                                    <p><strong>Visit Time:</strong> {visit.visit_time}</p>
+                                    <p><strong>CRM/Handover Person:</strong> {visit.crm_person}</p>
+                                </div>
+                                <div class={visit.statusClass}>{visit.status}</div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:false={activeVisits.length}>
+                        <div class="card">
+                            <div class="no-record-wrapper">
+                                <img src={norecordfound} alt="No Record" class="no-record-image" />
+                                <p class="no-record-text">No visits found for this category.</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Schedule Button -->
+            <div class="schedule-button">
+                <button class="schedule-btn" onclick={openScheduleModal}>+ Schedule a visit</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Visit Detail View -->
+    <template if:true={showVisitDetails}>
+        <!-- <lightning-card> -->
+        <div class="visit-card-wrapper">
+            <div class="visit-details-container">
+                <div class="visit-details-action-buttons">
+                    <div class="breadcrumb-wrapper">
+                        <p class="breadcrumb">
+                            <span class="breadcrumb-muted" onclick={handleBackToVisits}>
+                                Visits
+                            </span>
+                            <span class="breadcrumb-separator">/</span>
+                            <span class="breadcrumb-current">Upcoming Site Visits - {projectName}</span>
+                        </p>
+                    </div>
+                    <div>
+                        <button class="visit-details-btn-cancel" onclick={openCancelModal}>Cancel Visit</button>
+                        <button class="visit-details-btn-reschedule" onclick={openRescheduleModal}>Reschedule Visit</button>
+                    </div>
+                </div>
+
+                <div class="visit-details-main-card">
+                    <div class="visit-details-header aligned-layout">
+                        <img src={logo} class="visit-details-image-large" alt="Project" />
+                        <div class="visit-details-right-content">
+                            <div class="visit-details-project-info">
+                                <h2>{projectName}</h2>
+                                <p>Booking ID: {bookingId}</p>
+                            </div>
+                            <div class="visit-details-property-row">
+                                <div><label>Unit Number:</label><span>{unit}</span></div>
+                                <div><label>Super Built-Up Area:</label><span>{area}</span></div>
+                                <div><label>Customer ID:</label><span>{customerId}</span></div>
+                                <div><label>Type:</label><span>{unitType}</span></div>
+                                <div><label>Booking Date:</label><span>{createdDate}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visit-details-visit-section">
+                    <div class="visit-details-visit-header">
+                        <h3>Visit Details</h3>
+                        <span class="visit-details-status-badge">{status}</span>
+                    </div>
+                    <div class="visit-details-card-container">
+                        <div class="visit-details-single-card">
+                            <p class="visit-details-value">{visitDate}</p>
+                            <p class="visit-details-label">Visit Date</p>
+                        </div>
+                        <div class="visit-details-single-card">
+                            <p class="visit-details-value">{visitTime}</p>
+                            <p class="visit-details-label">Visit Time</p>
+                        </div>
+                        <div class="visit-details-single-card">
+                            <p class="visit-details-value">{crmName}</p>
+                            <p class="visit-details-label">CRM/Handover Person</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </lightning-card> -->
+    </template>
+
+    <!-- Cancel Visit Modal -->
+    <template if:true={showCancelModal}>
+        <c-cancel-visit-modal property={projectName} address={address} unit-type={unitType} location={location}
+            onclose={handleModalClose} visit-id={selectedVisitId} oncancelvisit={handleVisitCancel}>
+        </c-cancel-visit-modal>
+    </template>
+
+    <!-- Reschedule Visit Modal -->
+    <!-- Updated Reschedule Visit Modal -->
+    <template if:true={showRescheduleModal}>
+        <c-reschedule-visit-modal property={projectName} address={address} unit-type={unitType} location={location}
+            onclose={handleModalReschedule} visit-id={selectedVisitId} onreschedulevisit={handleVisitReschedule}>
+        </c-reschedule-visit-modal>
+    </template>
+
+
+    <!-- Schedule Visit Modal -->
+    <template if:true={showScheduleModal}>
+        <c-schedule-visit-modal useremail={userEmail} onclose={handleScheduleClose} onschedule={handleVisitSchedule}>
+        </c-schedule-visit-modal>
+    </template>
+
+
+</template>

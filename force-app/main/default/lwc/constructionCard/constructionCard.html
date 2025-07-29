@@ -1,0 +1,26 @@
+<!-- <template>
+    <div class="blue-card">
+        <img src={imageUrl} alt="Project Image" class="project-image" />
+        <h3 class="title">{title}</h3>
+        <p class="description">{description}</p>
+        <button class="view-button" onclick={handleClick}>View Construction Updates</button>
+    </div>
+</template> -->
+
+<template>
+    <template if:true={imageUrl}>
+        <div class="blue-card">
+            <img src={imageUrl} alt="Project Image" class="project-image" />
+            <h3 class="title">{title}</h3>
+            <p class="description">{description}</p>
+            <button class="view-button" onclick={handleClick}>View Construction Updates</button>
+        </div>
+    </template>
+
+    <template if:false={imageUrl}>
+        <div class="no-record-wrapper">
+            <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+            <p class="no-record-text">No records found!!</p>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,76 @@
+<template>
+    <div class="event-container">
+        <div class="banner">
+            <img src={bannerImage} alt="Event Banner" class="banner-img" />
+        </div>
+        <div class="event-wrapper">
+            <div class="scroll-container">
+                <template if:false={noEventsFound}>
+                    <template if:true={eventList}>
+                        <div class="event-grid">
+                            <template for:each={eventList} for:item="eventData">
+                                <div class="event-card" key={eventData.id}>
+                                    <div class="top-bar">
+                                        <div class="event-icon">
+                                            <img src={EventIcon} alt="" />
+                                        </div>
+                                        <div>
+                                            <h3 class="event-title">{eventData.title}</h3>
+                                            <p class="event-desc">{eventData.description}</p>
+                                        </div>                                        
+                                    </div>                                    
+                                    <div class="event-details">
+                                        <div class="event-info">
+                                            <p>
+                                                <img src={Calendar} alt="Calendar" />
+                                                {eventData.eventDateTime}
+                                            </p>
+                                            <p>
+                                                <img src={Visit} alt="Location Icon" />
+                                                {eventData.location}
+                                            </p>
+                                        </div>
+
+                                        <div class="btn-container">
+                                            <button label="Register Now" variant="brand" class="register-btn"
+                                                data-id={eventData.id} onclick={handleRegisterClick}>
+                                                Register Now
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <template if:true={eventData.errorMsg}>
+                                        <div class="custom-error">
+                                            {eventData.errorMsg}
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={noEventsFound}>
+                    <div class="no-record-wrapper">
+                        <img src={norecordfound} alt="No Events" class="no-record-image" />
+                        <p class="no-record-text">No records found!!</p>
+                    </div>
+                </template>
+                <template if:true={showModal}>
+                    <div class="custom-modal-backdrop">
+                        <div class="custom-modal">
+                            <button class="close" onclick={closeModal}>
+                                <img src={close} alt="Close Icon" />
+                            </button>
+                            <img src={registerGif} alt="Success" class="modal-icon" />
+                            <h2 class="modal-title">Registration Complete</h2>
+                            <p class="modal-message">
+                                Congratulations! You are registered for the event.
+                                Please find the event details on your registered email ID.
+                            </p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,55 @@
+<template>
+    <div class="unit-container">
+
+        <!-- 📍 Breadcrumb -->
+        <div class="breadcrumb-wrapper">
+            <p class="breadcrumb">
+                <span class="breadcrumb-muted" onclick={handleDashboardClick} style="cursor: pointer; text-decoration: underline;">
+                    Dashboard
+                </span>
+                <template if:true={showUpdates}>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">{selectedData.projectName}</span>
+                </template>
+                <template if:true={showUnitList}>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Unit Details</span>
+                </template>
+            </p>
+        </div>
+
+        <!-- ✅ Show Unit Cards List -->
+        <template if:true={showUnitList}>
+            <h1 class="main-heading">Unit Details</h1>
+            <div class="card-grid">
+                <template for:each={projects} for:item="proj">
+                    <div key={proj.projectName} class="unit-card">
+                        <img src={proj.imageUrl} alt={proj.projectName} class="project-image" />
+                        <div class="card-content">
+                            <p class="project-title">{proj.projectName}</p>
+                            <p class="unit-label">Unit Number:</p>
+                            <p class="unit-value">{proj.propertyAddress}</p>
+                            <div class="card-buttons">
+                                <button class="btn-outline">Download</button>
+                                <button class="btn-primary" data-name={proj.projectName} onclick={handleViewUpdate}>
+                                    View unit details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ✅ Show Single Project View -->
+        <template if:true={showUpdates}>
+            <c-unit-detail-view
+                project-name={selectedData.projectName}
+                corporate-address={selectedData.corporateAddress}
+                phone={selectedData.phone}
+                website={selectedData.website}
+                image-url={selectedData.imageUrl}>
+            </c-unit-detail-view>
+        </template>
+    </div>
+</template>

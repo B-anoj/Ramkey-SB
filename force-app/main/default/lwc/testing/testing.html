@@ -1,0 +1,10 @@
+<template>
+    <template if:true={projectList}>
+        <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+            <div class="card image-card">
+                <img src={currentImage} alt="Project Image" />
+                <div class="card-title">{currentTitle}</div>
+            </div>
+        </lightning-layout-item>
+    </template>
+</template>

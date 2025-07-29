@@ -1,0 +1,84 @@
+<template>
+    <div class="project-documents">
+        <div class="tabs">
+            <h1 class="heading">Project Documents</h1>
+            <p class="subtext">
+                Access and manage your project documents with Ramky Estates below.
+                Stay updated on project plans, specifications, and progress reports.
+            </p>
+            <div class="tab-bar">
+                <div onclick={selectTabNorth} class={northTabClass}>Ramky One North</div>
+                <div onclick={selectTabKarnival} class={karnivalTabClass}>Ramky One Karnival</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Left Sidebar -->
+            <div class="toggle-section">
+                <!-- My Documents Toggle -->
+                <div class={myDocButtonClass} onclick={toggleMyDocs}>
+                    <span>My Documents</span>
+                    <lightning-icon icon-name="utility:chevrondown" size="xx-small" class="arrow-icon"></lightning-icon>
+                </div>
+
+                <template if:true={showMyDocs}>
+                    <ul class="document-list">
+                        <template for:each={myDocuments} for:item="doc">
+                            <li key={doc.label}
+                                class={doc.className}
+                                data-label={doc.label}
+                                onclick={handleDocClick}>
+                                
+                                <lightning-icon icon-name="doctype:pdf" size="x-small" class="doc-icon"></lightning-icon>
+                                <span>{doc.label}</span>
+
+                                <!-- Thumbnail image -->
+                                <template if:true={doc.thumbnail}>
+                                    <img src={doc.thumbnail} alt="thumbnail" class="doc-thumbnail" />
+                                </template>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+
+                <!-- Property Documents Toggle -->
+                <div class={propDocButtonClass} onclick={togglePropertyDocs}>
+                    <span>Property Documents</span>
+                    <lightning-icon icon-name="utility:chevrondown" size="xx-small" class="arrow-icon"></lightning-icon>
+                </div>
+
+                <template if:true={showPropertyDocs}>
+                    <ul class="document-list">
+                        <template for:each={propertyDocuments} for:item="doc">
+                            <li key={doc.label}
+                                class={doc.className}
+                                data-label={doc.label}
+                                onclick={handleDocClick}>
+
+                                <lightning-icon icon-name="doctype:pdf" size="x-small" class="doc-iconClass"></lightning-icon>
+                                <span>{doc.label}</span>
+
+                                <!-- Thumbnail image -->
+                                <template if:true={doc.thumbnail}>
+                                    <img src={doc.thumbnail} alt="thumbnail" class="doc-thumbnail" />
+                                </template>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+
+            <!-- Right Preview Panel -->
+            <div class="right-pane">
+                <template if:true={imagePreviewUrl}>
+                    <img src={imagePreviewUrl} alt="Preview" class="preview-image" />
+                </template>
+                <template if:false={imagePreviewUrl}>
+                    <div class="preview-placeholder">
+                        <p>Tap on the document to view</p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

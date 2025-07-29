@@ -1,0 +1,265 @@
+<template>
+    <template if:true={showHome}>
+        <div class="layout-wrapper" style={backgroundStyle}>
+
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <div class="nav-content">
+                    <a href="https://www.ramkyestates.com/who-we-are" target="_blank">Our Story</a>
+                    <a href="#" class={letsTalkClass} data-tab="letstalk" onclick={handleTopNavClick}>Let's Talk</a>
+                    <img src={logoURL} alt="Logo" class="logo" />
+                    <a href="#" class={blogsClass} data-tab="blogs" onclick={handleTopblogClick}>Blogs</a>
+                    <a href="#" class={tdsClass} data-tab="tds" onclick={handleTotdsClick}>TDS</a>
+                </div>
+            </div>
+
+            <!-- Body: Sidebar + Main Content -->
+            <div class="layout-body">
+
+                <!-- Sidebar Menu -->
+                <aside class={sidebarClass}>
+                    <!-- Toggle Button -->
+                    <div class="sidebar-toggle">
+                        <span class="arrow" onclick={toggleSidebar}>{sidebarArrowIcon}</span>
+                    </div>
+                    <ul>
+                        <li class={dashboardClass}>
+                            <a data-tab="dashboard" onclick={handleSelect}>
+                                <img src={databarIcon} alt="Dashboard Icon" class="menu-icon" />
+                                <template if:false={isSidebarCollapsed}>
+                                    <span class="menu-label">Dashboard</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={bookingsClass}>
+                            <a data-tab="bookings" onclick={handleSelect}>
+                                <img src={towerIcon} alt="Bookings Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Bookings</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={constructionClass}>
+                            <a data-tab="construction" onclick={handleSelect}>
+                                <img src={chartMultipleIcon} alt="Construction Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Construction Updates</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={invoicesClass}>
+                            <a data-tab="invoices" onclick={handleSelect}>
+                                <img src={invoiceimg} alt="Invoice Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Invoices</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={documentsClass}>
+                            <a data-tab="documents" onclick={handleSelect}>
+                                <img src={documentimg} alt="Documents Icon" class="menu-icon1" />&nbsp;&nbsp;
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Documents</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={visitsClass}>
+                            <a data-tab="visits" onclick={handleSelect}>
+                                <img src={visitimg} alt="Visits Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Visits</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={supportClass}>
+                            <a data-tab="support" onclick={handleSelect}>
+                                <img src={supportimg} alt="Support Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Support</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={eventsClass}>
+                            <a data-tab="events" onclick={handleSelect}>
+                                <img src={eventimg} alt="Events Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Events</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={referClass}>
+                            <a data-tab="refer" onclick={handleSelect}>
+                                <img src={referearnimg} alt="Refer Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Refer & Earn</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={faqClass}>
+                            <a data-tab="faq" onclick={handleSelect}>
+                                <img src={faqimg} alt="Faq Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">FAQ's</span>
+                                </template>
+                            </a>
+                        </li>
+                        <li class={logoutClass}>
+                            <a data-tab="logout" onclick={handleLogOut}>
+                                <img src={logoutimg} alt="Logout Icon" class="menu-icon" />
+                                <template if:true={showMenuLabels}>
+                                    <span class="menu-label">Logout</span>
+                                </template>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Right Side Content Area -->
+                <div class="content-wrapper">
+
+                    <!-- Top Right Icons -->
+                    <div class="top-bar clean-bar">
+                        <div class="icon-button">
+                            <lightning-icon icon-name="utility:notification" size="x-small" alternative-text="Notifications" class="bell-icon"></lightning-icon>
+                        </div>
+                        <div class="icon-button black">
+                            <lightning-icon icon-name="utility:user" size="x-small" alternative-text="Profile" data-tab="profile" class={profileClass} onclick={handleToProfileClick}></lightning-icon>
+                        </div>
+                    </div>
+
+                    <!-- Main Dynamic Component Area -->
+                    <!-- <main class="main-content">
+
+                        <template if:true={showDashboard}>
+                            <c-dashboard></c-dashboard>
+                        </template>
+                        <template if:true={showBookings}>
+                            <c-bookings-table useremail={useremail}></c-bookings-table>
+                        </template>
+                        <template if:true={showConstruction}>
+                            <c-construction-updates useremail={useremail}></c-construction-updates>
+                        </template>
+                        <template if:true={showInvoices}>
+                            <c-invoices></c-invoices>
+                        </template>
+                        <template if:true={showDocuments}>
+                            <c-documents></c-documents>
+                        </template>
+                        <template if:true={showVisits}>
+                            <c-visit-manager useremail={useremail}></c-visit-manager>
+                        </template>
+                        <template if:true={showfaqComponent}>
+                            <c-faq-component></c-faq-component>
+                        </template>
+                        <template if:true={supportClass}>
+                            <c-customer-support useremail={useremail}></c-customer-support>
+                        </template>
+                        <template if:true={showEvents}>
+                            <c-customer-events></c-customer-events>
+                        </template>
+                        <template if:true={showLetsTalk}>
+                            <c-lets-talk></c-lets-talk>
+                        </template>
+                        <template if:true={showblogs}>
+                            <c-blog-component></c-blog-component>
+                        </template>
+                        <template if:true={showTds}>
+                            <c-tds-component></c-tds-component>
+                        </template>
+                        <template if:true={showProfile}>
+                            <c-profile-component></c-profile-component>
+                        </template>
+                        <template if:true={referClass}>
+                            <c-converted-leads-for-account useremail={useremail}></c-converted-leads-for-account>
+                        </template>
+                        <template if:true={showLogout}>
+                            <section class="modal" role="dialog" tabindex="-1">
+                                <div class="modal-content">
+                                    <img src={portalLogout} alt="Logout Icon" class="logout-icon" />
+                                    <h2>Logout?</h2>
+                                    <p class="message">
+                                        You are about to log out of your Ramky Estates account.
+                                        Thank you for using our portal, and we look forward to your return.
+                                    </p>
+                                    <div class="button-group">
+                                        <button class="cancel-btn" onclick={handleCancel}>Cancel</button>
+                                        <button class="logout-btn" onclick={handleLogout}>Log Out</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </template>
+                    </main> -->
+                 <main class="main-content">
+                        
+                   
+                        <template if:true={showDashboard}>
+                            <c-dashboard></c-dashboard>
+                        </template>
+                   
+                        
+                        <template if:true={showBookings}>
+                            <c-bookings-table useremail={useremail}></c-bookings-table>
+                        </template>
+                        <template if:true={showConstruction}>
+                            <c-construction-updates useremail={useremail}></c-construction-updates>
+                        </template>
+                        <template if:true={showInvoices}>
+                            <c-invoices></c-invoices>
+                        </template>
+                        <template if:true={showDocuments}>
+                           <c-document-table></c-document-table>
+                        </template>
+                        <template if:true={showVisits}>
+                            <c-visit-manager useremail={useremail}></c-visit-manager>
+                        </template>
+                        <template if:true={showfaqComponent}>
+                            <c-faq-component></c-faq-component>
+                        </template>
+                        <template if:true={supportClass}>
+                            <c-customer-support useremail={useremail}></c-customer-support>
+                        </template>
+                        <template if:true={showEvents}>
+                            <c-customer-events></c-customer-events>
+                        </template>
+                        <template if:true={showLetsTalk}>
+                            <c-lets-talk></c-lets-talk>
+                        </template>
+                        <template if:true={showblogs}>
+                            <c-blog-component></c-blog-component>
+                        </template>
+                        <template if:true={showTds}>
+                            <c-tds-component></c-tds-component>
+                        </template>
+                        <template if:true={showProfile}>
+                            <c-profile-component></c-profile-component>
+                        </template>
+                        <template if:true={referClass}>
+                            <c-converted-leads-for-account useremail={useremail}></c-converted-leads-for-account>
+                        </template>
+                        <template if:true={showLogout}>
+                            <section class="modal" role="dialog" tabindex="-1">
+                                <div class="modal-content">
+                                    <img src={portalLogout} alt="Logout Icon" class="logout-icon" />
+                                    <h2>Logout?</h2>
+                                    <p class="message">
+                                        You are about to log out of your Ramky Estates account.
+                                        Thank you for using our portal, and we look forward to your return.
+                                    </p>
+                                    <div class="button-group">
+                                        <button class="cancel-btn" onclick={handleCancel}>Cancel</button>
+                                        <button class="logout-btn" onclick={handleLogout}>Log Out</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </template>
+                    </main>
+                                 
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template if:false={showHome}>
+        <c-customer-login></c-customer-login>
+    </template>
+</template>

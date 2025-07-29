@@ -1,0 +1,74 @@
+<template>
+    <div class="wrapper">
+        <template if:true={updates}>
+            <template for:each={updates} for:item="item">
+                <div key={item.month} class="month-section">
+                    <!-- Month Header -->
+                    <!-- <div class="month-header" onclick={toggleMonth} data-month={item.month}>
+                        <span>{item.month} Updates</span>
+                        <span class="arrow">{item.arrowSymbol}</span>
+                    </div> -->
+
+                    <div class="month-header" onclick={toggleMonth} data-month={item.month}>
+                        <span>{item.month} Updates</span>
+                        <lightning-icon icon-name={item.iconName} class="arrow" alternative-text="Toggle"
+                            size="x-small">
+                        </lightning-icon>
+                    </div>
+
+                    <template if:true={item.isOpen}>
+                        <!-- Images Section -->
+                        <template if:true={item.imageUrls.length}>
+                            <div class="month-content">
+                                <div class="section-label">Images</div>
+                                <div class="media-grid">
+                                    <template for:each={item.imageUrls} for:item="img">
+                                        <div key={img} class="media-box">
+                                            <iframe src={img} alt="Image" onerror={handleImgError} ></iframe>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Videos Section -->
+                        <template if:true={item.videoUrls.length}>
+                            <div class="month-content">
+                                <div class="section-label">Videos</div>
+                                <div class="media-grid">
+                                    <template for:each={item.videoUrls} for:item="vid">
+                                        <div key={vid} class="media-box">
+                                            <video src={vid} controls></video>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Other Documents -->
+                        <template if:true={item.otherDocuments.length}>
+                            <div class="month-content">
+                                <div class="section-label">Other Files</div>
+                                <ul class="other-list">
+                                    <template for:each={item.otherDocuments} for:item="doc">
+                                        <li key={doc}><a href={doc} target="_blank">Download File</a></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </template>
+        <template if:false={updates.length}>
+            <div class="no-record-wrapper">
+                <img src={norecordfound} alt="No Updates Found" class="no-record-image" />
+                <p class="no-record-text">No Record Found!!</p>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error loading updates: {error}</p>
+        </template>
+    </div>
+</template>

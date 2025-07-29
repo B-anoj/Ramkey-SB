@@ -1,0 +1,386 @@
+<template>
+    <!-- Default Dashboard View -->
+    <template if:false={handleChange}>
+        <lightning-layout multiple-rows="true" horizontal-align="center">
+            <!-- Welcome Message -->
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                <div class="welcome-message">
+                    <h1><b>Welcome Back</b></h1>
+                    {userName}
+                </div>
+
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                <!-- Spacer if needed -->
+            </lightning-layout-item>
+
+            <!-- Date Card -->
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                <div class="date-card">
+                    <div class="inner">
+                        <div class="date-day">{currentDay}</div>
+                        <div class="date-details">
+                            <div class="date-month">{currentMonthYear}</div>
+                            <div class="date-subtext">{dayLabel}</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning-layout-item>
+
+            <div class="column-wrap">
+                <!-- Card 1: Image -->
+                <template if:true={projectList}>
+
+                    <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                        <div class="card image-card">
+                            <div class="image-project-name">{currentTitle}</div>
+                            <!-- <img src={currentImage} alt="Project Image" class="project-image" /> -->
+                            <template if:true={currentImage}>
+                                <img src={currentImage} alt="Project Image" class="project-image" />
+                            </template>
+                            <template if:false={currentImage}>
+                                <div class="no-image-message">There is no image for this project.</div>
+                            </template>
+
+                        </div>
+                    </lightning-layout-item>
+                </template>
+
+                <!-- Card 2: Chart -->
+                <template if:true={hasProjects}>
+                    <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                        <div class="card construction-status">
+                            <div class="card-title">Construction Status</div>
+                            <h2 class="title">{currentProjectName}</h2>
+                            <div class="chart-placeholder">
+                                <canvas lwc:dom="manual" class="chart"></canvas>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </template>
+
+                <template if:false={hasProjects}>
+                    <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                        <div class="card construction-status">
+                            <div class="card-title">Construction Status</div>
+                            <div class="no-project-message">
+                                There is no project to update.
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </template>
+
+                <!-- Card 3: Bookings, Payments, Unit Details -->
+                <lightning-layout-item size="12" medium-device-size="6" large-device-size="4"> 
+                    <div class="gradient-wrap">
+                        <div class="card-link" data-label="Bookings" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={bookingIcon} alt="Booking" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Bookings</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Payments" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={paymentIcon} alt="Payments" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Payments</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Unit Details" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={unitIcon} alt="Units" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Unit Details</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>              
+                </lightning-layout-item>
+            </div>
+            <div class="column-wrap">
+                <!-- Card 4: Refer, Support, Documents -->
+                <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                    <div class="gradient-wrap">
+                        <div class="card-link" data-label="Refer & Earn" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={referIcon} alt="Refer" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Refer & Earn</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Support" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={supportIcon} alt="Support" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Support</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Documents" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={documentsIcon} alt="Documents" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Documents</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+
+
+                <!-- Card 5: TDS, Banking Partners, Calendar -->
+                <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                    <div class="gradient-wrap">
+                        <div class="card-link" data-label="TDS" onclick={handleCardClick}>
+                            <div class="icon-circle">
+                                <img src={tdsIcon} alt="TDS" class="menu-icon" />
+                            </div>
+                            <div class="d-flex">
+                                <div class="card-label">TDS</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Banking Partners" onclick={handleCardClick}>
+                            <div class="icon-circle">
+                                <img src={booningpartnersIcon} alt="Banking Partners" class="menu-icon" />
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="card-label">Banking Partners</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                                <!-- <button  data-label="Banking Partners" onclick={handleCardClick} style="background: #eee; border: 1px solid #ccc; padding: 8px; cursor: pointer;"> ›</button> -->
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Calendar" onclick={handleCardClick}>
+                            <div class="icon-circle">
+                                <img src={calenderIcon} alt="Calendar" class="menu-icon" />
+                            </div>
+                            <div class="d-flex">
+                                <div class="card-label">Calendar</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+
+                <!-- <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                    <div class="card link-card">
+                        <div class="card-link" data-label="TDS" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={tdsIcon} alt="TDS" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">TDS</div>
+                                <div class="card-arrow">›</div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Banking Partners">
+                            <div class="icon-circle"><img src={booningpartnersIcon} alt="Banking Partners" class="menu-icon" />
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="card-label">Banking Partners</div>
+                                            <button data-label="Banking Partners" onclick={handleCardClick} style="background: #eee; border: 1px solid #ccc; padding: 8px; cursor: pointer;">›</button>
+                            </div>
+                        </div>
+
+                        <div class="card-link" data-label="Banking Partners">
+                            <div class="icon-circle">
+                                <img src={booningpartnersIcon} alt="Banking Partners" class="menu-icon" />
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="card-label">Banking Partners</div>
+                                <button data-label="Banking Partners" onclick={handleCardClick} style="background: #eee; border: 1px solid #ccc; padding: 8px; cursor: pointer;">›</button>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Calendar" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={calenderIcon} alt="Calendar" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Calendar</div>
+                                <div class="card-arrow">›</div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-layout-item> -->
+
+                <!-- Card 6: FAQs, Handover, Services -->
+                <lightning-layout-item size="12" medium-device-size="6" large-device-size="4">
+                    <div class="gradient-wrap">
+                        <div class="card-link" data-label="Faqs" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={faqsIcon} alt="Faqs" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">FAQ's</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Handover" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={handoverIcon} alt="Handover" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Handover</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-link" data-label="Services" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={servicesIcon} alt="Services" class="menu-icon" /></div>
+                            <div class="d-flex">
+                                <div class="card-label">Services</div>
+                                <div class="card-arrow">
+                                    <img src={ChevronRight} alt="ChevronRight" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+            </div>
+        </lightning-layout>
+    </template>
+
+    <!-- Dynamic Sections -->
+    <template if:true={handleChange}>
+        <template if:true={isBankingPartners}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Banking Partners</span>
+                <p class="subheading">Project Approved Banks</p>
+                <div class="bank-grid">
+                    <template for:each={bankingPartners} for:item="bank">
+                        <div key={bank.id} class="bank-card">
+                            <div class="bank-logo"><img src={bank.fileUrl} alt="Bank Logo" class="bank-icon" /></div>
+                            <div class="bank-details">
+                                <div class="card-label1">{bank.Name}</div>
+                                <div class="card-subtext">{bank.Locality__c}</div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isServices}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Services</span>
+                <p class="subheadingser">Services</p>
+                <div class="bank-grid">
+                    <template for:each={services} for:item="srv">
+                        <div key={srv.Id} class="service-card">
+                            <div class="service-logo">
+                                <img src={contactIcon} alt="Service Icon" class="service-icon" />
+                                <div class="service-label1">{srv.Name}</div>
+                            </div>
+                            <div class="bank-details">
+                                <div class="service-subtext1">{srv.Type__c}</div>
+                                <div class="service-subtext2">{srv.fullAddress}</div>
+                                <div class="service-subtext3">{srv.Phone__c}</div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isBookings}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Bookings</span>
+                <c-bookings-table user-email={userEmail}></c-bookings-table>
+            </div>
+        </template>
+
+        <template if:true={isPayments}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Payments</span>
+                <c-invoices></c-invoices>
+            </div>
+        </template>
+
+        <template if:true={isUnitDetails}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Unit Details</span>
+                <c-unit-details></c-unit-details>
+            </div>
+        </template>
+
+        <template if:true={isReferEarn}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Refer & Earn</span>
+                <c-converted-leads-for-account user-email={userEmail}></c-converted-leads-for-account>
+            </div>
+        </template>
+
+        <template if:true={isSupport}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Support</span>
+                <c-customer-support user-email={userEmail}></c-customer-support>
+            </div>
+        </template>
+
+        <template if:true={isDocuments}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Documents</span>
+                <c-documents user-email={userEmail}></c-documents>
+            </div>
+        </template>
+
+        <template if:true={isTds}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">TDS</span>
+                <c-tds-component></c-tds-component>
+            </div>
+        </template>
+
+        <template if:true={isFaqs}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">FAQ'S</span>
+                <c-faq-component></c-faq-component>
+            </div>
+        </template>
+
+        <template if:true={isHandover}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> 
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Handover</span>
+                <c-handover-checklist user-email={userEmail}></c-handover-checklist>
+            </div>
+
+        </template>
+    </template>
+</template>

@@ -1,0 +1,141 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 95%;
+    max-width: 640px;
+    box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Header & Title */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+.modal-description {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+
+/* Close icon top-right */
+.close-icon {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    cursor: pointer;
+    --slds-c-icon-color-foreground-default: #888;
+    --slds-c-icon-color-background: #fff;
+}
+
+/* Form layout */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.input-item {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Full-width textarea */
+.full-width {
+    grid-column: span 2;
+}
+
+/* Buttons */
+.button-wrapper {
+    text-align: center;
+}
+
+/* Spinner center */
+.slds-align_absolute-center {
+    margin-top: 1rem;
+}
+
+/* Success screen */
+.success-screen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.success-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1rem;
+}
+
+.success-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+}
+
+.success-subtext {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Form field override for better visibility */
+lightning-input,
+lightning-combobox,
+lightning-textarea {
+    --slds-c-input-radius-border: 8px;
+    --slds-c-input-color-border: #d1d1d1;
+    --slds-c-input-shadow: none;
+    --slds-c-input-spacing-block-start: 0.5rem;
+    --slds-c-input-spacing-block-end: 0.5rem;
+    font-size: 0.95rem;
+}
+/* Hide close icon in success modal */
+.modal-container.success-mode .close-icon {
+    display: none !important;
+}
+/* Close icon */
+/* General close icon positioning */
+.close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    --slds-c-icon-color-foreground-default: #555;
+}
+
+/* Optional: Increase size if needed */
+.success-close lightning-primitive-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}

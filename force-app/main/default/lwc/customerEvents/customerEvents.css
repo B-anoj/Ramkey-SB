@@ -1,0 +1,247 @@
+.event-container {
+    overflow: hidden;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+}
+.event-container .banner-img {
+    width: 100%;
+    height: 9.25rem;
+    object-fit: cover;
+}
+.event-container .event-wrapper {
+    background: #fff;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+
+.event-container .event-wrapper .scroll-container {
+    max-height: 26rem;
+    overflow: auto;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start; 
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card {
+    background: #EBF6FF;
+    width: calc(33.33% - 1rem);
+    padding: 1rem 1rem 1.5rem 1rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .top-bar {
+    gap: 1rem;
+    display: flex;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .top-bar .event-icon {
+    background: #19253D;
+    min-width: 3rem;
+    width: 3rem;
+    height: 3rem;
+    -moz-border-radius: 3.75rem;
+    -webkit-border-radius: 3.75rem;
+    border-radius: 3.75rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .top-bar .event-title {
+    color: #232323;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.125rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .top-bar .event-desc {
+    color: #585858;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 400;
+    margin: 0.25rem 0 0 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .event-details {
+    flex: 1;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .event-details .event-info {
+    margin: 2rem 0 1rem 0;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .event-details .event-info p {
+    color: #000;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    gap: 0.75rem;
+    display: flex;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .event-details .btn-container {
+    margin-top: 1rem;
+}
+
+.event-container .event-wrapper .scroll-container .event-grid .event-card .event-details .btn-container .register-btn {
+    background: #19253D;
+    width: 100%;
+    color: #FFF;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    padding: 0.625rem;
+    -moz-border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    border-radius: 5rem;
+    border: none;
+    font-family: 'SF Pro Display', sans-serif;
+}
+.custom-modal .modal-content {
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.modal-message {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+.custom-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.custom-modal {
+    background: #FFF;
+    max-width: 26.125rem;
+    text-align: center;
+    padding: 5.375rem 4.625rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    animation: popin 0.25s ease-out;
+}
+
+.custom-modal .close {
+    background: transparent;
+    position: absolute;
+    z-index: 1;
+    top: 1rem;
+    right: 1rem;
+    padding: 0;
+    border: none;
+}
+
+.custom-modal .modal-icon {
+    width: 6.8125rem;
+}
+
+.custom-modal .modal-title {
+    color: #232323;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.125rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.custom-modal .modal-message {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+@keyframes popin {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.custom-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 0.5rem 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+    width: fit-content;
+    max-width: 100%;
+    /* margin-left: auto;
+    margin-right: auto; */
+    display: block;
+}
+
+
+
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}

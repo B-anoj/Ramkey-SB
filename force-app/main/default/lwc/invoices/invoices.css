@@ -1,0 +1,308 @@
+.container {
+    height: 100%;
+}
+
+/* Card Layout */
+.invoices.card {
+    background-color:#FFF;
+    padding: 1.5rem;
+    height: 100%;
+    border-radius: 1rem;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Headings */
+.invoices.card .heading {
+    color: #232323;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.invoices.card .subtext {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0.5rem 0 1.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* Table */
+.invoices.card .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoices.card .custom-table thead {
+    background-color: #19253D;
+    color: white;
+}
+
+.invoices.card .custom-table th {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    text-align: left;
+    font-weight: 500;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.invoices.card .custom-table td {
+    font-size: 0.875rem;
+    color: #232323;
+    padding: 1rem 0.875rem;
+    font-weight: 500;
+    border-bottom: 1px solid #EBEAEA;
+    vertical-align: middle;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.invoices.card .custom-table td .chip {
+    background: #21B354;
+    color: #FFF;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    padding: 0.375rem 1rem;
+    -moz-border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    border-radius: 2rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.invoices.card .custom-table td .chip.orange {
+    background: #FF9500;
+}
+
+.invoices.card .custom-table td .chip.yellow {
+    background: #FFDD21;
+    color: #232323;
+}
+
+.invoices.card .custom-table td.tds-submission {
+    width: 10.3125rem;
+}
+
+.invoices.card .custom-table td.invoice-nunmber {
+    width: 6.25rem;
+}
+
+.invoices.card .custom-table td.actions {
+    width: 6.25rem;
+}
+
+
+/* Pill Style (Status / TDS) */
+.status-pill {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Invoice Status Color Pills */
+.status-pill.status-paid {
+    background-color: #28c76f;
+    color: white;
+}
+.status-pill.status-unpaid {
+    background-color: #ff4d4f;
+    color: white;
+}
+.status-pill.status-overdue {
+    background-color: #ffc107;
+    color: #232323;
+}
+.status-pill.status-default {
+    background-color: #d9d9d9;
+    color: white;
+}
+
+/* TDS Status Pills */
+.status-pill.status-approved {
+    background-color: #28c76f;
+    color: white;
+}
+.status-pill.status-not-approved {
+    background-color: #ff9500;
+    color: white;
+}
+.status-pill.status-overdue {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+/* Upload / View Text */
+.upload-link {
+    color: #003b71;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: underline;
+    margin-right: 0.625rem;
+    cursor: pointer;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* Icon Button Styling */
+.icon-button {
+    background-color: #003b71;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    background-color: #005299;
+}
+
+lightning-icon {
+    --slds-c-icon-color-foreground-default: white;
+    --slds-c-icon-color-background: transparent;
+}
+
+.invoices.card .scroll-container {
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 0;
+}
+.custom-table {
+    width: 100%;
+    min-width: 900px; /* or more if many columns */
+    border-collapse: collapse;
+}
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.scroll-container {
+    padding: 1rem;
+    background-color: #FFF;
+    border-radius: 8px;
+    /* 🔥 remove scrolling from here */
+    max-height: none;
+    overflow: visible;
+}
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}
+.table-wrapper {
+    max-height: 525px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.custom-table thead th {
+    position: sticky;
+    top: 0;
+     background-color: #005299;
+    z-index: 1;
+}
+
+/* Optional: to avoid width shift */
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Optional: consistent cell padding */
+.custom-table th,
+.custom-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    
+}

@@ -1,0 +1,182 @@
+.unit-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Breadcrumb */
+.breadcrumb-wrapper {
+     font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: #888;
+}
+
+.breadcrumb {
+    font-size: 0.95rem;
+    color: #999;
+}
+
+.breadcrumb-muted {
+    color: #bbb;
+}
+
+.breadcrumb-current {
+    font-weight: 600;
+    color: #333;
+}
+
+.breadcrumb-separator {
+    margin: 0 6px;
+}
+
+/* Heading */
+.main-heading {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #222;
+}
+
+/* Responsive Grid */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+}
+
+/* Card */
+.unit-card {
+    background-color: #eaf6ff;
+    border-radius: 16px;
+    width: 300px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out;
+}
+
+.unit-card:hover {
+    transform: translateY(-4px);
+}
+
+.project-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+/* Content Inside Card */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.project-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #111;
+    margin-bottom: 0.3rem;
+}
+
+.unit-label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.unit-value {
+    font-weight: 500;
+    color: #222;
+    font-size: 0.95rem;
+}
+
+/* Button Row */
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.btn-outline {
+    flex: 1;
+    background-color: white;
+    color: #2300a4;
+    border: 2px solid #2300a4;
+    padding: 8px 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-outline:hover {
+    background-color: #2300a4;
+    color: white;
+}
+
+.btn-primary {
+    flex: 1;
+    background-color: #f57c00;
+    color: white;
+    padding: 8px 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #e66900;
+}
+
+/* Back button styling (for detail view) */
+.btn-back {
+    background: none;
+    border: none;
+    color: #0070d2;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.btn-back:hover {
+    text-decoration: underline;
+}
+.breadcrumb-wrapper {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #888;
+}
+
+.breadcrumb {
+    font-size: 0.95rem;
+}
+
+.breadcrumb-link {
+   color: #0070d2;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.breadcrumb-muted {
+    color: #aaa;
+}
+
+.breadcrumb-current {
+    font-weight: 600;
+    color: #000;
+}
+
+.breadcrumb-separator {
+    margin: 0 6px;
+    color: #ccc;
+}

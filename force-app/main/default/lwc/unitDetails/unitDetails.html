@@ -1,0 +1,77 @@
+<template>
+    <div class="unit-container">
+        <!-- ✅ Show Unit Cards List View -->
+        <template if:true={showUnitList}>
+            <h1 class="main-heading">Unit Details</h1>
+
+            <div class="card-grid">
+                <template for:each={projects} for:item="proj">
+                    <div key={proj.projectName} class="unit-card">
+                        <img src={proj.imageUrl} alt={proj.projectName} class="project-image" />
+
+                        <div class="card-content">
+                            <p class="project-title">{proj.projectName}</p>
+                            <p class="unit-label">Customer Name:</p>
+                            <p class="unit-value">{proj.customerName}</p>
+
+                            <p class="unit-label">Unit Number:</p>
+                            <p class="unit-value">{proj.unitNumber}</p>
+
+                            <div class="card-buttons">
+                                <button class="btn-outline">Download</button>
+                                <button
+                                    class="btn-primary"
+                                    data-name={proj.projectName}
+                                    onclick={handleViewUpdate}>
+                                    View unit details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ✅ Show Selected Unit Detail View -->
+        <template if:true={showUpdates}>
+            <div class="breadcrumb-wrapper">
+                <span class="breadcrumb-link" onclick={handleDashboardClick}>Dashboard</span>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-link" onclick={handleBackClick}>Unit Details</span>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    {selectedData.projectName}
+                </span>
+            </div>
+
+            <c-unit-detail-view
+                project-name={selectedData.projectName}
+                corporate-address={selectedData.corporateAddress}
+                phone={selectedData.phone}
+                website={selectedData.website}
+                image-url={selectedData.imageUrl}
+                customer-name={selectedData.customerName}
+                co-applicant={selectedData.coApplicant}
+                date-of-statement={selectedData.dateOfStatement}
+                unit-number={selectedData.unitNumber}
+                area-sq-ft={selectedData.areaSqFt}
+                aos-date={selectedData.aosDate}
+                aos-value={selectedData.aosValue}
+                gst-percentage={selectedData.gstPercentage}
+                total-sale-value-with-gst={selectedData.totalSaleValueWithGST}
+                corpus-fund={selectedData.corpusFund}
+                advance-maintenance={selectedData.advanceMaintenance}
+                legal-charges={selectedData.legalCharges}
+                modification-charges={selectedData.modificationCharges}
+                interest-payable={selectedData.interestPayable}
+                transfer-fee={selectedData.transferFee}
+                additional-charges-total={selectedData.additionalChargesTotal}
+                total-cost-net={selectedData.totalCostNet}
+                invoice-amount={selectedData.invoiceAmount}
+                received-amount={selectedData.receivedAmount}
+                due-payable-amount={selectedData.duePayableAmount}
+                total-due-payable={selectedData.totalDuePayable}>
+            </c-unit-detail-view>
+        </template>
+    </div>
+</template>

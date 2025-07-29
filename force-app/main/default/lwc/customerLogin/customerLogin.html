@@ -1,0 +1,114 @@
+<template>
+    <template if:false={dashBoardPage}>
+        <!-- <div class="background" style={backgroundStyle}>
+            <div class="overlay"></div>
+            <div class="login-container">
+                <img src={logoUrl} alt="RAMKY Estates Logo" class="logo" />
+                <template if:true={showHome}>
+                    <template if:false={otpPage}>
+                        <h1 class="title">Welcome Back!</h1>
+                        <p class="subtitle">
+                            Unlock the door to a seamless real estate experience with our exclusive Customer Portal.
+                        </p>
+                        <div class="input-container">
+                            <input type="email" placeholder="Enter your Email" onchange={handleEmailChange} class="custom-input" />
+                        </div><br>
+                        <button class="custom-button" onclick={handleEmailLoginValidation}>Get OTP</button>
+                        <br><br>
+                        <lightning-button label="Facing an issue?" variant="base" class="custom-white-button"
+                            onclick={handleIssue}>
+                        </lightning-button>
+                    </template>
+                    <template if:true={otpPage}>
+                        <div>
+                            <template if:false={isSuccess}>
+                                <h2 class="title">Verify OTP</h2>
+                                <p class="subtitle">Enter the 6-digit code sent.</p>
+
+                                <div class="otp-container">
+                                    <div class="otp-boxes">
+                                        <template for:each={otpInputs} for:item="item" for:index="index">
+                                            <input
+                    key={item}
+                    type="text"
+                    maxlength="1"
+                    class="otp-input"
+                    value={item}
+                    data-index={index}
+                    oninput={handleInput}
+                    onkeydown={handleKeyDown}
+                />
+                                        </template>
+                                    </div>
+
+                                    <p class="timer-style"> OTP Valid Till : <b>{formattedTime}</b></p>
+
+                                    <template if:true={errorMessage}>
+                                        <div class={messageClass}>{errorMessage}</div>
+                                    </template>
+
+                                    <div class="buttons">
+                                        <button class="custom-button1" onclick={handleBack}>Back</button>
+
+                                        <template if:false={isTimerExpired}>
+                                            <button class="verify-button" onclick={handleValidateOTP}>Verify OTP</button>
+                                        </template>
+
+                                        <template if:true={isTimerExpired}>
+                                            <button class="verify-button" onclick={handleResendOtp}>Resend OTP</button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <template if:true={isSuccess}>
+                                <div class="success-screen">
+                                    <img src={emailverify} alt="Verified" class="success-icon" />
+                                    <h2 class="success-heading">Submitted Successfully.</h2>
+                                    <p class="success-subtext">Please wait, we will log you in to the system.</p>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={showHome}>
+                    <template if:false={submitted}>
+                        <div class="form-wrapper">
+                            <h2 class="title">Facing an issue?</h2>
+                            <p class="subtitle">Tell us the issue you're facing</p>
+
+                            <input type="email" name="email" class="input" placeholder="Enter your Email"  onchange={handleCaseEmail} />
+                            <input type="tel" name="phone" class="input" placeholder="Enter mobile number"  onchange={handleCasePhone} />
+
+                            <label class="textarea-label">Please let us know where we went wrong.</label>
+                            <textarea name="description" class="textarea" placeholder="write"  onchange={handleDescription}></textarea>
+
+                            <div class="button-group">
+                                <button class="btn back-btn" onclick={handleBack}>Back</button>
+                                <button class="btn submit-btn" onclick={handleSubmit} disabled={isSubmitting}>Submit</button>
+                            </div>
+
+                            <template if:true={errorMessage}>
+                                <p class="error">{errorMessage}</p>
+                            </template>
+                        </div>
+                    </template>
+
+                    <template if:true={submitted}>
+                        <div class="form-wrapper">
+                            <img src={emailverify} alt="Verified" class="success-icon" />
+                            <h2 class="title">Thank you!</h2>
+                            <p class="subtitle">Please wait while our executive connects with you.</p>
+                        </div>
+                    </template>
+
+                </template>
+
+            </div>
+        </div> -->
+         <c-custom-theme-layout useremail={email}></c-custom-theme-layout>
+    </template> 
+    <template if:true={dashBoardPage}>
+        <!-- <c-custom-theme-layout useremail={email}></c-custom-theme-layout> -->
+    </template>
+</template>

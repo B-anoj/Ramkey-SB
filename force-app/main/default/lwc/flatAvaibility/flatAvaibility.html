@@ -1,0 +1,54 @@
+<!-- childComponent.html -->
+<template>
+    
+    <lightning-card>
+            <!-- <div class="circle-container" style="margin-bottom: -3px; margin-top: -13px; margin-left: 3px;">
+                <div class="circle buy">
+                    <div class="circle-label">Available</div>
+                </div>
+                <div class="circle sell">
+                    <div class="circle-label">Sell</div>
+                </div>
+                <div class="circle rent">
+                    <div class="circle-label">Rent</div>
+                </div>
+            </div>
+            <hr style="width: 100%; margin: 10px 0; border: 1px solid #ddd;"> -->
+        <div class="slds-card__header slds-grid slds-has-flexi-truncate" style="margin-bottom: -5px; margin-top: -18px;">
+            <!-- Header title on the left with margin-right -->
+            <h1 class="slds-text-heading_small slds-col slds-has-flexi-truncate slds-m-right_medium"><b>Search Result</b></h1>
+            <div style="margin-right: 10px;"><b>Total Records: {totalRecordsCount}</b></div>
+            <!-- Button on the right -->
+            <lightning-button label="Export Data" onclick={handleGeneratePDFAndSendEmail} icon-name="utility:download" variant="brand" class=" slds-col_bump-left"></lightning-button>
+   
+        </div>
+          <hr style="width: 100%; margin: 10px 0; border: 1px solid #ddd;">
+        <div class="slds-m-around_medium">
+            <div class="container ">
+            <template for:each={searchResults} for:item="record" for:index="index">
+                <template if:true={record.towerline}>
+                    <div key={record} class="slds-form-element  slds-size_12-of-12">
+                    <h1><b>Tower =: {record.flat.Towers__c}</b></h1>
+                </div>
+                </template>
+                    <div key={record.flat.Id} data-block-id={record.flat.Id} class="square" onclick={handleFlatSelected}>
+                        <lightning-icon icon-name='utility:home' key={record.flat.Id} data-block-id={record.flat.Id} alternative-text='home'
+                                        size='medium' title='home'  class={record.backgroundColor} onclick={handleFlatSelected}></lightning-icon>
+                        <div style={record.towercss} class="record-info"><b> {record.flat.Towers__c} ({record.digitsAfterHyphen})</b></div>
+                        
+                    </div>
+             
+                </template>
+                
+               
+        </div>
+       
+            <template if:true={isNoRecordsFound}>
+                <div style="text-align: center; margin-top: 10px; color: red;">
+                    <img src={errorMessage} alt="My Image">
+                    </div>
+            </template>
+        </div>
+        <hr style="width: 100%; margin: 10px 0; border: 1px solid #ddd;">
+    </lightning-card>
+</template>

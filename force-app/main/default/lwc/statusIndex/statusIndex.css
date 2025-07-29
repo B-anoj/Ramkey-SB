@@ -1,0 +1,60 @@
+.Available {
+    background-color: green; /* Green */
+}
+ 
+.Sold {
+    background-color: red; /* Red */
+}
+ 
+.Mortgaged {
+    background-color: yellow; /* Yellow */
+}
+.Block {
+    background-color: darkblue; /* Yellow */
+}
+.MortgagedD {
+    background-color: skyblue; /* Yellow */
+}
+.Blocked {
+    background-color: orange; /* Yellow */
+}
+.Blockedland {
+    background-color: darkgray; /* Yellow */
+}
+
+
+  .circle-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 6px;
+         margin-left: 12px;
+           margin-top:-8px;
+       
+    }
+
+    .circle-label {
+        text-align: center;
+        margin-top:-7px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .circle {
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .circle {
+            width: 15px;
+            height: 15px;
+        }
+    }

@@ -1,0 +1,51 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="modal">
+        <div class="modal-content">
+            <!-- ❌ Cancel Form -->
+            <template if:false={showSuccess}>
+                <button class="modal-close" onclick={handleClose} aria-label="Close">×</button>
+                <h2 class="modal-title">Cancel Visit</h2>
+                <p class="modal-description">
+                    We understand that you need to end your site visit with Ramky Estates...
+                </p>
+
+                <div class="visit-info">
+                    <div class="info-column">
+                        <p><strong>Property:</strong> {property}</p>
+                        <p><strong>Address:</strong><br />{address}</p>
+                    </div>
+                    <div class="info-column">
+                        <p><strong>Type:</strong> {unitType}</p>
+                        <p><strong>Location:</strong> {location}</p>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <label for="reason">Reason for canceling the visit:</label>
+                    <textarea id="reason" class="reason-textarea" placeholder="Please enter your reason"
+                        value={reason} onchange={handleReasonChange}>
+                    </textarea>
+                </div>
+
+                <div class="footer">
+                    <button class="cancel-btn" onclick={handleSubmit} disabled={isButtonDisabled}>
+                        Cancel Visit
+                    </button>
+                </div>
+            </template>
+
+            <!-- ✅ Success Message -->
+            <template if:true={showSuccess}>
+                <div class="success-wrapper">
+                    <button class="modal-close" onclick={handleClose} aria-label="Close">×</button>
+                    <img src={schedule} class="success-icon" alt="Success Icon" />
+                    <h2 class="success-title">Your upcoming visit has been cancelled successfully!</h2>
+                    <p class="success-text">
+                        Your site visit to <strong>{property}</strong> has been cancelled.<br />
+                        We apologize if any inconvenience caused. If you have any questions or need further assistance, please don’t hesitate to let’s talk.
+                    </p>
+                </div>
+            </template>
+        </div>
+    </section>
+</template>

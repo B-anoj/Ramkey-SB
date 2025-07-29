@@ -1,0 +1,913 @@
+<apex:page standardController="Booking_Form__c" extensions="BookingFormPDF" renderAs="PDF">
+    <style>
+        
+    </style>
+    <apex:form id="form">
+        <div style="margin: 5px; font-size: 14px; font-family: Helvetica;">
+            <c:RamkyHeader type="header">
+                <div>
+                    <img src="{!URLFOR($Resource.RamkyHeaderLogo)}" style="width:100px; height:100px;"/>
+                </div>
+            </c:RamkyHeader>
+            
+            <apex:repeat value="{!BookingList}" var="Boo">
+                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList))}">
+                    <table style="width:100%;" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="10" style="text-align: Center; font-size: 16px;"><b><i>BOOKING FORM</i></b></td>
+                        </tr>
+                        <tr><td><br/><br/></td></tr>
+                        <tr>
+                            <td colspan="10" style="text-align: Center;"><b>{!BookingList[0].Project_Name__c}</b></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                    </table> 
+                    
+                    <tr>
+                        <td colspan="3" style="text-align: left; font-size: 14px; font-family: Helvetica;">
+                            <b>Unit Details:</b>
+                        </td>
+                    </tr>
+                    <br/>                    
+                    <table style="width: 100%; font-size: 14px; font-family: Helvetica; border-spacing: 0; margin: 0; padding: 0;" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Facing</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList[0].Facing__c))}">
+                                    {!BookingList[0].Facing__c}
+                                </apex:outputPanel>
+                            </td>
+                            <td style="width: 60%;"></td> <!-- Empty column for 60% gap -->
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Date</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 10%; text-align: left; padding: 2px;">
+                                {!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Flat No</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList[0].Unit__c))}">
+                                    {!BookingList[0].Unit__c}
+                                </apex:outputPanel>
+                            </td>
+                            <td style="width: 60%;"></td> <!-- Empty column for 60% gap -->
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>SFT Area</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList[0].Area_in_Sqft__c))}">
+                                    {!BookingList[0].Area_in_Sqft__c}
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Tower</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList[0].Block__c))}">
+                                    {!BookingList[0].Block__c}
+                                </apex:outputPanel>
+                            </td>
+                            <td style="width: 60%;"></td> <!-- Empty column for 60% gap -->
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Unit Type</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(BookingList[0].Unit_Type__c))}">
+                                    {!BookingList[0].Unit_Type__c}
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>                   
+                    <tr>
+                        <td style="text-align: Left;padding:2px;"><b>Area Details(Square Feet)</b></td>
+                    </tr>
+                    
+                    <table style="font-size: 12px; font-family: Helvetica; border-spacing: 0;-fs-table-paginate: paginate;" border="1" cellspacing="0" cellpadding="5" width="100%">
+                        <tr>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;"><b>CARPET AREA</b></td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;"><b>BALCONY</b></td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;"><b>UTILITY</b></td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;"><b>EXTERNAL WALL AREA</b></td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;"><b>SBUA</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;">
+                                {!IF(ISBLANK(Boo.Carpet_Area__c), '', Boo.Carpet_Area__c)}
+                            </td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;">
+                                {!IF(ISBLANK(Boo.Balcony__c), '', Boo.Balcony__c)}
+                            </td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;">
+                                {!IF(ISBLANK(Boo.Utility__c), '', Boo.Utility__c)}
+                            </td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;">
+                                {!IF(ISBLANK(Boo.External_Wall_Area__c), '', Boo.External_Wall_Area__c)}
+                            </td>
+                            <td colspan="2" style="text-align: center; border: 1px solid black; padding: 1px;">
+                                {!IF(ISBLANK(Boo.Area_in_Sqft__c), '', Boo.Area_in_Sqft__c)}
+                            </td>
+                        </tr>
+                        <br/>
+                    </table>
+                    
+                    <table style="font-size: 12px; font-family: Helvetica; border-spacing: 0;-fs-table-paginate: paginate;" border="1" cellspacing="0" cellpadding="5" width="100%">
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"><B>S.No</B></td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"><B>Particulars</B></td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"><B>Details</B></td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"><B>Amount (INR)</B></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">1</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">Basic Price</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;">
+                                <apex:outputText value="{!formattedFields['Lump_Sum_Amount__c']}" rendered="{!NOT(ISNULL(formattedFields['Lump_Sum_Amount__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Lump_Sum_Amount__c'])}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">2</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">Car Parking &nbsp;(&nbsp;{!IF(ISBLANK(Boo.Car_Parking__c), '', Boo.Car_Parking__c)}+{!IF(ISBLANK(Boo.Extra_Car_Parking__c), '', Boo.Extra_Car_Parking__c)} &nbsp;)</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;">
+                                
+                                <apex:outputText value="{!formattedFields['Total_Car_Parking_Charges__c']}" rendered="{!NOT(ISNULL(formattedFields['Total_Car_Parking_Charges__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Total_Car_Parking_Charges__c'])}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">3</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">EV Charges</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;">
+                                
+                                <apex:outputText value="{!formattedFields['EV_Charges__c']}" rendered="{!NOT(ISNULL(formattedFields['EV_Charges__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['EV_Charges__c'])}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">4</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;">Other Charges</td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;">
+                                
+                                <apex:outputText value="{!formattedFields['Other_Charges__c']}" rendered="{!NOT(ISNULL(formattedFields['Other_Charges__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Other_Charges__c'])}"/>
+                                
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"></td>
+                            <td colspan="2" style="text-align: Center; border: 1px solid black;padding:1px;"><B>GRAND TOTAL</B></td>
+                            <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;">
+                                <apex:outputText value="{!formattedFields['Booking_Form_Grand_Total__c']}" rendered="{!NOT(ISNULL(formattedFields['Booking_Form_Grand_Total__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Booking_Form_Grand_Total__c'])}"/>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                    <br/><td style="font-size: 12px; font-family: Helvetica; text-transform: uppercase; text-align: justify; white-space: nowrap; width: 100%;"><B>(&nbsp;{!amountInWords}&nbsp;)</B></td>
+                    <h4>
+                        <td style="text-align: Left; font-family: Helvetica; "><b>Applicant Details/First Applicant:</b></td>
+                    </h4>
+                    <table style="width:100%;" cellspacing="0" cellpadding="0">
+                        <p style="font-size: 12px; line-height: 2.0;">
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Salutation__c))}">
+                                <B>&nbsp;{!Boo.Salutation__c}&nbsp;</B>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.First_Name__c))}">
+                                &nbsp;<u>{!Boo.First_Name__c}&nbsp;{!Boo.Last_Name__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Salutationr__c))}">
+                                <B>&nbsp;{!Boo.Salutationr__c}&nbsp;</B>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.First_Namer__c))}">
+                                &nbsp;<u>{!Boo.First_Namer__c}&nbsp;{!Boo.Last_Namer__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>DOB:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.DOB__c))}">
+                                <u>{!DAY(Boo.DOB__c)}/{!IF(LEN(TEXT(MONTH(Boo.DOB__c))) = 1, '0' & TEXT(MONTH(Boo.DOB__c)), TEXT(MONTH(Boo.DOB__c)))}/{!YEAR(Boo.DOB__c)}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Age:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Age__c))}">
+                                <u>{!Boo.Age__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Anniversary Date:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Anniversary_Date__c))}">
+                                <u>
+                                    <apex:outputText value="{0}/{1}/{2}">
+                                        <apex:param value="{!DAY(Boo.Anniversary_Date__c)}"/>
+                                        <apex:param value="{!IF(LEN(TEXT(MONTH(Boo.Anniversary_Date__c))) = 1, '0' & TEXT(MONTH(Boo.Anniversary_Date__c)), TEXT(MONTH(Boo.Anniversary_Date__c)))}"/>
+                                        <apex:param value="{!TEXT(YEAR(Boo.Anniversary_Date__c))}" />
+                                    </apex:outputText>&nbsp;
+                                </u>
+                            </apex:outputPanel>
+                            
+                            <B>Pan No:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Pan_No__c))}">
+                                <u>{!Boo.Pan_No__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Aadhar No:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Aadhar__c))}">
+                                <u>{!Boo.Aadhar__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Organization:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Organization__c))}">
+                                <u>{!Boo.Organization__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Designation:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Designation__c))}">
+                                <u>{!Boo.Designation__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Passport No:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Passport_No__c))}">
+                                <u>{!Boo.Passport_No__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Valid Till:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Valid_till__c))}">
+                                <u>{!DAY(Boo.Valid_till__c)}/{!IF(LEN(TEXT(MONTH(Boo.Valid_till__c))) = 1, '0' & TEXT(MONTH(Boo.Valid_till__c)), TEXT(MONTH(Boo.Valid_till__c)))}/{!YEAR(Boo.Valid_till__c)}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Profession:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Profession__c))}">
+                                <u>{!Boo.Profession__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Service Category:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Service_Category__c))}">
+                                <u>{!Boo.Service_Category__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Tel Res:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.TelRes__c))}">
+                                <u>{!Boo.TelRes__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Office:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.TelOffice__c))}">
+                                <u>{!Boo.TelOffice__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>*Ext:&nbsp;</B> 
+                            <u></u>&nbsp;
+                            
+                            <B>Mobile:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Mobile__c))}">
+                                <u>{!Boo.Mobile__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Mail:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Email__c))}">
+                                <u>{!Boo.Email__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Alternate Mobile:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Alternative_Mobile__c))}">
+                                <u>{!Boo.Alternative_Mobile__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Alternate Mail:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Alternative_Email__c))}">
+                                <u>{!Boo.Alternative_Email__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            <br/><br/>
+                            
+                            <B>Present Address:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.StreetHouse_No__c))}">
+                                <u>{!Boo.StreetHouse_No__c}&nbsp;&nbsp;{!Boo.Street_2__c}&nbsp;{!Boo.Street_3__c}&nbsp;{!Boo.Street_4__c}&nbsp;{!Boo.Street_5__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>City:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.City__c))}">
+                                <u>{!Boo.City__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>State:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.State__c))}">
+                                <u>{!Boo.State__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Country:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Country__c))}">
+                                <u>{!Boo.Country__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Pincode:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Pin_Code__c))}">
+                                <u>{!Boo.Pin_Code__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            <br/>
+                            
+                            <B>Permanent Address:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.StreetHouse_No2__c))}">
+                                <u>{!Boo.StreetHouse_No2__c}&nbsp;&nbsp;{!Boo.Street_21__c}&nbsp;{!Boo.Street_31__c}&nbsp;{!Boo.Street_41__c}&nbsp;{!Boo.Street_51__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>City:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.City2__c))}">
+                                <u>{!Boo.City2__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>State:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.State2__c))}">
+                                <u>{!Boo.State2__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Country:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Country2__c))}">
+                                <u>{!Boo.Country2__c}</u>&nbsp;
+                            </apex:outputPanel>
+                            
+                            <B>Pincode:&nbsp;</B> 
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(Boo.Pin_Code2__c))}">
+                                <u>{!Boo.Pin_Code2__c}</u>
+                            </apex:outputPanel>
+                        </p>
+                    </table>
+                    
+                    <h4>
+                        <td style="text-align: Left; font-family: Helvetica; "><b>Other Applicants:</b></td>
+                    </h4>
+                    
+                    <table style="width:100%;" cellspacing="0" cellpadding="0">
+                        <apex:repeat value="{!otherApplicants}" var="applicant">
+                            <p style="font-size: 12px; line-height: 2.0;">
+                                <B>Applicant No:&nbsp;</B> 
+                                
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.applicent_Number__c))}">
+                                    {!applicant.applicent_Number__c}&nbsp;
+                                </apex:outputPanel><br/>
+                                
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Salutation__c))}">
+                                    <B>&nbsp;{!applicant.Salutation__c}&nbsp;</B>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.First_Name__c))}">
+                                    &nbsp;<u>{!applicant.First_Name__c}&nbsp;{!applicant.Last_Name__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Gender:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Gender__c))}">
+                                    <u>{!applicant.Gender__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>DOB:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Date_of_Birth__c))}">
+                                    <u>{!DAY(applicant.Date_of_Birth__c)}/{!IF(LEN(TEXT(MONTH(applicant.Date_of_Birth__c))) = 1, '0' & TEXT(MONTH(applicant.Date_of_Birth__c)), TEXT(MONTH(applicant.Date_of_Birth__c)))}/{!YEAR(applicant.Date_of_Birth__c)}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.RSalutation__c))}">
+                                    <B>&nbsp;{!applicant.RSalutation__c}&nbsp;</B>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.First_Namer__c))}">
+                                    &nbsp;<u>{!applicant.First_Namer__c}&nbsp;{!applicant.Last_Namer__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Age:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Age__c))}">
+                                    <u>{!applicant.Age__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Marital Status:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Marital_Status__c))}">
+                                    <u>{!applicant.Marital_Status__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Anniversary Date:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Anniversary_Date__c))}">
+                                    <u>
+                                        <apex:outputText value="{0}/{1}/{2}">
+                                            <apex:param value="{!DAY(applicant.Anniversary_Date__c)}"/>
+                                            <apex:param value="{!IF(LEN(TEXT(MONTH(applicant.Anniversary_Date__c))) = 1, '0' & TEXT(MONTH(applicant.Anniversary_Date__c)), TEXT(MONTH(applicant.Anniversary_Date__c)))}"/>
+                                            <apex:param value="{!TEXT(YEAR(applicant.Anniversary_Date__c))}"/>
+                                        </apex:outputText>&nbsp;
+                                    </u>
+                                </apex:outputPanel>
+                                
+                                <B>Pan No:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Pan_No__c))}">
+                                    <u>{!applicant.Pan_No__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Aadhar No:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Aadhar_No__c))}">
+                                    <u>{!applicant.Aadhar_No__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                <B>Mobile:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Mobile__c))}">
+                                    <u>{!applicant.Mobile__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Mail:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Email__c))}">
+                                    <u>{!applicant.Email__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Organization:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Organization__c))}">
+                                    <u>{!applicant.Organization__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Occupation:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Occupation__c))}">
+                                    <u>{!applicant.Occupation__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Passport No:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Passport_No__c))}">
+                                    <u>{!applicant.Passport_No__c}</u>&nbsp;
+                                </apex:outputPanel>
+                                
+                                <B>Valid Till:&nbsp;</B> 
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(applicant.Valid_till__c))}">
+                                    <u>{!DAY(applicant.Valid_till__c)}/{!IF(LEN(TEXT(MONTH(applicant.Valid_till__c))) = 1, '0' & TEXT(MONTH(applicant.Valid_till__c)), TEXT(MONTH(applicant.Valid_till__c)))}/{!YEAR(applicant.Valid_till__c)}</u>&nbsp;
+                                </apex:outputPanel>        
+                            </p>
+                        </apex:repeat>
+                    </table>
+                    <h4>
+                        <B>Source of Booking:</B>&nbsp;{!BookingList[0].BookingSource__c} 
+                    </h4>
+                    <br/>
+                    <table style="font-size: 12px; font-family: Helvetica;-fs-table-paginate: paginate; border-spacing: 0;" border="1" cellspacing="0" cellpadding="4" width="100%">
+                        <thead style="display: table-header-group;">
+                            <tr>
+                                <th style="text-align:center">S.No</th>
+                                <th style="text-align:center"><B>PAYMENT SCHEDULE</B></th>
+                                <th style="text-align:center"><B>% OF AGREEMENT VALUE</B></th>
+                                <th style="text-align:center"><B>AMOUNT</B></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <apex:variable var="rowNumber" value="{!1}" />
+                            <apex:repeat value="{!formattedBookingFormLineItems}" var="bl">
+                                <tr>
+                                    <td style="text-align: center;">{!rowNumber}</td>
+                                    <td >{!bl.PaymentParticulars}</td>
+                                    <td style="text-align:center">{!bl.AgreementValue}</td>
+                                    <!-- <td colspan="2" style="text-align: right; border: 1px solid black;padding:1px;"><apex:outputText value="{!GrandTotalquo}" /></td>-->
+                                    <td style="text-align:right">{!bl.FormattedAmount}&nbsp;&nbsp;</td>
+                                </tr>
+                                <apex:variable var="rowNumber" value="{!rowNumber + 1}" />
+                            </apex:repeat>
+                            <apex:repeat value="{!BookingList}" var="BForm">
+                                <tr style="font-weight:bold">
+                                    <td colspan="2" style="text-align:center">TOTAL</td>
+                                    <td style="text-align:center">{!BForm.Payment_Schedule_percentage__c}</td>
+                                    <td style="text-align:right">
+                                        <apex:outputText value="{!formattedFields['Payment_Sc_Total__c']}" rendered="{!NOT(ISNULL(formattedFields['Payment_Sc_Total__c']))}"/>
+                                        <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Payment_Sc_Total__c'])}"/>&nbsp;&nbsp;</td></tr>
+                            </apex:repeat>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <td>*Amount paid as token Advance Shall be Adjusted Under Booking Advance.</td>
+                    <br/>
+                    <table style="font-size: 12px; font-family: Helvetica; width: 100%; height: 100%;" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="10" style="text-align: left; padding: 2px;"><b>OTHER CHARGES</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*GST on Installments</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputPanel rendered="{!NOT(ISNULL(Boo.GST_on_Instalments__c))}">
+                                    <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!Boo.GST_on_Instalments__c}" escape="false"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!ISNULL(Boo.GST_on_Instalments__c)}">
+                                    N/A
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*Corpus fund</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputText value="  &nbsp; &nbsp; &nbsp; &nbsp; RS. {!formattedFields['Corpus_Fund__c']}"  escape="false" rendered="{!NOT(ISNULL(formattedFields['Corpus_Fund__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Corpus_Fund__c'])}"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*Advance Maintenance (+) Applicable GST</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputText value=" &nbsp; &nbsp; &nbsp; &nbsp; RS. {!formattedFields['Advance_Maintenance__c']}"  escape="false" rendered="{!NOT(ISNULL(formattedFields['Advance_Maintenance__c']))}"/>
+                                <apex:outputText value="&nbsp; (+) Applicable GST" escape="false" rendered="{!NOT(ISNULL(formattedFields['Advance_Maintenance__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Advance_Maintenance__c'])}"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*Legal Charges (+) Applicable GST</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputText value=" &nbsp; &nbsp; &nbsp; &nbsp; RS. {!formattedFields['Doc_Charges__c']}"  escape="false" rendered="{!NOT(ISNULL(formattedFields['Doc_Charges__c']))}"/>
+                                <apex:outputText value="&nbsp; (+) Applicable GST" escape="false" rendered="{!NOT(ISNULL(formattedFields['Doc_Charges__c']))}"/>
+                                <apex:outputText value="N/A" rendered="{!ISNULL(formattedFields['Doc_Charges__c'])}"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*Other Charges if any with GST</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputPanel rendered="{!NOT(ISNULL(Boo.Other_Charges_If__c))}">
+                                    <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!Boo.Other_Charges_If__c}" escape="false"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!ISNULL(Boo.Other_Charges_If__c)}">
+                                    N/A
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="5" style="text-align: left; padding: 1px;">*Stamp Duty and Reg. Fee</td>
+                            <td style="text-align: center; padding: 1px;">:</td>
+                            <td colspan="4" style="padding: 1px;">
+                                <apex:outputPanel rendered="{!NOT(ISNULL(Boo.Stamp_Duty_Fee__c))}">
+                                    <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!Boo.Stamp_Duty_Fee__c}" escape="false"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!ISNULL(Boo.Stamp_Duty_Fee__c)}">
+                                    N/A
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        
+                    </table>    
+                    <br/>
+                    <h4>
+                        NOTE:
+                    </h4>
+                    <table  style="font-size: 14px; font-family: Helvetica; border-spacing: 0;-fs-table-paginate: paginate;" cellspacing="0" cellpadding="0" width="100%">
+                        
+                        <tr>
+                            <td colspan="8" style="text-align: justify;"> Kindly note that all transactions of purchase of immovable property where consideration exceeds Rs.50 Lakhs are
+                                subject to TDS @1% as applicable U/S 194IA of income tax act 1961, which has to be paid proportionately against each
+                                installment. Non compliance may attract interest &amp; penalty as applicable Customers are requested to submit TDS
+                                certificate, upon remitting the same, to the company. Till the certificate of this TDS deposited with the Government is
+                                received, Company shall show the amount as receivable from customer.</td>                    
+                        </tr>              
+                    </table>
+                    <br/>
+                    
+                    <apex:repeat value="{!RamkyACC}" var="accDetails">
+                        <table style="width:100%; border: 1px solid black;" cellspacing="1" cellpadding="1">
+                            <tr>
+                                <td colspan="5" style="text-align: Left;">
+                                    <B>Developer details to be filled in the Form 26QB. Pan No.{!accDetails.Pan_No__c}</B>
+                                    <br/>Address:&nbsp;{!accDetails.Company_Address__c} 
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="font-size: 12px; font-family: Helvetica; border: 1px solid black; width:100%;height: 100%;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="10" style="text-align: left; font-size: 12px; font-family: Helvetica;"><b>ACCOUNT DETAILS FOR REMITTANCE OF PAYMENTS</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: left; padding:3px">Account Name</td>
+                                <td colspan="1" style="text-align: center;">:</td>
+                                <td colspan="5">
+                                    RAMKY ESTATES AND FARMS LTD. 
+                                    <span style="text-transform: uppercase;">{!accDetails.Project_Name__c}</span> PROJECT MASTER COLLECTION A/C
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: left; padding:3px;">Current Account No</td>
+                                <td colspan="1" style="text-align: center;">:</td>
+                                <td colspan="5">{!accDetails.Account_No__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: left; padding:3px;">Name of Bank and Branch</td>
+                                <td colspan="1" style="text-align: center;">:</td>
+                                <td colspan="5">{!accDetails.Bank_Name__c}, {!accDetails.Bank_Address__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: left; padding:3px;">IFSC Code</td>
+                                <td colspan="1" style="text-align: center; padding:1px">:</td>
+                                <td colspan="5">{!accDetails.IFSC_Code__c}</td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="font-size: 12px; font-family: Helvetica; border-spacing: 0;-fs-table-paginate: paginate;" border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tr>
+                                <td colspan="1" style="text-align: Left; padding:1px;">RERA NO &nbsp;:&nbsp;{!accDetails.RERA_No__c}</td>
+                                <td colspan="1" style="text-align: Center; padding:1px;"></td>
+                                <td colspan="1" style="text-align: Center; padding:1px;"></td>
+                                <td colspan="1" style="text-align: Center; padding:1px;"></td>
+                                <td colspan="1" style="text-align: Center; padding:1px;"></td>
+                                <td colspan="1" style="text-align: Center;">GST NO &nbsp;:&nbsp;{!accDetails.GST_No__c}</td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <td>http://rera.{!accDetails.State__c}.gov.in/</td>
+                        <br/>
+                        <table style="width:100%; -fs-table-paginate: paginate; border: 1px solid black;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="10" style="text-align: Left;padding:3px"><b>FOR OFFICE USE</b><br/><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: Left;padding:1px">Remarks (if any): &nbsp;{!BookingList[0].Select_Remarks__c} <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!BookingList[0].Remarks_Description__c}<br/><br/><br/><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: Left;">___________</td>
+                                <td colspan="3" style="text-align: Center;">___________</td>
+                                <td colspan="3" style="text-align: Right;">___________</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: Left;padding:1px">Sales Incharge<br/><br/><br/><br/></td>
+                                <td colspan="3" style="text-align: Center;padding:1px">Sales Head<br/><br/><br/><br/></td>
+                                <td colspan="3" style="text-align: right;padding:1px">Project head<br/><br/><br/><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: Left;padding:1px;">&nbsp;&nbsp; Sales Executive:&nbsp;{!BookingList[0].Record_Owner__c}</td>
+                            </tr>
+                        </table>
+                    </apex:repeat>
+                      <div style="page-break-after: always;"></div>
+                   
+                    <h3>
+                        Terms and Conditions :
+                    </h3>
+                    <apex:repeat value="{!RamkyACC}" var="accDetails">
+                        <table  style="font-size: 12px; font-family: Helvetica; text-align: justify; border-spacing: 0;-fs-table-paginate: paginate;" cellspacing="0" cellpadding="2" width="100%">
+                            
+                            <tr>
+                                
+                                <td colspan="8" style="font-size: 16px; font-family: Helvetica; text-align: justify;">* This application is made by the Applicant(s) requesting for allotment of the unit in the project
+                                    <b> "{!accDetails.Project_Name__c}".</b></td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The Applicant(s) hereby confirm that they have verified all the details pertaining to the project by
+                                    visiting the project site or through marketing collaterals available at the project site or on the project
+                                    website or by visiting the Telangana RERA website and is/are fully satisfied with the information
+                                    furnished.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The Applicant(s) confirms to have understood the scheme of development and is/are completely
+                                    aware of the surrounding area and the neighborhood of the project site.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* All payments towards the purchase of the unit should be made only by the way of account payee
+                                    Demand Draft/Local Cheque in favor of <b>" RAMKY ESTATES AND FARMS LTD. <span style="text-transform: uppercase;">{!accDetails.Project_Name__c}</span> MASTER COLLECTION A/C"</b> payable at Hyderabad. No cash payments
+                                    will be entertained. The payments made through Cheque(s) are subject to realization.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The application shall be processed by the company only after the realization of the token advance
+                                    paid by the Applicant(s).</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The company is not responsible for any payments made without valid receipts from the company
+                                    duly signed by the Authorized Signatory of the company.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The Total Price includes all applicable Taxes paid or payable by the Company by way of GST, Cess
+                                    or any other similar taxes which may be Levied in connection with the construction of the project
+                                    payable by the Company, by whatever name called up to the date of handing over the possession of
+                                    the Apartment to the allottee and the project to the association of allottees or the competent
+                                    authority, as the case may be, after obtaining the occupancy/completion certificate.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The applicant(s) hereby agree to make payment of 10% of the total cost of the unit allotted within 15
+                                    days from the date of this application and allotment of unit and execute the Agreement of Sale within
+                                    15 Days from the date of making the 10% Payment.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* If the Applicant(s) fails to execute the Agreement within a period of 15 days from the date of this
+                                    application, then the company would serve a notice to the applicant(s) for rectifying the default and if
+                                    not rectified within 15 days of receipt of such notice, the allotment letter for the unit will be treated as
+                                    cancelled and the amount paid by the Applicants, after deducting GST, will be returned within 90 days
+                                    or at the time thatthe Promoter is able to resell the said Apartment to another purchaser, whichever is
+                                    later.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The stamp duty and registration charges if any payable for the registration of Agreement of Sale
+                                    (AOS) shall be borne by the Applicant(s) at actuals at the time of registration.</td>
+                                
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* All applicable taxes levied by the government including GST Cess, or any other similar taxes levied
+                                    by the government in currency or in future shall be born by the allottee/purchase.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* The allotment of the unit requested in this application is subject to availability of the unit and the
+                                company reserves the right to either issue the allotment letter confirming the booking or reject the
+                                same.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* Any Notices sent to the First Applicant at the address given by the Applicant(s) in the application
+                                    shall be sufficient notice to co- applicant(s).</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* It is the sole responsibility of the Applicant(s) to provide their updated personal information (if any) to
+                                the company from time to time.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* All the communication sent by the company to the Applicant(s) to the address given in this
+                                    application, either by e-mail or by any other form of communication, shall be deemed to have been
+                                    received by the Applicant(s).</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* The company shall continue-to correspond with the Applicant(s) at the address mentioned in the
+                                application unless the change of the address is given in writing and such changed address is
+                                confirmed by the company.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* Any such communication returned to the company for whatsoever reason, is deemed as received by
+                                    the Applicant(s) and the Applicant(s) agree(s) to abide by the content of such communication.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* The Company reserves the right to sell other units in the project at any price of their desire and
+                                Applicant(s) shall not have any right to question the sale price offered to any other unit purchaser nor
+                                will the Applicant(s) be entitled to compare the same with the other unit purchasers during the same
+                                time period.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* The contents/arrangement of the model/mockup Apartment is only for representation and shall not
+                                    form part of the sale or specifications. It is purely for enabling the customer to visualize the space
+                                    available upon placing any such items in the Apartment.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* Company has no control over the developments that may exist or take place in the future
+                                whatsoever, in the adjoining properties of the project.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8">* The company shall abide by the schedule for completing the project as disclosed at the time of
+                                    registration of the project with the RERA Authority.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* The company shall conform to the final carpet area and saleable area that has been allotted to the
+                                allottee after the construction of the building is complete and the occupancy certificate is granted by
+                                the competent authority. If there is a change in the areas the total price shall be recalculated as per the
+                                confirmed areas.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">The allottee(s) hereby agrees that the company shall reserve the right to allot the parking against the
+                                    purchased unit and shall allot the parking after the handing over of the unit.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* Any communications or promises made verbally by any of the employees of the company shall not
+                                bind on the company. All communications should be in writing and should be signed by the authorized
+                                signatory of the company.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* Saleable area includes Carpet Area plus veranda/balcony/terrace area/utility which are exclusively
+                                    meant for the allottee plus the proportionate share of Common Areas and any other area as agreed
+                                    between the Company and allottee in the agreement of sale.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* Company may make minor additions and alterations in the sanctioned plans, layout
+                                plans, specifications and the nature of fixtures, fittings and amenities described with written consent
+                                from at least two-thirds of the allottees, who have agreed to take Apartments in such building.</td>
+                            
+                            </tr>
+                            <br/>
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">* Cancellation terms : If the booking amount is not paid as per the terms of booking, the company
+                                    reserves the right to terminate booking of the unit and forfeit the token sum paid. Further more, if the
+                                    allottee/customer proposes to cancel/withdraw from the project voluntarily prior to the execution of
+                                    the Agreement of Sale, (a) no cancellation charges shall apply if the cancellation is made within 7 days
+                                    from the dating of booking. (b) from the 8th day onwards until the 30th day from the date of booking
+                                    1% of the total sale value, together with applicable GST, shall be deducted/withheld towards the
+                                    cancellation fee. (c) any time after the 30th day of the date of booking, then the entire token
+                                    advance/booking amount together with applicable GST shall be forfeited. (d) in case of cancellation
+                                    after execution of the Agreement of Sale (AOS), the terms and conditions of cancellations as
+                                    mentioned in the AOS shall apply. If there is a balance after adjusting for cancellation charges, it will
+                                    be returned to the allottee/customer within 90 days of the date of cancellation or when the promoter is
+                                    able to resell the apartment to another purchaser and realise the monies whichever is later.</td>
+                                
+                            </tr>
+                            <br/><tr>
+                            
+                            <td colspan="8" style="text-align: justify;">* Upon the execution of the agreement of sale in favor of the allottee, the allottee 
+                                is prohibited to transfer his/her interest accrued under this allotment for a period of 1 year from the date of agreement of 
+                                sale or till the execution of the sale deed whichever is earlier. After the expiry of 1 year from the date
+                                of agreement of sale, the allottee is permitted to transfer his/her interest in the project by paying a
+                                transfer fee of Rs.{!accDetails.BF_Transfer_Fees__c}/SFT of saleable area with applicable GST &amp; any other statutory payments to
+                                the company.
+                            </td>                            
+                            </tr>
+                           
+                            <tr>
+                                
+                                <td colspan="8" style="text-align: justify;">I/We have read the above terms and conditions thoroughly, and have understood and accept the
+                                    same, and agree to sign the aggreements and other related documents.</td>
+                                
+                            </tr>
+                        </table>
+                    </apex:repeat>
+                    <br/>
+                    <table style="width: 100%; font-size: 14px; font-family: Helvetica; border-spacing: 0; margin: 0; padding: 0;" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Place</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;"> </td>
+                            
+                            <td style="width: 60%;"></td> <!-- Empty column for 60% gap -->
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Date</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 10%; text-align: left; padding: 2px;"> </td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Applicant</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;"></td>
+                            
+                            <td style="width: 60%;"></td> <!-- Empty column for 60% gap -->
+                            <td style="width: 10%; text-align: left; padding: 2px;"><b>Co-Applicant</b></td>
+                            <td style="width: 5%; text-align: center; padding: 2px;">:</td>
+                            <td style="width: 5%; text-align: left; padding: 2px;"> </td>
+                        </tr>
+                        </table>
+                        
+                </apex:outputPanel>
+            </apex:repeat>
+        </div>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,65 @@
+<template>
+    <lightning-card class="custom-container">
+        <div class="slds-grid slds-wrap">
+
+            <!-- 🏗️ Chart Section - 50% -->
+            <lightning-layout-item size="12" medium-device-size="6" class="slds-p-around_small">
+                <div class="card chart-card">
+                    <div class="card-title">Construction Status</div>
+                    <h2 class="project-name">{currentProjectName}</h2>
+
+                    <div class="chart-placeholder">
+                        <canvas lwc:dom="manual" class="chart"></canvas>
+                    </div>
+                </div>
+            </lightning-layout-item>
+
+            <!-- 🖼️ Project Image Section - 50% -->
+            <template if:true={projectList}>
+                <lightning-layout-item size="12" medium-device-size="6" class="slds-p-around_small">
+                    <div class="card image-card">
+                        <!-- Project Title ABOVE image -->
+                        <div class="image-project-name">{currentTitle}</div>
+
+                        <img src={currentImage} alt="Project Image" class="project-image" />
+                    </div>
+                </lightning-layout-item>
+            </template>
+
+        </div>
+    </lightning-card>
+
+    
+          <div class="card-link" data-label="Banking Partners" onclick={handleCardClick}>
+                            <div class="icon-circle"><img src={booningpartnersIcon} alt="Banking Partners" class="menu-icon" />
+                            </div>
+                            <div class="d-flex">
+                                <div class="card-label">Banking Partners</div>
+                                <div class="card-arrow">›</div>
+                                <!-- <lightning-icon icon-name="utility:chevronright" alternative-text="Go" size="x-small"></lightning-icon> -->
+
+                            </div>
+                        </div>
+
+                         <template if:true={handleChange}>
+        <template if:true={isBankingPartners}>
+            <div class="card1">
+                <span class="breadcrumb-link" onclick={goBack}>Dashboard</span> /
+                <span class="breadcrumb-current">Banking Partners</span>
+                <p class="subheading">Project Approved Banks</p>
+                <div class="bank-grid">
+                    <template for:each={bankingPartners} for:item="bank">
+                        <div key={bank.id} class="bank-card">
+                            <div class="bank-logo"><img src={bank.fileUrl} alt="Bank Logo" class="bank-icon" /></div>
+                            <div class="bank-details">
+                                <div class="card-label1">{bank.name}</div>
+                                <div class="card-subtext">{bank.locality}</div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+
+</template>

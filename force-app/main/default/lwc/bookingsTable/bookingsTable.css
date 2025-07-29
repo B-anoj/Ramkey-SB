@@ -1,0 +1,239 @@
+.container {
+    background-color: #f4f9ff;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.bookings.card {
+    background-color: #fff;
+    height: 100%;
+    padding: 1.5rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+}
+
+.bookings.card .heading {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: bold;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.bookings.card .subtext {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin: 0.5rem 0 2rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.bookings.card .scroll-container {
+    overflow-y: auto;
+    max-height: 26rem;
+    white-space: nowrap;
+}
+
+.bookings.card .scroll-container .custom-table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+.bookings.card .scroll-container .custom-table thead {
+    background-color: #19253D;
+    color: #fff;
+}
+.bookings.card .scroll-container .custom-table thead th {
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.5rem 1rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.bookings.card .scroll-container .custom-table td {
+    color: #232323;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 1rem;
+    border-bottom: 0.0625rem solid #EBEAEA;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.bookings.card .scroll-container .custom-table td .expanded-section {
+    background-color: #F4F4F4;
+    color: #232323;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.bookings.card .scroll-container .custom-table td.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+}
+
+.btn-orange {
+    background-color: #f57c00;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-orange:hover {
+    background-color: #e76a00;
+}
+
+.btn-outline {
+    background-color: white;
+    color: #18233e;
+    border: 1px solid #18233e;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background-color: #18233e;
+    color: white;
+}
+
+
+
+/* Expanded content section */
+
+
+tr.expanded-row td {
+    background-color: white;
+    border-top: none;
+}
+
+.document-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.document-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.document-row:last-child {
+    border-bottom: none;
+}
+
+.document-row span:first-child {
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Icon section */
+.icons {
+    display: flex;
+    gap: 14px;
+}
+
+.icon-img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.icon-img:hover {
+    transform: scale(1.15);
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+/* Modal Window */
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px;
+    z-index: 1001;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 16px;
+    color: #18233e;
+}
+
+.modal-body {
+    padding: 1rem;
+    overflow: auto;
+    max-height: 70vh;
+}
+
+.modal-body iframe {
+    border: none;
+    width: 100%;
+    height: 500px;
+}
+
+/* Close button */
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.no-record-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.no-record-image {
+   max-width: 543px;
+    height: auto;
+}
+
+.no-record-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: #333;
+}

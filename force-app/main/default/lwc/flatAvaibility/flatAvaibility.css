@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+ 
+.square {
+    width: 73px;
+    height: 67px;
+    margin: 2px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #000;
+    background-color: #f8f6f6; /* Change to desired color */
+    position: relative; /* Required for positioning the text */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+   
+}
+
+.circle-container {
+    display: flex;
+}
+ 
+.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 35px; /* Adjust the margin between circles */
+    position: relative;
+}
+ 
+.circle-label {
+    position: absolute;
+    left: 20px; /* Adjust the position of labels */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+.available-icon {
+    --slds-c-icon-color-foreground-default: green;
+}
+
+.sold-icon {
+    --slds-c-icon-color-foreground-default: red;
+}
+
+.landowner-icon {
+    --slds-c-icon-color-foreground-default: yellow;
+}
+.lease-icon {
+    --slds-c-icon-color-foreground-default: darkblue;
+}
+
+.hold-icon {
+    --slds-c-icon-color-foreground-default: skyblue;
+}
+.blocked-icon {
+    --slds-c-icon-color-foreground-default:orange;
+}
+.blockedland-icon {
+    --slds-c-icon-color-foreground-default:darkgray;
+}
+.blocked {
+    --slds-c-icon-color-foreground-default:black;
+}
+
+.record-info {
+    text-align: center; /* Center align text */
+    padding: 5px; /* Add padding to create space between icon and text */
+    max-width: 100%; /* Set maximum width */
+    word-wrap: break-word; /* Allow text to wrap within the available space */
+    overflow-wrap: break-word; /* Handle long words */
+   
+}

@@ -1,0 +1,88 @@
+<template>
+    <div class="unit-detail-view">
+        {corpusFund}
+        <h1 class="heading">Statement of Accounts</h1>
+
+        <!-- Top Summary Card -->
+        <div class="project-summary">
+            <img src={imageUrl} class="project-logo" alt="Project Image" />
+            <div class="project-info">
+                <p class="project-title">{projectName}</p>
+                <p class="project-address">Corporate Address: {corporateAddress}</p>
+                <div class="contact-info">
+                    <p><strong>Phone:</strong><br />{phone}</p>
+                    <p><strong>Website:</strong><br /><a href="https://www.ramkyestates.com/"
+                            target="_blank">https://www.ramkyestates.com/</a></p>
+                </div>
+            </div>
+            <button class="download-btn" onclick={downloadPdf}>Download PDF</button>
+        </div>
+
+        <!-- Picklist Style Toggle Headers -->
+        <div class="tabs-container">
+
+            <!-- Statement of Account -->
+            <div>
+                <button class="tab {showStatement ? 'open' : ''}" onclick={toggleStatement}>
+                    Statement of Account
+                    <span class="icon">{showStatementIcon}</span>
+                </button>
+                <template if:true={showStatement}>
+                    <div class="details-card open">
+                        <p><strong>Project Name:</strong><span class="margincon">{projectNameDisplay}</span></p>
+                        <p><strong>Customer Name:</strong><span class="margincon">{customerNameDisplay}</span></p>
+                        <p><strong>Co-applicant:</strong><span class="margincon">{coApplicantDisplay}</span></p>
+                        <p><strong>Date of Statement:</strong><span class="margincon">{dateOfStatementDisplay}</span>
+                        </p>
+                        <p><strong>Unit Number:</strong><span class="margincon">{unitNumberDisplay}</span></p>
+                        <p><strong>Area in Sq. Ft:</strong><span class="margincon">{areaDisplay}</span></p>
+                        <p><strong>Agreement of Sale Date:</strong><span class="margincon">{aosDateDisplay}</span></p>
+                        <p><strong>Agreement of Sale Value:</strong><span class="margincon">₹{aosValueDisplay}</span>
+                        </p>
+                        <p><strong>GST on AOS Value:</strong><span class="margincon">{gstPercentageDisplay}</span></p>
+                        <p><strong>Total Sale Value with GST (A):</strong><span class="margincon">₹{totalValueWithGstDisplay}</span>
+                        </p>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- Additional Charges -->
+            <div>
+                <button class="tab {showCharges ? 'open' : ''}" onclick={toggleCharges}>
+                    Additional Charges
+                    <span class="icon">{showChargesIcon}</span>
+                </button>
+                <template if:true={showCharges}>
+                    <div class="details-card open">
+                        <p><strong>Corpus fund:</strong> ₹{corpusFundDisplay}</p>
+                        <p><strong>Advance Maintenance + GST:</strong> ₹{advanceMaintenanceDisplay}</p>
+                        <p><strong>Legal Charges + GST:</strong> ₹{legalChargesDisplay}</p>
+                        <p><strong>Modification Charges + GST:</strong> ₹{modificationChargesDisplay}</p>
+                        <p><strong>Interest Payable + GST:</strong> ₹{interestPayableDisplay}</p>
+                        <p><strong>Transfer Fee + GST:</strong> ₹{transferFeeDisplay}</p>
+                        <p><strong>Additional Charges Total (B):</strong> ₹{chargesTotalDisplay}</p>
+                        <p><strong>Total Cost (A):</strong> ₹{totalCostDisplay}</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Invoice Details -->
+            <div>
+                <button class="tab {showInvoice ? 'open' : ''}" onclick={toggleInvoice}>
+                    Invoice Details
+                    <span class="icon">{showInvoiceIcon}</span>
+                </button>
+                <template if:true={showInvoice}>
+                    <div class="details-card open">
+                        <p><strong>Invoice Amount (Annexure I):</strong> ₹{invoiceAmountDisplay}</p>
+                        <p><strong>Received Amount (Annexure II):</strong> ₹{receivedAmountDisplay}</p>
+                        <p><strong>Due Payable as per Invoiced Amount (D):</strong> ₹{dueAmountDisplay}</p>
+                        <p><strong>Interest Amount Payable:</strong> ₹{interestAmountDisplay}</p>
+                        <p><strong>Total Due Payable (F):</strong> ₹{totalDueDisplay}</p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

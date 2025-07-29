@@ -1,0 +1,119 @@
+<template>
+    <!-- Booking List View -->
+    <template if:true={showBookingList}>
+        <div class="bookings card">
+            <h2 class="heading">Bookings</h2>
+            <p class="subtext">
+                Easily manage your property bookings with  Ramky Estates. View your current reservations, check the status of your applications, and stay updated on the next steps. Our dedicated team is here to ensure a smooth and hassle-free booking experience. For any assistance, feel free to contact our support team anytime.
+            </p>
+
+            <!-- Show if no data -->
+            <template if:true={noBookingData}>
+                <div class="no-record-wrapper">
+                    <img src={norecordfound} alt="No Bookings Found" class="no-record-image" />
+                    <p class="no-record-text">No bookings found.</p>
+                </div>
+            </template>
+
+            <!-- Show table if data exists -->
+            <template if:false={noBookingData}>
+                <div class="scroll-container">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Description</th>
+                                <th>Unit Number</th>
+                                <th>Super Built-Up Area</th>
+                                <th>Customer ID</th>
+                                <th>Type</th>
+                                <th>Initiated On</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={computedBookingData} for:item="booking">
+                                <tr key={booking.id}>
+                                    <td>{booking.srNo}</td>
+                                    <td>{booking.description}</td>
+                                    <td>{booking.unitNumber}</td>
+                                    <td>{booking.area}</td>
+                                    <td>{booking.customerId}</td>
+                                    <td>{booking.type}</td>
+                                    <td>{booking.date}</td>
+                                    <td class="action-buttons">
+                                        <button class="btn-orange" data-id={booking.id} onclick={handleDetails}>View details</button>
+                                        <button class="btn-outline" data-id={booking.id} onclick={toggleMore}>
+                                            {booking.toggleLabel}
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Expanded Section with Documents -->
+                                <template if:true={booking.isExpanded}>
+                                    <tr key={booking.expandedKey}>
+                                        <td colspan="8">
+                                            <div class="expanded-section">
+                                                <template if:true={booking.documentItems.length}>
+                                                    <ul class="document-list">
+                                                        <template for:each={booking.documentItems} for:item="doc">
+                                                            <li key={doc.displayName} class="document-row">
+                                                                <span>{doc.displayName}</span>
+                                                                <span class="icons">
+                                                                    <img
+                                                                        src={bookingDocumentsViewIcon}
+                                                                        class="icon-img"
+                                                                        alt="View"
+                                                                        title="View Document"
+                                                                        data-url={doc.viewUrl}
+                                                                        data-name={doc.displayName}
+                                                                        onclick={handleViewDoc}
+                                                                    />
+                                                                    <a href={doc.downloadUrl} target="_blank" rel="noopener" download>
+                                                                        <img
+                                                                            src={downloadIcon}
+                                                                            class="icon-img"
+                                                                            alt="Download"
+                                                                            title="Download Document"
+                                                                        />
+                                                                    </a>
+                                                                </span>
+                                                            </li>
+                                                        </template>
+                                                    </ul>
+                                                </template>
+                                                <template if:false={booking.documentItems.length}>
+                                                    <p class="no-docs-text">No documents available.</p>
+                                                </template>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- Booking Details View -->
+    <template if:true={showDetails}>
+        <c-booking-details selected-booking-id={selectedBookingId} onback={handleBack}>
+        </c-booking-details>
+    </template>
+
+    <!-- Modal for Document Preview -->
+    <template if:true={showDocModal}>
+        <div class="modal-backdrop" onclick={closeModal}></div>
+        <div class="modal">
+            <div class="modal-header">
+                <h3>{selectedDoc.name}</h3>
+                <button class="close-btn" onclick={closeModal}>×</button>
+            </div>
+            <div class="modal-body">
+                <iframe src={selectedDoc.url} width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </template>
+</template>

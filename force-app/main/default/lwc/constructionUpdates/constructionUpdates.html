@@ -1,0 +1,113 @@
+<template>
+    <div class="construction-updates card">
+        <template if:false={showProjectsGrid}>
+
+            <!-- 📌 When NOT viewing updates -->
+            <template if:false={showUpdates}>
+                <h1 class="heading">Construction Updates</h1>
+                <p class="subtext">
+                    Stay updated with Ramky Estates's latest project developments.
+                    Track the progress of your project, receive timely updates on milestones,
+                    and stay informed about upcoming phases. Our team is dedicated to providing you with
+                    transparent and regular construction updates. For any inquiries or further information,
+                    please contact our support team.
+                </p>
+                <!-- <template if:false={showProjectsGrid}> -->
+
+                <!-- 🔷 Project Banner -->
+                <div class="project-banner" style={backgroundStyle}>
+                    <img src={gradientShape} alt="Gradient" class="gradient-shape" />
+                    <div class="banner-content">
+                        <div class="project-text">
+                            <h2>Upcoming Projects</h2>
+                        </div>
+                        <button class="view-btn" onclick={handleViewProjects}>View Projects</button>
+                    </div>
+                </div>
+
+
+                <!-- 🧱 Project Cards -->
+                <div class="cards-containers">
+                    <template for:each={projects} for:item="proj">
+                        <c-construction-card key={proj.projectName} title={proj.projectName}
+                            description={proj.description} image-url={proj.imageUrl} project-name={proj.projectName}
+                            onviewupdates={handleViewUpdate}>
+                        </c-construction-card>
+                    </template>
+                </div>
+            </template>
+
+            <!-- ✅ When viewing a project's updates -->
+            <template if:true={showUpdates}>
+                <div class="breadcrumb-wrapper">
+                    <p class="breadcrumb">
+                        <span class="breadcrumb-muted" onclick={handleBackClick}>
+                            Construction Updates
+                    </span>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-current">{selectedData.projectName}</span>
+                    </p>
+                    <h2 class="project-name">{selectedData.projectName}</h2>
+                    <p class="unit-details">{selectedData.propertyAddress}</p>
+                </div>
+
+                <!-- 🔙 Optional Back Button -->
+                <!-- <lightning-button label="Back to Projects" onclick={handleBack} class="slds-m-bottom_medium"></lightning-button> -->
+
+                <!-- 📸 Project Update Images -->
+                <c-project-update-view project-name={selectedProject}></c-project-update-view>
+            </template>
+        </template>
+
+      <template if:true={showProjectsGrid}>
+    <div class="breadcrumb-wrapper">
+        <p class="breadcrumb">
+            <span class="breadcrumb-muted" onclick={handleBackClick}>Construction Updates</span>
+            <span class="breadcrumb-separator"> / </span>
+            <span class="breadcrumb-current">Upcoming Projects</span>
+        </p>
+    </div>
+
+    <p class="sub-heading">Upcoming Projects</p>
+
+    <!-- ✅ Show cards if data is available -->
+    <template if:true={hasUpcomingProjects}>
+        <div class="project-cards-container1">
+            <template for:each={upcomingProjectList} for:item="proj">
+                <div key={proj.Id} class="project-card1">
+                    <img src={proj.Project_Image_Url__c} alt="Project Image" class="project-img" />
+                    <div class="project-info1">
+                        <p class="namedetails">{proj.Name}</p>
+                        <div class="city-readmore-row">
+                            <div class="location-col">
+                                <img src={visitimg} alt="Location Icon" />
+                                <p class="city">{proj.City__c}</p>
+                            </div>
+                            <template if:false={proj.showFullDesc}>
+                                <a href="javascript:void(0);" onclick={handleReadMore} data-id={proj.Id}
+                                    class="read-toggle1">Read More</a>
+                            </template>
+                        </div>
+
+                        <template if:true={proj.showFullDesc}>
+                            <p class="desc1">{proj.Description__c}</p>
+                            <a href="javascript:void(0);" onclick={handleReadLess} data-id={proj.Id}
+                                class="read-toggleless1">Read Less</a>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- ❌ No Record Found UI -->
+    <template if:false={hasUpcomingProjects}>
+        <div class="no-record-wrapper">
+            <img src={norecordfound} alt="No Updates Found" class="no-record-image" />
+            <p class="no-record-text">No Upcoming Projects Found!</p>
+        </div>
+    </template>
+</template>
+
+    </div>
+</template>

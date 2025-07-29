@@ -1,0 +1,489 @@
+/* === GENERAL CONTAINER === */
+.visit-container {
+  background: #FFF;
+  padding: 1.5rem;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem;
+}
+
+/* === HEADINGS === */
+.visit-container .heading {
+  color: #232323;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .subheading {
+  color: #585858;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+/* === TABS === */
+.visit-container .tabs {
+  display: flex;
+  border-bottom: 0.0625rem solid #EBEAEA;
+  margin-bottom: 1.5rem;
+}
+
+.visit-container .tabs .tab {
+  color: #0B1E35;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 1rem 1rem 0.75rem 1rem;
+  border-bottom: 0.1875rem solid transparent;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .tabs .tab.active {
+  color: #1A1A1A;
+  font-weight: 600;
+  border-bottom: 0.1875rem solid #2D6ECF;
+}
+
+.visit-container .scroll-container {
+  max-height: 32.8125rem;
+  overflow-y: auto;
+}
+
+/* === VISIT CARDS === */
+.visit-container .scroll-container .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.visit-container .scroll-container .cards .visit-card {
+  background: #E3F0FA;
+  width: calc(33.33% - 1rem);
+  padding: 1rem;
+  -moz-border-radius: 0.75rem;
+  -webkit-border-radius: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-header .icon {
+  background: #19253D;
+  min-width: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-header .column {
+  width: calc(100% - 2rem);
+  display: flex;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-header .property-name {
+  width: calc(100% - 4rem);
+  color: #232323;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  padding-left: 1rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-header .property-name span {
+  color: #585858;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 400;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-info {
+  margin: 1.5rem 0;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-info p {
+  color: #585858;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 400;
+  margin: 0 0 0.5rem 0;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .scroll-container .cards .visit-card .visit-info p strong {
+  color: #232323;
+  font-weight: 600;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+/* === STATUS BADGES === */
+.visit-container .scroll-container .cards .visit-card .status {
+  background: #FF9500;
+  width: fit-content;
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem;
+}
+
+.visit-container .scroll-container .cards .visit-card .status.completed {
+  background-color: #30D158;
+}
+
+.visit-container .scroll-container .cards .visit-card .status.cancelled {
+  background-color: #D2222D;
+}
+
+/* === CTA BUTTON (Schedule Visit) === */
+.visit-container .schedule-button {
+  margin-top: 1.875rem;
+  text-align: right;
+}
+
+.visit-container .schedule-button .schedule-btn {
+  background-color: #E77817;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border: none;
+  -moz-border-radius: 1.5rem;
+  -webkit-border-radius: 1.5rem;
+  border-radius: 1.5rem;
+  transition: background 0.3s;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-container .schedule-button .schedule-btn:hover {
+  background-color: #de6d00;
+}
+
+/* === VISIT DETAILS VIEW === */
+
+.visit-details-breadcrumb {
+  color: #a0a0a0;
+  font-size: 14px;
+  margin: 0;
+}
+
+.visit-details-main-card {
+  background: #EAF5FF;
+  -moz-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* === HEADER (image + project info) === */
+.visit-details-header.aligned-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.visit-details-image-large {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.visit-details-right-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.visit-details-project-info h2 {
+  color: #232323;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-details-project-info p {
+  color: #585858;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  margin: 0.25rem 0 0 0;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+/* === PROPERTY GRID === */
+.visit-details-property-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.visit-details-property-row>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-details-property-row label {
+  color: #232323;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-details-property-row span {
+  color: #585858;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+/* === ACTION BUTTONS (Cancel, Reschedule) === */
+.visit-details-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.visit-details-btn-cancel,
+.visit-details-btn-reschedule {
+  background: transparent;
+  color: #19253D;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  -moz-border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #19253D;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-details-btn-reschedule {
+  background-color: #E77817;
+  color: #fff;
+  border: none;
+}
+
+/* === VISIT SECTION: Detail Cards === */
+.visit-details-visit-section {
+  background-color: #F2F2F2;
+  -moz-border-radius: 0.75rem;
+  -webkit-border-radius: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.visit-details-visit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.visit-details-visit-header h3 {
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-details-status-badge {
+  background: #FF9500;
+  color: #FFFF;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  padding: 0.25rem 1rem;
+  -moz-border-radius: 1.5rem;
+  -webkit-border-radius: 1.5rem;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+/* === INFO CARDS === */
+.visit-details-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.visit-details-single-card {
+  flex: 1 1 calc(33.333% - 1rem);
+  background-color: #fff;
+  padding: 0.75rem;
+  -moz-border-radius: 0.75rem;
+  -webkit-border-radius: 0.75rem;
+  border-radius: 0.75rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.visit-details-value {
+  color: #241A70;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-details-label {
+  color: #232323;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-card-wrapper {
+  background: #FFF;
+  padding: 1.5rem;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem;
+}
+
+.visit-card-wrapper .breadcrumb-wrapper .breadcrumb {
+  color: #B5BBBE;
+  font-size: 1rem;
+  margin: 0;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-card-wrapper .breadcrumb-wrapper .breadcrumb .breadcrumb-muted {
+  color: #C7C4C4;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-card-wrapper .breadcrumb-wrapper .breadcrumb .breadcrumb-current {
+  color: #1A1A1A;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.visit-card-wrapper .breadcrumb-wrapper .breadcrumb .breadcrumb-separator {
+  margin: 0 0.4rem;
+}
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 768px) {
+  .visit-details-single-card {
+    flex: 1 1 100%;
+  }
+
+  .visit-details-header.aligned-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .visit-details-property-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .visit-details-property-row>div {
+    max-width: 100%;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+
+  .visit-card {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.breadcrumb-link {
+  color: #0070d2;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+
+.no-record-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-left: 131px;
+}
+
+.no-record-image {
+  display: block;
+  max-width: 543px;
+  height: auto;
+  marging: auto;
+  width: 100%;
+}
+
+.no-record-text {
+  font-weight: 300;
+  font-size: 18px;
+  color: #333;
+}
+
+/* @media screen and (min-width: 1200px) {
+  .no-record-wrapper {
+    margin-left: 427px;
+  }
+
+  .no-record-image {
+    display: block;
+    max-width: 543px;
+    height: auto;
+    marging: auto;
+    width: 100%;
+  }
+} */

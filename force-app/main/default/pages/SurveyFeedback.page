@@ -1,0 +1,125 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" controller="CaseFeedbackController">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #037CB5;
+            color: white;
+            padding: 20px;
+        }
+
+        .stars {
+            font-size: 4em;
+            color: #ccc;
+            margin: 40px 0;
+            cursor: pointer;
+        }
+
+        .star.selected {
+            color: #FFD700;
+        }
+
+        #submitBtn {
+            background-color: #037CB5;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .success-message, .error-message {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+
+    <div class="header">
+        <h1>Rate Your Experience</h1>
+    </div>
+
+    <h2>How would you rate our service?</h2>
+
+    <div class="stars" id="starContainer">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+
+    <button id="submitBtn" disabled="disabled">Submit</button>
+
+
+    <div class="success-message" id="successMessage">
+        &#10004; Thank you! Your feedback has been recorded.
+    </div>
+
+    <div class="error-message" id="errorMessage">
+        &#9888; Something went wrong. Please try again.
+    </div>
+
+    <script>
+        let selectedRating = 0;
+
+        function getUrlParameter(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                document.querySelectorAll('.star').forEach(s => {
+                    s.classList.toggle('selected', parseInt(s.getAttribute('data-value')) <= selectedRating);
+                });
+                document.getElementById('submitBtn').disabled = false;
+            });
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const caseId = getUrlParameter('id');
+            if (!caseId || selectedRating === 0) {
+                alert('Missing information.');
+                return;
+            }
+
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CaseFeedbackController.saveRating}',
+                caseId,
+                selectedRating,
+                function (result, event) {
+                    if (event.status && result === 'Success') {
+                        document.getElementById('successMessage').style.display = 'block';
+                        document.getElementById('errorMessage').style.display = 'none';
+                        document.getElementById('submitBtn').disabled = true;
+                    } else {
+                        document.getElementById('successMessage').style.display = 'none';
+                        document.getElementById('errorMessage').style.display = 'block';
+                    }
+                }
+            );
+        });
+    </script>
+</apex:page>

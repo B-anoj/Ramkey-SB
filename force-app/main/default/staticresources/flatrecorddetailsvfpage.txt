@@ -1,0 +1,19 @@
+@page {
+ 
+  margin-top: 0.3cm;
+  margin-bottom: 0.3cm;
+}
+ 
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 3px;
+ font-size: 12px;
+
+}

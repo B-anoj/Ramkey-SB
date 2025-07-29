@@ -1,0 +1,96 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="modal reschedule-visit">
+        <div class="modal-content">
+            <!-- ✏️ Reschedule Form -->
+            <template if:false={showSuccess}>
+                <!-- ❌ Close Button -->
+                <button class="modal-close" onclick={handleClose} aria-label="Close">
+                    <img src={close} alt="Close Icon" />
+                </button>
+
+                <h2 class="modal-title">Reschedule Visit</h2>
+                <p class="modal-description">
+                    We understand that you need to reschedule your site visit with Ramky Estates due to unforeseen
+                    circumstances. Please select a new appointment time that works better for you using the options
+                    below. Thank you for your cooperation!
+                </p>
+
+                <!-- Visit Info -->
+                <div class="visit-info">
+                    <div class="info-column">
+                        <p><strong>Property:</strong> {property}</p>
+                        <p><strong>Address:</strong><br />{address}</p>
+                    </div>
+                    <div class="info-column">
+                        <p><strong>Type:</strong> {type}</p>
+                        <p><strong>Location:</strong> {location}</p>
+                    </div>
+                </div>
+
+                <!-- Input Grid -->
+                <div class="input-grid">
+                    <div class="input-column">
+                        <label>Date Of Visit</label>
+                        <input
+                            label="Date of Visit"
+                            type="date"
+                            value={visitDate}
+                            onchange={handleDateChange}
+                        ></input>
+                    </div>
+                    <div class="input-column">
+                        <label>Time Of Visit</label>
+                        <input
+                            label="Time of Visit"
+                            type="time"
+                            value={visitTime}
+                            onchange={handleTimeChange}
+                        ></input>
+                    </div>
+                </div>
+
+                <!-- Input Grid -->
+                <div class="input-grid">
+                    <div class="input-column">
+                        <label>Reason for Reschedule</label>
+                        <textarea
+                            label="Visit Details"
+                            value={visitDetails}
+                            placeholder="Purpose of rescheduling your visit"
+                            onchange={handleDetailsChange}
+                        ></textarea>
+                    </div>
+                    <div class="input-column full-width">
+                        <label>Visit Details</label>
+                        <textarea
+                            label="Reason for Reschedule"
+                            value={reason}
+                            placeholder="Please enter your reason"
+                            onchange={handleReasonChange}
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="footer">
+                    <button class="cancel-btn" onclick={handleSubmit} disabled={isButtonDisabled}>
+                        Reschedule Visit
+                    </button>
+                </div>
+            </template>
+
+            <!-- ✅ Success Message -->
+            <template if:true={showSuccess}>
+                <div class="success-wrapper">
+                    <button class="modal-close" onclick={handleClose} aria-label="Close">×</button>
+                    <img src={schedule} class="success-icon" alt="Success Icon" />
+                    <h2 class="success-title">Your visit has been successfully rescheduled!</h2>
+                    <p class="success-text">
+                        Your site visit to <strong>{property}</strong> has been rescheduled.<br />
+                        You will receive a confirmation with updated details shortly. If you have further queries, please reach out to our support team.
+                    </p>
+                </div>
+            </template>
+        </div>
+    </section>
+</template>

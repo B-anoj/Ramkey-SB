@@ -1,0 +1,197 @@
+/* ✨ Modal Overlay */
+.reschedule-visit.modal {
+    background: rgba(0, 0, 0, 0.45);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* 📦 Modal Container */
+.reschedule-visit.modal .modal-content {
+    background: #ffffff;
+    width: 90%;
+    max-width: 54.125rem;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    padding: 2.25rem 3.625rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ❌ Close Button */
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 📝 Modal Title */
+.reschedule-visit.modal .modal-title {
+    color: #232323;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* ℹ️ Description */
+.reschedule-visit.modal .modal-description {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0.5rem 0 1.5rem 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* 🏠 Visit Details */
+.reschedule-visit.modal .visit-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.reschedule-visit.modal .visit-info .info-column {
+    flex: 1;
+}
+
+.reschedule-visit.modal .visit-info .info-column p {
+    color: #585858;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.reschedule-visit.modal .visit-info .info-column p strong {
+    color: #232323;
+    font-weight: 500 !important;
+}
+
+/* 🧾 Reason Input */
+.input-section {
+    margin-top: 1.5rem;
+}
+
+.reason-textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* 🚫 Cancel Button Section */
+.footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.cancel-btn {
+    background: #D8D8D8;
+    color: #FFFFFF;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    border: none;
+    padding: 0.625rem 1.125rem;
+    border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    -webkit-border-radius: 1.5rem;
+    cursor: not-allowed;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cancel-btn:enabled {
+    background-color: #0051ff;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✅ Success Modal Styling */
+.success-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+}
+
+.success-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2e2e2e;
+    margin-bottom: 1rem;
+}
+
+.success-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 480px;
+}
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.25rem;
+    margin-bottom: 1.5rem;
+}
+.input-grid .input-column label {
+    color: #232323;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.input-grid .input-column input, .input-grid .input-column textarea {
+    width: 100%;
+    height: 2.75rem;
+    padding: 0.75rem 1rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #C7C4C4;
+}
+
+.input-grid .input-column textarea {
+    height: 4.75rem;
+}
+
+@media screen and (max-width: 768px) {
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-column lightning-input,
+.input-column lightning-combobox,
+.input-column lightning-textarea {
+    width: 100%;
+}

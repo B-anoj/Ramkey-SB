@@ -1,0 +1,70 @@
+<template>
+    <div><lightning-button variant="brand" label="+ Add Applicant" onclick={handleNextClick} class="slds-m-top_medium" style="margin-left: 10px;">
+    </lightning-button>
+    <lightning-button variant="brand" label="Edit Applicant" onclick={handleNextClick} class="slds-m-top_medium" style="margin-left: 10px;">
+    </lightning-button></div>
+    <div>
+        <form>
+            <div class="two-column">
+                <lightning-combobox label="Customer Type" options={options} value={value} onchange={handleChangeCustomerType}>
+                </lightning-combobox></div>
+            <div class="two-column">
+                <lightning-input type="text" label="Organization" value={organization}></lightning-input></div>
+            <div class="two-column">
+                <lightning-combobox label="Salutation:" options={options} value={value} onchange={handleChangeSalutation}></lightning-combobox></div>
+            <div class="two-column">
+                <lightning-input type="text" label="Designation" value={designation}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="text" label="First name" value={fname}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="text" label="Passport No" value={Passport}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="text" label="Last name" value={lastname}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="Date" label="Valid till" value={validTill}></lightning-input></div>
+            <div class="two-column">
+                <lightning-combobox label="Gender:" options={options} value={value} onchange={handleChangeGender}></lightning-combobox></div>
+            <div class="two-column">
+                    <lightning-combobox label="Profession:" options={options} value={value} onchange={handleChangeProfession}></lightning-combobox></div>
+            <div class="two-column">
+                        <lightning-combobox label="S/o,W/o,D/o:" options={options} value={value} onchange={handleChangeSalutation2}></lightning-combobox></div>
+            <div class="two-column">
+                <lightning-input type="Number" label="Tel.Res" ></lightning-input></div>
+                <div class="two-column">
+                    <lightning-input type="text" label="First name" value={fname}></lightning-input></div>
+            <div class="two-column">
+                        <lightning-input type="Number" label="Tel.Office"></lightning-input></div> 
+            <div class="two-column">
+                <lightning-input type="text" label="Last name" value={lastname2}></lightning-input></div>
+                <div class="two-column">
+                    <lightning-input type="Number" label="Mobile" value={dob}></lightning-input></div>
+            <div class="two-column">
+                <lightning-combobox label="Marital Status:" options={options} value={value} onchange={handleChangeMaritalStatus}></lightning-combobox></div>
+            <div class="two-column">
+                    <lightning-input type="Email" label="Email ID" value={age}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="Date" label="Date of Birth" value={dob}></lightning-input></div>
+                <div class="two-column">
+                    <lightning-input type="Number" label="Alternative Mobile" value={altMobile}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="Number" label="Age" value={age}></lightning-input></div>
+                <div class="two-column">
+                    <lightning-input label="Alternative Email ID" value={altEmail}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input type="Date" label="Anniversary Date" value={anniversaryDate}></lightning-input></div>
+            <div class="two-column">
+                <lightning-input label="Pan No:" value={panNo} required></lightning-input></div>
+            <div class="two-column">
+                <lightning-input label="Aadhar No:" value={aadharNo} required></lightning-input></div>
+        </form>
+    </div>
+    <!-- myFooter.html -->
+    <div class="footer">
+        <!-- Save button -->
+        <lightning-button label="Save" onclick={handleSave}></lightning-button>
+
+        <!-- Cancel button -->
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+    </div>
+    
+</template>

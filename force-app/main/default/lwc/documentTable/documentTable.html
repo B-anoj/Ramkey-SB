@@ -1,0 +1,76 @@
+<template>
+    <div class="project-documents">
+        <!-- Tabs -->
+        <h1 class="heading">Project Documents</h1>
+        <p class="subtext">
+            Access and manage your project documents with Ramky Estates below.
+        </p>
+
+        <template if:true={hasProjects}>
+            <div class="tab-container">
+                <template for:each={projects} for:item="proj">
+                    <div key={proj.projectName} class={proj.className} data-project={proj.projectName}
+                        onclick={handleTabClick}>
+                        {proj.projectName}
+                    </div>
+                </template>
+            </div>
+
+            <div class="tab-content">
+                <!-- Document Lists -->
+                <div class="doc-table">
+                    <lightning-accordion allow-multiple-sections-open active-section-name="myDocs">
+                        <lightning-accordion-section name="myDocs" label="My Documents">
+                            <template if:true={selectedDocuments.length}>
+                                <ul class="button-list">
+                                    <template for:each={selectedDocuments} for:item="doc">
+                                        <li key={doc.name} class={doc.className} data-doc={doc.name} data-type="personal"
+                                            onclick={handleDocumentClick}>
+                                            {doc.name}
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                            <template if:false={selectedDocuments.length}>
+                                <p class="no-docs">There are no documents in My Documents.</p>
+                            </template>
+                        </lightning-accordion-section>
+
+                        <lightning-accordion-section name="propertyDocs" label="Property Documents">
+                            <template if:true={selectedPropertyDocuments.length}>
+                                <ul class="button-list">
+                                    <template for:each={selectedPropertyDocuments} for:item="doc">
+                                        <li key={doc.name} class={doc.className} data-doc={doc.name} data-type="property"
+                                            onclick={handleDocumentClick}>
+                                            {doc.name}
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                            <template if:false={selectedPropertyDocuments.length}>
+                                <p class="no-docs">No property documents available.</p>
+                            </template>
+                        </lightning-accordion-section>
+                    </lightning-accordion>
+                </div>
+
+                <!-- Preview Pane -->
+                <div class="preview-pane">
+                    <template if:true={selectedPreviewUrl}>
+                        <iframe src={selectedPreviewUrl} width="100%" height="500px" frameborder="0"></iframe>
+                    </template>
+                    <template if:false={selectedPreviewUrl}>
+                        <p class="no-docs">Select a document to preview.</p>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <template if:false={hasProjects}>
+             <div class="no-record-wrapper">
+                    <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                    <p class="no-record-text">No records found!!</p>
+                </div>
+        </template>
+    </div>
+</template>

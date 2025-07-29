@@ -1,0 +1,225 @@
+<template>
+    <template if:true={isLoading}>
+        <div class="spinner-wrapper">
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <div class="support-container">
+        <h2>Support</h2>
+        <p class="subheading">Manage your support with Ramky Estates by viewing or raising them below.</p>
+        <div class="scroll-container">
+            <template if:false={noDataFound}>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>subject</th>
+                                <th>Service request ID</th>
+                                <th>Created On</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={caseList} for:item="cs">
+                                <tr key={cs.Id}>
+                                    <td>{cs.serialNumber}</td>
+                                    <td>{cs.Subject}</td>
+                                    <td>{cs.CaseNumber}</td>
+                                    <td>{cs.formattedDate}</td>
+                                    <td>{cs.Type}</td>
+                                    <td>
+                                        <span class={cs.statusClass}>{cs.Status}</span>
+                                    </td>
+                                    <!-- <td>
+                                        <template if:true={cs.isCompleted}>
+                                            <button class="rate-btn" data-case-id={cs.Id} onclick={handleRate}>Rate Us</button>
+                                        </template>
+                                    </td> -->
+                                    <td>
+                                        <template if:true={cs.isCompleted}>
+                                            <template if:true={cs.showRating}>
+                                                <div class="stars">
+                                                    <template if:true={cs.starClasses}>
+                                                        <template for:each={cs.starClasses} for:item="starClassObj">
+                                                            <span key={starClassObj.key} class={starClassObj.class}>★</span>
+                                                        </template>
+                                                    </template>
+                                                </div>
+                                            </template>
+
+                                            <template if:true={cs.showRateButton}>
+                                                <button class="rate-btn" data-case-id={cs.Id} onclick={handleRate}>Rate Us</button>
+                                            </template>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <template if:true={noDataFound}>
+                <div class="no-record-wrapper">
+                    <img src={norecordfound} alt="No Records Found" class="no-record-image" />
+                    <p class="no-record-text">No records found!!</p>
+                </div>
+            </template>
+
+        </div>
+
+        <div class="footer-button">
+            <button class="create-request-btn" onclick={handleCreateCase}>
+                <img src={Plus} alt="Plus" />    
+                Create new request
+            </button>
+        </div>
+    </div>
+    <template if:true={showForm}>
+        <section role="dialog" tabindex="-1" class="modal raise-service-request">
+            <div class="modal-content">
+                <button class="close" onclick={closeModal}>
+                    <img src={close} alt="Close Icon" />
+                </button>
+                <h2 class="modal-title">Raise a service request</h2>
+                <p class="subtext">
+                    Please select the type of issue that best matches your inquiry or request below.
+                    Thank you for choosing Ramky Estates!
+                </p>
+
+                <div class="form-group">
+                    <label>Select an issue</label>
+                    <template if:true={resourceourceValues.data}>
+                        <lightning-combobox options={resourceourceValues.data.values} style="width: 100%;"
+                            data-input='status' data-index={index onchange={handleCategoryChange}>
+                        </lightning-combobox>
+                    </template>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label>Select an issue</label>
+                    <template if:true={resourceourceValues.data}>
+                        <img src={ChevronBottom} alt="Chevron" class="chevron-bottom" />
+                        <select class="custom-select" data-input="status" data-index={index} onchange={handleCategoryChange}>
+                            <option value="">-- Select --</option>
+                            <template for:each={resourceourceValues.data.values} for:item="option">
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            </template>
+                        </select>
+                    </template>
+                </div> -->
+
+                <div class="form-group">
+                    <label class="m-0">Others</label>
+                    <lightning-input name="other" placeholder="Write an Issue" onchange={handleOtherInput}>
+                    </lightning-input>
+                </div>
+
+                <div class="form-group">
+                    <label class="m-0">Description</label>
+                    <lightning-textarea name="description" placeholder="Describe your issue"
+                        onchange={handleDescriptionChange}>
+                    </lightning-textarea>
+                </div>
+
+                <div class="footer">
+                    <button class="submit-btn" onclick={submitCase} disabled={isSubmitDisabled}>Submit</button>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template if:true={showSuccess}>
+        <section role="dialog" tabindex="-1" class="modal request-raised-successfully">
+            <div class="modal-content">
+                <!-- <button class="close" onclick={closeModal}>×</button> -->
+                <button class="close" onclick={closeModal}>
+                    <img src={close} alt="Close Icon" />
+                </button>
+                <img src={logo} alt="Success" class="thumb"/>
+                <h2 class="main-heading">Your request has been raised successfully!</h2>
+                <p class="subheading">
+                    <!-- We have received your service request. Our team will review and respond shortly.
+                    Thank you for contacting Ramky Estates. -->
+                    We have received your service request and it is now being reviewed by our team. You will receive a response shortly. 
+                    Thank you for contacting  Ramky Estates. For any questions or assistance, please don't hesitate to contact our support team.
+                </p>
+            </div>
+        </section>
+    </template>
+
+    <template if:true={showRateModal}>
+        <section class="modal feedback" role="dialog" tabindex="-1">
+            <div class="modal-content">
+                <button class="close" onclick={handleCloseRating}>
+                    <img src={close} alt="Close Icon" />
+                </button>
+                <h2 class="heading">Are you happy with the solution?</h2>
+                <p class="subtext">Continue to close the ticket.</p>
+                <div class="button-group">
+                    <button class="raise-btn" onclick={handleRaiseAgain}>Raise again</button>
+                    <button class="continue-btn" onclick={handleContinue}>Continue</button>
+                </div>
+            </div>
+        </section>
+    </template>
+
+
+    <template if:true={showStartModal}>
+        <section class="modal rate-us" role="dialog" tabindex="-1">
+            <div class="modal-content">
+                <button class="close" onclick={handleCloseRating}>
+                    <img src={close} alt="Close Icon" />
+                </button>
+                <h2 class="title">Rate us</h2>
+                <p class="subtitle">Help us improve. We are here for you.</p>
+                <div class="stars">
+                    <template for:each={stars} for:item="star" for:index="index">
+                        <span
+                            key={star}
+                            class={star.class}
+                            onclick={handleStarClick}
+                            data-index={index}>
+                            ★
+                        </span>
+                    </template>
+                </div>
+                <template if:true={showFeedbackBox}>
+                    <div class="feedback-section">
+                        <label>Please let us know where we went wrong.</label>
+                        <textarea
+                            placeholder="write"
+                            value={feedback}
+                            oninput={handleInput}
+                            onchange={handleComments}>
+                        </textarea>
+                    </div>
+                </template>
+
+                <div class="submit-btn-wrap">
+                    <button class="submit-btn" onclick={handleSubmit}>Submit</button>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Thank You Modal -->
+    <template if:true={showThankYouModal}>
+        <section class="modal thankyou">
+            <div class="modal-content">
+                <button class="close" onclick={closeThankYouModal}>
+                    <img src={close} alt="Close Icon" />
+                </button>
+                <img src={messagelogo} alt="Thank you" class="thankyou-image" />
+                <h2>Thank you for rating us!</h2>
+                <p>We appreciate you taking the time to share your thoughts.</p>
+                <button class="close-btn" onclick={closeThankYouModal}>Close</button>
+            </div>
+        </section>
+    </template>
+</template>

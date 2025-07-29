@@ -1,0 +1,45 @@
+<!-- Your_VF_Page.page -->
+<apex:page controller="FlatdetailPageController" contentType="application/vnd.ms-excel#Ramky Inventory.xls" cache="true">
+     <apex:stylesheet value="{!$Resource.getpdfVfpagecss}" />
+   
+        <div  style="text-align:right;">
+         <!--  <apex:image url="{!$Resource.RamkyLogo}" alt="Image Alt Text" width="100" height="70%"  />-->
+        </div>
+        
+        <center><b>FLATS DETAILS</b></center><br/>
+            <table border="1">
+                <thead>
+                    <tr>
+                      
+                        <th style="width:5%;">Flat No.</th>
+                        <th style="width:10%;">Location</th>
+                        <th style="width:10%;">Sub-Location</th>
+                        <th style="width:10%;">Project Name</th>
+                        <th style="width:3%;">Tower</th>
+                        <th style="width:2%;">Floor</th>
+                        <th style="width:8%;">Status</th>
+                         <th style="width:8%;">Base Price</th>
+                         <th style="width:;">Facing</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!searchResults}" var="result">
+                        <tr>
+                           
+                            <td>{!result.Name}</td>
+                            <td>{!result.Location__c}</td>
+                            <td>{!result.Sublocation__c}</td>
+                            <td>{!result.Project__c}</td>
+                            <td>{!result.Towers__c}</td>
+                            <td>{!result.Floor__c}</td>
+                              <td>{!result.Status__c}</td>
+                              <td>{!result.Base_Value__c}</td>
+                              <td>{!result.Facing__c}</td>
+                            
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+       
+</apex:page>

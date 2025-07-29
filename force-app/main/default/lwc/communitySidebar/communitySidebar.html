@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-18-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <nav class="sidebar">
+        <ul>
+            <li class="logo">
+                <!-- Optional Logo/Icon -->
+            </li>
+            <template for:each={menuItems} for:item="item">
+                <li key={item.label} class="sidebar-item">
+                    <a href={item.link}>
+                        <span class="icon">{item.icon}</span>
+                        <span class="label">{item.label}</span>
+                    </a>
+                </li>
+            </template>
+        </ul>
+    </nav>
+</template>
